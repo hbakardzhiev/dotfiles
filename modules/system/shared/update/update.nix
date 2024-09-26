@@ -1,24 +1,25 @@
-{ pkgs, ... }:
+{ config, ... }:
 {
-  systemd.services.pull-updates = {
-    description = "Pulls changes to system config";
-    restartIfChanged = false;
-    onSuccess = [ "nixos-upgrade.service" ];
-    startAt = "04:40";
-    path = [pkgs.git pkgs.openssh];
-    script = ''
-      test "$(git branch --show-current)" = "main"
-      git pull --ff-only
-    '';
-    serviceConfig = {
-      WorkingDirectory = "/etc/nixos";
-      User = "alice";
-      Type = "oneshot";
-    };
-  };
+  # systemd.services.pull-updates = {
+  #   description = "Pulls changes to system config";
+  #   restartIfChanged = false;
+  #   # onSuccess = [ "nixos-upgrade.service" ];
+  #   startAt = "04:40";
+  #   path = [pkgs.git pkgs.openssh];
+  #   script = ''
+  #     test "$(git branch --show-current)" = "main"
+  #     git pull --ff-only
+  #   '';
+  #   serviceConfig = {
+  #     WorkingDirectory = "/etc/nixos";
+  #     User = "alice";
+  #     Type = "oneshot";
+  #   };
+  # };
   system.autoUpgrade = {
     enable = true;
-    flake = "git+file:///etc/nixos";
+    # flake = "git+file:///etc/nixos";
+    flake = "https://github.com/hbakardzhiev/dotfiles/archive/main.tar.gz#${config.networking.hostName}";
     flags = [
       # "--update-input"
       # "nixpkgs"
