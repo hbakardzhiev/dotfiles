@@ -110,18 +110,18 @@ in
   # Trezor hardware wallet
   services.trezord.enable = true;
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github.com:hbakardzhiev/config.git";
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "--no-write-lock-file"
-      "-L" # print build logs
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
-  };
+  # system.autoUpgrade = {
+  #   enable = true;
+  #   flake = "git+https://github.com/hbakardzhiev/dotfiles.git";
+  #   flags = [
+  #     # "--update-input"
+  #     # "nixpkgs"
+  #     "--no-write-lock-file"
+  #     "-L" # print build logs
+  #   ];
+  #   dates = "02:00";
+  #   randomizedDelaySec = "45min";
+  # };
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }
