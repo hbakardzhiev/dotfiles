@@ -1,0 +1,40 @@
+{ pkgs, lib, ... }:
+let
+  pname = "Remix-IDE";
+  version = "1.3.6";
+  src = pkgs.fetchurl {
+    url = "https://github.com/ethereum/remix-desktop/releases/download/v${version}/Remix-IDE-${version}.AppImage";
+    sha256 = "146x71cybmqhdn0bcp54da30drd1b3jk233ldis0spqj6gqf093s";
+  };
+  remix-desktop = pkgs.appimageTools.wrapType2 {
+    pname = pname;
+    version = version;
+    src = src;
+    meta = with lib; {
+      description = "Remix IDE";
+      homepage = "https://remix.ethereum.org/";
+      changelog = "https://github.com/ethereum/remix-desktop/releases/tag/v${version}";
+      license = licenses.gpl3Only;
+      sourceProvenance = with sourceTypes; [ binaryNativeCode ];
+      # maintainers = with maintainers; [ wolfangaukang ];
+      mainProgram = "remix-ide";
+      platforms = [ "x86_64-linux" ];
+    };
+  };
+in
+{
+  home.packages = [ remix-desktop ];
+  xdg.desktopEntries.remix-desktop = {
+    type = "Application";
+    name = "Remix Desktop";
+    comment = "Remix Desktop";
+    exec = "${remix-desktop.pname}";
+    terminal = false;
+    icon =
+      let
+        contents = pkgs.appimageTools.extract { inherit pname version src; };
+      in
+      "${contents}/remix-ide.png";
+    # StartupWMClass="Remix Desktop";
+  };
+}
