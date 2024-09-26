@@ -5,6 +5,11 @@
     userEmail = "h.bakardzhiev@gmx.com";
     userName = "hbakardzhiev";
     aliases = { };
+    extraConfig = {
+      safe = {
+        directory = "/etc/nixos";
+      };
+    };
   };
   programs.bash = {
     shellAliases = {
