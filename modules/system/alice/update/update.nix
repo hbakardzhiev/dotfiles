@@ -16,18 +16,20 @@
       Type = "oneshot";
     };
   };
+        # hostname="$(hostname -s)"
+        # --flake /etc/nixos/.#"''${hostname}"
+
   systemd.services.rebuild = {
     description = "Rebuilds and activates system config";
     restartIfChanged = false;
     path = [ pkgs.nixos-rebuild pkgs.systemd pkgs.nettools pkgs.git ];
     script = ''
-      hostname="$(hostname -s)"
-      nixos-rebuild boot --flake /etc/nixos/.#"''${hostname}"
+      nixos-rebuild boot 
       booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
       built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
 
       if [ "''${booted}" = "''${built}" ]; then
-        nixos-rebuild switch --flake /etc/nixos/.#"''${hostname}"
+        nixos-rebuild switch 
       else
         reboot now
       fi
