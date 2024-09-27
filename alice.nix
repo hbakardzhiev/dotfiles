@@ -107,8 +107,5 @@ in
   # virtualisation.libvirtd.enable = true;
   # virtualisation.docker.enable = true;
 
-  # Trezor hardware wallet
-  services.trezord.enable = true;
-
   system.stateVersion = "23.05"; # Did you read the comment?
 }
