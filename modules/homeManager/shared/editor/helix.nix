@@ -10,7 +10,7 @@
       omnisharp-roslyn
     ];
     settings = {
-      theme = "dark_plus";
+      theme = "gruvbox_light_soft";
       editor = {
         mouse = true;
         bufferline = "always";
