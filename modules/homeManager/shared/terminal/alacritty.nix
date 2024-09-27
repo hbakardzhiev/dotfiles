@@ -34,8 +34,8 @@
       };
       colors = {
         primary = {
-          background = "#F2E5BC";
-          foreground = "#514C45";
+          background = "#FFFFFF";
+          foreground = "#000000";
         };
       };
     };
