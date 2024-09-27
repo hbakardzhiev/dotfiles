@@ -16,6 +16,7 @@
       "flakes"
       "repl-flake"
     ];
+    settings.trusted-users = [ "root" "@wheel" ];
   };
 
   boot = {
