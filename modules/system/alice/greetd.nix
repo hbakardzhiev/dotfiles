@@ -19,5 +19,8 @@ in
     ${sway}
   '';
 
+  # Password
+  security.pam.services.greetd = { };
+  security.pam.services.swaylock = { };
   security.pam.services.greetd.enableGnomeKeyring = true;
 }

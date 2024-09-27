@@ -67,10 +67,6 @@ in
 
   # services.upower.enable = true;
 
-  # Password
-  security.pam.services.greetd = { };
-  security.pam.services.swaylock = { };
-
   # SAMBA
   services.gvfs.enable = true;
 
