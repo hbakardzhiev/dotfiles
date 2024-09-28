@@ -19,6 +19,7 @@
         ];
         # modules-center = [ "sway/window" ];
         modules-right = [
+          "custom/pomodoro"
           "pulseaudio"
           # "network"
           "cpu"
@@ -31,6 +32,12 @@
           "clock"
           "tray"
         ];
+        "custom/pomodoro" = {
+          exec = "${pkgs.openpomodoro-cli}/bin/pomodoro status";
+          on-click = "${pkgs.openpomodoro-cli}/bin/pomodoro start";
+          on-click-right = "${pkgs.openpomodoro-cli}/bin/pomodoro break";
+          interval = 1;
+        };
         "wlr/taskbar" = {
           on-click = "activate";
           on-click-right = "close";
