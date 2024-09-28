@@ -229,6 +229,21 @@
               iconUpdateURL = "https://home-manager-options.extranix.com/images/home-manager-option-search2.png";
               definedAliases = [ "@hm" ];
             };
+            "Noogle" = {
+              urls = [
+                {
+                  template = "https://noogle.dev/q";
+                  params = [
+                    {
+                      name = "term";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              iconUpdateURL = "https://noogle.dev/favicon.png";
+              definedAliases = [ "@ng" ];
+            };
           };
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
