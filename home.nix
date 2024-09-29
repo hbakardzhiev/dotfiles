@@ -26,8 +26,6 @@ in
   home.packages = with pkgs; [
     htop
     nixfmt-rfc-style
-    # libsForQt5.qt5.qtwayland
-    # intel-gpu-tools
     p7zip
     udiskie
     tree
