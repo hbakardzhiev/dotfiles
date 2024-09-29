@@ -95,6 +95,7 @@
           "browser.sessionstore.resume_session_once" = true;
           "browser.startup.page" = 3;
           "nglayout.initialpaint.delay" = 0;
+          "widget.windows.window_occlusion_tracking.enabled" = false;
         };
         search = {
           force = true;
