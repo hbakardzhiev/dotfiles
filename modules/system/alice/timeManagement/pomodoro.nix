@@ -5,7 +5,6 @@ let
       set -xo pipefail
   '';
   playMusic = "${pkgs.pipewire}/bin/pw-play /home/alice/.pomodoro/hooks/music.mp3";
-      # ${pkgs.libnotify}/bin/notify-send "Pomorodo start 🚀"
   pomodoro = "${pkgs.openpomodoro-cli}/bin/pomodoro";
   tail = "${pkgs.coreutils-full}/bin/tail -2";
   pomodoStatus = ''pomodoroStatus="$(${pomodoro} history | ${tail})"'';
