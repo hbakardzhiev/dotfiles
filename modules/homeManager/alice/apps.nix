@@ -23,6 +23,4 @@
     kaffeine
     okular
   ];
-
-  # programs.java.enable = true;
 }
