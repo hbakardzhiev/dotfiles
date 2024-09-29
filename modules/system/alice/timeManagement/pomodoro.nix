@@ -25,27 +25,6 @@ in
     path = "/home/alice/.pomodoro/hooks/start";
     mode = "5555";
   };
-  # sops.templates."pomodoro-break" = {
-  #   content = ''
-  #     ${bashSetup}
-  #     ${pomodoStatus}      
-  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro break 😎" "<b>$pomodoroStatus</b>"
-  #     sleep "${pomodoroDuration}"
-  #     ${playMusic}
-  #     ${pomodoStatus}
-  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro break finished 😎" "<b>$pomodoroStatus</b>"    '';
-  #   path = "/home/alice/.pomodoro/hooks/break";
-  #   mode = "5555";
-  # };
-  # sops.templates."pomodoro-stop" = {
-  #   content = ''
-  #     ${bashSetup}
-  #     ${pomodoStatus}
-  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro finished ✅🏁" "<b>$pomodoroStatus</b>"    
-  #   '';
-  #   path = "/home/alice/.pomodoro/hooks/stop";
-  #   mode = "5555";
-  # };
   users.users.alice.packages = with pkgs; [ openpomodoro-cli ];
 
   systemd.user.services.upload-pomodoro-work = {
