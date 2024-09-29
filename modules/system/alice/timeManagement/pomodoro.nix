@@ -8,6 +8,9 @@ let
   pomodoro = "${pkgs.openpomodoro-cli}/bin/pomodoro";
   tail = "${pkgs.coreutils-full}/bin/tail -2";
   pomodoStatus = ''pomodoroStatus="$(${pomodoro} history | ${tail})"'';
+  pomodoroHistory = "/home/alice/.pomodoro/history";
+  grep = "${pkgs.gnugrep}/bin/grep";
+  pomodoroDuration = "$(${pkgs.coreutils-full}/bin/tail -n 1 ${pomodoroHistory} | ${grep} -oP 'duration=\\K[0-9]+')";
 in
 {
   sops.templates."pomodoro-start" = {
@@ -15,34 +18,34 @@ in
       ${bashSetup}
       ${pomodoStatus}
       ${pkgs.libnotify}/bin/notify-send "Pomodoro start 🚀" "<b>$pomodoroStatus</b>" &
-      sleep 25m 
+      sleep "${pomodoroDuration}"m
       ${playMusic}
       ${pomodoStatus}
       ${pkgs.libnotify}/bin/notify-send "Pomodoro finished ✅🏁" "<b>$pomodoroStatus</b>"    '';
     path = "/home/alice/.pomodoro/hooks/start";
     mode = "5555";
   };
-  sops.templates."pomodoro-break" = {
-    content = ''
-      ${bashSetup}
-      ${pomodoStatus}      
-      ${pkgs.libnotify}/bin/notify-send "Pomodoro break 😎" "<b>$pomodoroStatus</b>"
-      sleep 5m 
-      ${playMusic}
-      ${pomodoStatus}
-      ${pkgs.libnotify}/bin/notify-send "Pomodoro break finished 😎" "<b>$pomodoroStatus</b>"    '';
-    path = "/home/alice/.pomodoro/hooks/break";
-    mode = "5555";
-  };
-  sops.templates."pomodoro-stop" = {
-    content = ''
-      ${bashSetup}
-      ${pomodoStatus}
-      ${pkgs.libnotify}/bin/notify-send "Pomodoro finished ✅🏁" "<b>$pomodoroStatus</b>"    
-    '';
-    path = "/home/alice/.pomodoro/hooks/stop";
-    mode = "5555";
-  };
+  # sops.templates."pomodoro-break" = {
+  #   content = ''
+  #     ${bashSetup}
+  #     ${pomodoStatus}      
+  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro break 😎" "<b>$pomodoroStatus</b>"
+  #     sleep "${pomodoroDuration}"
+  #     ${playMusic}
+  #     ${pomodoStatus}
+  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro break finished 😎" "<b>$pomodoroStatus</b>"    '';
+  #   path = "/home/alice/.pomodoro/hooks/break";
+  #   mode = "5555";
+  # };
+  # sops.templates."pomodoro-stop" = {
+  #   content = ''
+  #     ${bashSetup}
+  #     ${pomodoStatus}
+  #     ${pkgs.libnotify}/bin/notify-send "Pomodoro finished ✅🏁" "<b>$pomodoroStatus</b>"    
+  #   '';
+  #   path = "/home/alice/.pomodoro/hooks/stop";
+  #   mode = "5555";
+  # };
   users.users.alice.packages = with pkgs; [ openpomodoro-cli ];
 
   systemd.user.services.upload-pomodoro-work = {

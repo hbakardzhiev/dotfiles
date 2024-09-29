@@ -35,7 +35,7 @@
         "custom/pomodoro" = {
           exec = "${pkgs.openpomodoro-cli}/bin/pomodoro status";
           on-click = "${pkgs.openpomodoro-cli}/bin/pomodoro start";
-          on-click-right = "${pkgs.openpomodoro-cli}/bin/pomodoro break";
+          on-click-right = "${pkgs.openpomodoro-cli}/bin/pomodoro start -t break -d 5";
           interval = 1;
         };
         "wlr/taskbar" = {
