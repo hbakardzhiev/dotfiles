@@ -17,10 +17,7 @@ let
   };
 in
 {
-  imports =
-    firstPart
-    ++ secondPart
-    ++ [ ./sops.nix ];
+  imports = firstPart ++ secondPart ++ [ ./sops.nix ];
 
   home.username = "alice";
   home.homeDirectory = "/home/alice";

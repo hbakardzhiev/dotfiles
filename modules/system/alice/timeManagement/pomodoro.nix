@@ -1,8 +1,8 @@
 { pkgs, ... }:
-let 
+let
   bashSetup = ''
-      #!/usr/bin/env bash
-      set -xo pipefail
+    #!/usr/bin/env bash
+    set -xo pipefail
   '';
   playMusic = "${pkgs.pipewire}/bin/pw-play /home/alice/.pomodoro/hooks/music.mp3";
   pomodoro = "${pkgs.openpomodoro-cli}/bin/pomodoro";
@@ -30,7 +30,10 @@ in
   systemd.user.services.upload-pomodoro-work = {
     startAt = "10:00";
     wantedBy = [ "network-online.target" ];
-    path = with pkgs; [ git openssh ];
+    path = with pkgs; [
+      git
+      openssh
+    ];
     script = ''
       #!/bin/bash
 
