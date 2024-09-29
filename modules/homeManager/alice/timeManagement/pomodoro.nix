@@ -5,8 +5,8 @@ in
 {
   programs.bash = {
     shellAliases = {
-      pomodoroBreak = "function myFunc() { ${pomodoro} start -t break -d $1 }; myFunc";
-      pomodoroStart = "function myFunc() { ${pomodoro} start -t $1 }; myFunc";
+      pomodoroBreak = "${pomodoro} start -t break -d";
+      pomodoroStart = "${pomodoro} start -t";
     };
   };
 }

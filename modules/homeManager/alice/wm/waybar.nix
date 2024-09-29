@@ -36,6 +36,7 @@
           exec = "${pkgs.openpomodoro-cli}/bin/pomodoro status";
           on-click = "${pkgs.openpomodoro-cli}/bin/pomodoro start";
           on-click-right = "${pkgs.openpomodoro-cli}/bin/pomodoro start -t break -d 5";
+          on-click-middle = "${pkgs.openpomodoro-cli}/bin/pomodoro start -t break -d 15";
           interval = 1;
         };
         "wlr/taskbar" = {
@@ -119,8 +120,8 @@
         "clock" = {
           tooltip-format = ''
             <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-          format-alt = "{:%Y-%m-%d}";
+            <tt>{calendar}</tt>'';
+          format-alt = "{:%Y-%m-%d %H:%M:%S}";
           format = "{:%Y-%m-%d %H:%M}";
         };
         "cpu" = {
