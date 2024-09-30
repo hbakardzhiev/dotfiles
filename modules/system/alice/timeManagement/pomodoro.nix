@@ -26,21 +26,4 @@ in
     mode = "5555";
   };
   users.users.alice.packages = with pkgs; [ openpomodoro-cli ];
-
-  systemd.user.services.upload-pomodoro-work = {
-    startAt = "10:00";
-    wantedBy = [ "network-online.target" ];
-    path = with pkgs; [
-      git
-      openssh
-    ];
-    script = ''
-      #!/bin/bash
-
-      cd "/home/alice/.pomodoro/"
-      git add .
-      git commit -m "Automated commit from script"
-      git push origin main
-    '';
-  };
 }
