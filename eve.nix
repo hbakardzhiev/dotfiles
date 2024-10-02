@@ -63,7 +63,7 @@ in
       adminuser = "root";
       adminpassFile = config.sops.secrets."nextcloud/Password".path;
     };
-    extraOptions.enabledPreviewProviders = [
+    settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
       "OC\\Preview\\GIF"
       "OC\\Preview\\JPEG"
