@@ -23,6 +23,7 @@ in
       ${script}
     '';
   };
+
   systemd.user.services.upload-obsidian = {
     startAt = "10:00";
     wantedBy = [ "network-online.target" ];
@@ -36,6 +37,5 @@ in
       cd ${obsidianFolder}
       ${script}
     '';
-
   };
 }
