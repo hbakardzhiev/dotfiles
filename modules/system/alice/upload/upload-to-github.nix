@@ -1,11 +1,11 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 let
   pomodoroFolder = "/home/alice/.pomodoro/";
   obsidianFolder = "/drives/data/obsidian/";
   script = ''
-      git add .
-      git commit -m "Automated commit from script"
-      git push origin main
+    git add .
+    git commit -m "Automated commit from script"
+    git push origin main
   '';
 in
 {
