@@ -2,6 +2,10 @@
 
 Welcome to my dotfiles repository! This collection is tailored for users who want to streamline their Linux environment setup, particularly focusing on NixOS, Home Manager, and utilizing flakes for configuration management.
 
+## Status
+![Flake Check badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/flakeCheck.yml/badge.svg)
+![Update of flake badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/bump.yml/badge.svg)
+
 ## Overview
 
 This repository leverages:
