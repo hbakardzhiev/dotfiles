@@ -8,14 +8,14 @@
     defaultSopsFile = ./secrets/allSecrets/secrets.yaml;
     secrets = {
       test = { };
-      "ssh/laptop" = {
+      # "ssh/laptop" = {
         # owner = "alice";
         # neededForUsers = true;
-      };
-      "ssh/phone" = {
+      # };
+      # "ssh/phone" = {
         # owner = "alice";
         # neededForUsers = true;
-      };
+      # };
       "ddns/duckdns/token" = {
         # owner = "alice";
       };
