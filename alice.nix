@@ -43,8 +43,11 @@ in
     # firewall.allowedTCPPorts = [];
     # firewall.allowedUDPPorts = [];
     hostName = hostname;
+    networkmanager.enable = lib.mkForce false;
+    wireless.iwd.enable = true;
     firewall.enable = true;
   };
+
 
   xdg = {
     portal = {
