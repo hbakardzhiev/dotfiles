@@ -9,12 +9,12 @@
     secrets = {
       test = { };
       # "ssh/laptop" = {
-        # owner = "alice";
-        # neededForUsers = true;
+      # owner = "alice";
+      # neededForUsers = true;
       # };
       # "ssh/phone" = {
-        # owner = "alice";
-        # neededForUsers = true;
+      # owner = "alice";
+      # neededForUsers = true;
       # };
       "ddns/duckdns/token" = {
         # owner = "alice";

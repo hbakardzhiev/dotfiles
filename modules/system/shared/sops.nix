@@ -2,48 +2,48 @@
 {
   # services.openssh.settings.StrictModes = false;
 
-  sops.secrets."privateLaptop1" = {};
-  sops.secrets."privateLaptop2" = {};
-  sops.secrets."privateLaptop3" = {};
-  sops.secrets."privateLaptop4" = {};
-  sops.secrets."privateLaptop5" = {};
+  sops.secrets."privateLaptop1" = { };
+  sops.secrets."privateLaptop2" = { };
+  sops.secrets."privateLaptop3" = { };
+  sops.secrets."privateLaptop4" = { };
+  sops.secrets."privateLaptop5" = { };
 
-  sops.secrets."rsa1" = {};
-  sops.secrets."rsa2" = {};
-  sops.secrets."rsa3" = {};
-  sops.secrets."rsa4" = {};
-  sops.secrets."rsa5" = {};
-  sops.secrets."rsa6" = {};
-  sops.secrets."rsa7" = {};
-  sops.secrets."rsa8" = {};
-  sops.secrets."rsa9" = {};
-  sops.secrets."rsa10" = {};
-  sops.secrets."rsa11"= {};
-  sops.secrets."rsa12"= {};
-  sops.secrets."rsa14"= {};
-  sops.secrets."rsa15"= {};
-  sops.secrets."rsa16"= {};
-  sops.secrets."rsa17"= {};
-  sops.secrets."rsa18"= {};
-  sops.secrets."rsa19"= {};
-  sops.secrets."rsa20"= {};
-  sops.secrets."rsa21"= {};
-  sops.secrets."rsa22"= {};
-  sops.secrets."rsa23"= {};
-  sops.secrets."rsa24"= {};
-  sops.secrets."rsa25"= {};
-  sops.secrets."rsa26"= {};
-  sops.secrets."rsa27"= {};
-  sops.secrets."rsa28"= {};
-  sops.secrets."rsa29"= {};
-  sops.secrets."rsa30"= {};
-  sops.secrets."rsa31"= {};
-  sops.secrets."rsa32"= {};
-  sops.secrets."rsa33"= {};
-  sops.secrets."rsa34"= {};
-  sops.secrets."rsa35"= {};
-  sops.secrets."rsa36"= {};
-  sops.secrets."rsa37"= {};
+  sops.secrets."rsa1" = { };
+  sops.secrets."rsa2" = { };
+  sops.secrets."rsa3" = { };
+  sops.secrets."rsa4" = { };
+  sops.secrets."rsa5" = { };
+  sops.secrets."rsa6" = { };
+  sops.secrets."rsa7" = { };
+  sops.secrets."rsa8" = { };
+  sops.secrets."rsa9" = { };
+  sops.secrets."rsa10" = { };
+  sops.secrets."rsa11" = { };
+  sops.secrets."rsa12" = { };
+  sops.secrets."rsa14" = { };
+  sops.secrets."rsa15" = { };
+  sops.secrets."rsa16" = { };
+  sops.secrets."rsa17" = { };
+  sops.secrets."rsa18" = { };
+  sops.secrets."rsa19" = { };
+  sops.secrets."rsa20" = { };
+  sops.secrets."rsa21" = { };
+  sops.secrets."rsa22" = { };
+  sops.secrets."rsa23" = { };
+  sops.secrets."rsa24" = { };
+  sops.secrets."rsa25" = { };
+  sops.secrets."rsa26" = { };
+  sops.secrets."rsa27" = { };
+  sops.secrets."rsa28" = { };
+  sops.secrets."rsa29" = { };
+  sops.secrets."rsa30" = { };
+  sops.secrets."rsa31" = { };
+  sops.secrets."rsa32" = { };
+  sops.secrets."rsa33" = { };
+  sops.secrets."rsa34" = { };
+  sops.secrets."rsa35" = { };
+  sops.secrets."rsa36" = { };
+  sops.secrets."rsa37" = { };
 
   sops.templates."privateLaptopAll" = {
     owner = "alice";
@@ -65,15 +65,15 @@
     group = "users";
     content = ''
       -----BEGIN OPENSSH PRIVATE KEY-----
-      ${config.sops.placeholder."rsa1" }
-      ${config.sops.placeholder."rsa2" }
-      ${config.sops.placeholder."rsa3" }
-      ${config.sops.placeholder."rsa4" }
-      ${config.sops.placeholder."rsa5" }
-      ${config.sops.placeholder."rsa6" }
-      ${config.sops.placeholder."rsa7" }
-      ${config.sops.placeholder."rsa8" }
-      ${config.sops.placeholder."rsa9" }
+      ${config.sops.placeholder."rsa1"}
+      ${config.sops.placeholder."rsa2"}
+      ${config.sops.placeholder."rsa3"}
+      ${config.sops.placeholder."rsa4"}
+      ${config.sops.placeholder."rsa5"}
+      ${config.sops.placeholder."rsa6"}
+      ${config.sops.placeholder."rsa7"}
+      ${config.sops.placeholder."rsa8"}
+      ${config.sops.placeholder."rsa9"}
       ${config.sops.placeholder."rsa10"}
       ${config.sops.placeholder."rsa11"}
       ${config.sops.placeholder."rsa12"}

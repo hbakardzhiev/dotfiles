@@ -48,7 +48,6 @@ in
     firewall.enable = true;
   };
 
-
   xdg = {
     portal = {
       xdgOpenUsePortal = true;
