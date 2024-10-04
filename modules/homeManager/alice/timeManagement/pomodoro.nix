@@ -8,6 +8,7 @@ in
       pomodoroBreak = "${pomodoro} start -t break -d";
       pomodoroStart = "${pomodoro} start -t";
       pomodoroFinish = "${pomodoro} finish";
+      pomodoroHistory = "${pomodoro} history";
     };
   };
 }

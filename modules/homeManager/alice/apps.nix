@@ -22,5 +22,6 @@
     nmap
     kaffeine
     okular
+    portfolio
   ];
 }
