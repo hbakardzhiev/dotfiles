@@ -13,7 +13,6 @@
     otpclient
     thunderbird
     xournalpp
-    pixelorama
     obs-studio
     imagemagick
     torrential
