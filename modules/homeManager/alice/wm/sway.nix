@@ -67,25 +67,17 @@ in
       };
       startup = [
         # {
-        #   command = "${pkgs.nextcloud-client}/bin/nextcloud --background";
-        #   always = false;
-        # }
-        # {
         #   command = "${pkgs.signal-desktop-beta}/bin/signal-desktop-beta";
         #   always = false;
         # }
-        {
-          command = "${pkgs.tailscale-systray}/bin/tailscale-systray";
-          always = false;
-        }
+        # {
+        #   command = "${pkgs.tailscale-systray}/bin/tailscale-systray";
+        #   always = false;
+        # }
         {
           command = "${pkgs.thunderbird}/bin/thunderbird";
           always = false;
         }
-        # {
-        #   command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
-        #   always = true;
-        # }
         {
           command = "${pkgs.iwgtk}/bin/iwgtk -i";
           always = false;
@@ -94,10 +86,6 @@ in
           command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
           always = true;
         }
-        # {
-        #   command = "systemctl --user status xdg-desktop-portal-hyprland";
-        #   always = true;
-        # }
       ];
       bars = [
         {
