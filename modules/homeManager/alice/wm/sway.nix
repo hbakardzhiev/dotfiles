@@ -14,7 +14,7 @@ in
 {
   wayland.windowManager.sway = {
     enable = true;
-    xwayland = true;
+    xwayland = false;
     config = {
       modifier = "Mod4"; # Super key
       terminal = "${pkgs.alacritty}/bin/alacritty";
@@ -87,6 +87,10 @@ in
         #   always = true;
         # }
         {
+          command = "${pkgs.iwgtk}/bin/iwgtk -i";
+          always = false;
+        }
+        {
           command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
           always = true;
         }
@@ -124,6 +128,7 @@ in
               [app_id = "com.github.finefindus.eyedropper"] floating enable
               [app_id = "org.kde.kcalc"] floating enable
               [app_id = "discord"] workspace number 4
+              [app_id = "org.twosheds.iwgtk"] floating enable
               [title = "Extension: (Bitwarden - Free Password Manager) - Bitwarden — Mozilla Firefox"] floating enable
               [window_role="pop-up"] floating enable
               [window_role="bubble"] floating enable

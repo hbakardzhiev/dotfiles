@@ -21,7 +21,7 @@
         modules-right = [
           "custom/pomodoro"
           "pulseaudio"
-          "network"
+          # "network"
           "cpu"
           "memory"
           "backlight"
