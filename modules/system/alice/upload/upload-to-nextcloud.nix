@@ -4,7 +4,7 @@ let
 in
 {
   systemd.user.services.${serviceName} = {
-    startAt = "9:00";
+    startAt = "10:00";
     path = with pkgs; [
       nextcloud-client
     ];
@@ -18,7 +18,7 @@ in
   };
 
   systemd.user.services.upload-configurationBackup-and-passwords-to-nextcloud = {
-    startAt = "9:00";
+    startAt = "10:00";
     path = with pkgs; [
       nextcloud-client
     ];

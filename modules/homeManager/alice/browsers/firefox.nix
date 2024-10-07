@@ -255,6 +255,7 @@
           metamask
           sponsorblock
           floccus
+          leechblock-ng
         ];
       };
     };

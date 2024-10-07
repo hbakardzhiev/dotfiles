@@ -15,6 +15,7 @@
       # { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } #ublock-origin
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
+      { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
     ];
     package = pkgs.brave;
   };
