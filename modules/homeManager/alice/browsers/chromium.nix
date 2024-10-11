@@ -16,6 +16,7 @@
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
       { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
+      { id = "ifbmcpbgkhlpfcodhjhdbllhiaomkdej"; } # Office - Enable Copy and Paste (for word,excel...)
     ];
     package = pkgs.brave;
   };
