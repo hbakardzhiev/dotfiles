@@ -66,7 +66,7 @@ in
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
-    hostName = "bobbb.duckdns.org";
+    hostName = "bob.tail6dbb0b.ts.net";
     # hostName = "bakarh.ddns.net";
     https = true;
     settings.overwriteprotocol = "https";
