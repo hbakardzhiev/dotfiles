@@ -7,9 +7,9 @@
       # "-incognito"
       "--enable-drdc"
       # "--enable-unsafe-webgpu"
-      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
-      "--enable-features=UseOzonePlatform"
-      "--ozone-platform=wayland"
+      # "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+      # "--enable-features=UseOzonePlatform"
+      # "--ozone-platform=wayland"
     ];
     extensions = [
       # { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } #ublock-origin
