@@ -245,6 +245,21 @@
               iconUpdateURL = "https://noogle.dev/favicon.png";
               definedAliases = [ "@ng" ];
             };
+            "Google Scholar" = {
+              urls = [
+                {
+                  template = "https://scholar.google.nl/scholar?hl=en&as_sdt=0%2C5&btnG=";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/240px-Google_Scholar_logo.svg.png";
+              definedAliases = [ "@scholar" ];
+            };
           };
         };
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
