@@ -31,7 +31,7 @@ in
       nextcloudcmd --user "$username" --password "$password" --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/HristoMiA2 /drives/data/configurationBackup https://bakarh.ddns.net 
       nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/HristoMiA2 /drives/data/configurationBackup https://100.84.168.15
       nextcloudcmd --user "$username" --password "$password" --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Passwords /drives/data/Passwords https://bakarh.ddns.net 
-      nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/Passwords /drives/data/configurationBackup https://100.84.168.15
+      nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/Passwords /drives/data/Passwords https://100.84.168.15
     '';
   };
 }
