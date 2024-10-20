@@ -46,6 +46,7 @@
               home-manager.extraSpecialArgs = {
                 hostname = pc;
               };
+              home-manager.backupFileExtension = "rebuild";
             }
             sops-nix.nixosModules.sops
           ];
@@ -64,6 +65,7 @@
               home-manager.extraSpecialArgs = {
                 hostname = server;
               };
+              home-manager.backupFileExtension = "rebuild";
             }
             sops-nix.nixosModules.sops
           ];
@@ -85,6 +87,7 @@
               home-manager.extraSpecialArgs = {
                 hostname = maastricht;
               };
+              home-manager.backupFileExtension = "rebuild";
             }
             sops-nix.nixosModules.sops
           ];
