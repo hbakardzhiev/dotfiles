@@ -19,7 +19,6 @@
     LIBVA_DRIVER_NAME = "iHD";
     WORKSPACE_BASE = "/home/${hostname}/workspace";
     NIXOS_OZONE_WL = 1;
-    GIT_SSH_COMMAND = "ssh -i ~/.ssh/id_ed25519";
     XDG_RUNTIME_DIR = "/run/user/$UID";
   };
 }
