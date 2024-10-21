@@ -1,6 +1,9 @@
 { pkgs, ... }:
 let
-  sway = "${pkgs.sway}/bin/sway";
+  sway = "${pkgs.sway}/bin/sway --unsupported-gpu";
+  swayRun = pkgs.writeShellScript "sway-run" ''
+    ${sway}
+  '';
 in
 {
   services.greetd = {
@@ -11,12 +14,12 @@ in
           --time \
           --asterisks \
           --user-menu \
-          --cmd ${sway}'';
+          --cmd ${swayRun}'';
     };
   };
 
   environment.etc."greetd/environments".text = ''
-    ${sway}
+    ${sway} 
   '';
 
   # Password
