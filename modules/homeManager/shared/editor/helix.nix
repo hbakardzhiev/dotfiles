@@ -318,6 +318,7 @@ in
       nil
       nodePackages.typescript-language-server
       omnisharp-roslyn
+      intelephense
     ];
     settings = {
       theme = chosenTheme;
