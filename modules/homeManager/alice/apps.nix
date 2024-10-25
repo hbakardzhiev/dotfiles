@@ -22,5 +22,6 @@
     kaffeine
     okular
     portfolio
+    bitwarden-desktop
   ];
 }
