@@ -360,6 +360,12 @@ in
           ":format"
           ":write"
         ];
+        C-g = [
+          ":new"    
+          ":insert-output ${pkgs.lazygit}/bin/lazygit" 
+          ":buffer-close!"
+          ":redraw"
+        ];
         y = ":clipboard-yank-join";
         p = ":clipboard-paste-replace";
         q = ":buffer-close";
