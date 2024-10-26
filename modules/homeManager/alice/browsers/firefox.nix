@@ -68,7 +68,7 @@
         name = "default";
         isDefault = true;
         settings = {
-          "browser.search.defaultenginename" = "Google";
+          "browser.search.defaultenginename" = "DuckDuckGo";
           "general.smoothScroll" = false;
           "network.dns.echconfig.enabled" = true;
           "network.dns.http3_echconfig.enabled" = true;
@@ -99,8 +99,9 @@
         };
         search = {
           force = true;
-          default = "Google";
+          default = "DuckDuckGo";
           order = [
+            "DuckDuckGo"
             "Google"
             "Ecosia"
           ];
@@ -259,6 +260,21 @@
               ];
               iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/240px-Google_Scholar_logo.svg.png";
               definedAliases = [ "@scholar" ];
+            };
+            "DuckDuckGo" = {
+              urls = [
+                {
+                  template = "https://duckduckgo.com/?k1=-1&kaj=m&kay=b&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kpsb=-1&k5=1&kbe=3";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              iconUpdateURL = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png";
+              definedAliases = [ "@ddg" ];
             };
           };
         };
