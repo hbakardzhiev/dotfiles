@@ -75,6 +75,10 @@ in
         #   always = false;
         # }
         {
+          command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          always = true;
+        }
+        {
           command = "${pkgs.thunderbird}/bin/thunderbird";
           always = false;
         }
