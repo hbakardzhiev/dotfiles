@@ -6,6 +6,7 @@
       # "--ignore-gpu-blocklist"
       # "-incognito"
       "--enable-drdc"
+      "--enable-drdc-vulkan"
       # "--enable-unsafe-webgpu"
       # "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
       # "--enable-features=UseOzonePlatform"
