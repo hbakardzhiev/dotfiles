@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 let
   chosenTheme = "emacs";
 in
@@ -316,9 +316,10 @@ in
     extraPackages = with pkgs; [
       marksman
       nil
+    ] ++ lib.optionals (hostname == "alice") [ # Note the \n for the newline char, in case there's one in /etc/hostname
+      intelephense
       nodePackages.typescript-language-server
       omnisharp-roslyn
-      intelephense
     ];
     settings = {
       theme = chosenTheme;

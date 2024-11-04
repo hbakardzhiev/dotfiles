@@ -68,7 +68,7 @@
         name = "default";
         isDefault = true;
         settings = {
-          "browser.search.defaultenginename" = "DuckDuckGo";
+          "browser.search.defaultenginename" = "Startpage";
           "general.smoothScroll" = false;
           "network.dns.echconfig.enabled" = true;
           "network.dns.http3_echconfig.enabled" = true;
@@ -99,8 +99,9 @@
         };
         search = {
           force = true;
-          default = "DuckDuckGo";
+          default = "Startpage";
           order = [
+            "Startpage"
             "DuckDuckGo"
             "Google"
             "Ecosia"
@@ -275,6 +276,21 @@
               ];
               iconUpdateURL = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png";
               definedAliases = [ "@ddg" ];
+            };
+            "Startpage" = {
+              urls = [
+                {
+                  template = "https://eu.startpage.com/sp/search?abp=1&t=device&lui=english&sc=7d5BTBrXwV4z20&cat=web&abd=1&prfe=606e69a3d1cd4bdd507a8e5476a35a4498fe3cd0a17fc5ed0de87781f749f832b44cd31e76ecec146f0935b469dc061ccd2b8371d84e33d494a73e5309a33126d6678c95ccb8a29d0b1629401e";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              iconUpdateURL = "https://eu.startpage.com/sp/cdn/images/privacy-please-av-icon.svg";
+              definedAliases = [ "@sp" ];
             };
           };
         };
