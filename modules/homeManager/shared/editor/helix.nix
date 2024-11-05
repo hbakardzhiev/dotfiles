@@ -317,7 +317,7 @@ in
       marksman
       nil
     ] ++ lib.optionals (hostname == "alice") [ # Note the \n for the newline char, in case there's one in /etc/hostname
-      intelephense
+      # intelephense
       nodePackages.typescript-language-server
       omnisharp-roslyn
     ];
