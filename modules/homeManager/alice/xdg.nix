@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  browser = [ "firefox.desktop" ];
+  browser = [ "brave-browser.desktop" "firefox.desktop" ];
   fileManager = [ "pcmanfm.desktop" ];
   imageViewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
   editor = [ "Helix.desktop" ];
