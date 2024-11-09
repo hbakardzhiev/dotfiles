@@ -318,6 +318,7 @@ in
       nil
     ] ++ lib.optionals (hostname == "alice") [ # Note the \n for the newline char, in case there's one in /etc/hostname
       # intelephense
+      myPkg
       nodePackages.typescript-language-server
       omnisharp-roslyn
     ];
@@ -379,12 +380,14 @@ in
           "select_mode"
         ];
         C-p = ":clipboard-paste-after";
+        C-a = "select_all";
       };
       keys.insert = {
         C-s = [
           ":format"
           ":write"
         ];
+        C-a = "select_all";
       };
       keys.select = {
         X = [
@@ -410,6 +413,7 @@ in
         ];
         p = ":clipboard-paste-replace";
         C-p = ":clipboard-paste-after";
+        C-a = "select_all";
       };
     };
   };
