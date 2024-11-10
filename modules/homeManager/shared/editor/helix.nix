@@ -4,6 +4,19 @@ let
 in
 {
   programs.helix = {
+    languages = {
+      language = [{
+        name = "csv";
+        file-types = ["csv"];
+        scope="source.csv";
+      }];
+      grammar = [{
+        name = "csv";
+        source.git = "https://github.com/weartist/rainbow-csv-tree-sitter";
+        source.rev = "896e6d09b23a1b0d87e45bf97ca34a249f41495c";
+      }];
+    };
+    
     themes = {
       "comment" = {
         fg = "firebrick";
@@ -318,7 +331,7 @@ in
       nil
     ] ++ lib.optionals (hostname == "alice") [ # Note the \n for the newline char, in case there's one in /etc/hostname
       # intelephense
-      myPkg
+      python311Packages.python-lsp-server
       nodePackages.typescript-language-server
       omnisharp-roslyn
     ];
