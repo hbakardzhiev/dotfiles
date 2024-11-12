@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  # For GPU mining
+  # # For GPU mining
   # services.cgminer = {
   #   enable = true;
   #   pools = [
@@ -10,23 +10,19 @@
   #       user = "bc1qnslwaadh4n993uzg0hvsv8dn3029xhgfd4826c";  
   #     }
   #   ];
-  #   user = "alice";
-  #   config = {
-  #     auto-fan = true;
-  #   };
   # };
 
-  systemd.user.services.miningBTC = {
-    startAt = "10:00";
-    wantedBy = [ "default.target" ];
-    path = with pkgs; [
-      cpuminer
-    ];
-    script = ''
-      #!/bin/bash
-      minerd -a sha256d -o stratum+tcp://mine.ocean.xyz:3334 -u bc1qnslwaadh4n993uzg0hvsv8dn3029xhgfd4826c -p x -t 3
-    '';
-  };
+  # systemd.user.services.miningBTC = {
+  #   startAt = "10:00";
+  #   wantedBy = [ "default.target" ];
+  #   path = with pkgs; [
+  #     cpuminer
+  #   ];
+  #   script = ''
+  #     #!/bin/bash
+  #     minerd -a sha256d -o stratum+tcp://mine.ocean.xyz:3334 -u bc1qnslwaadh4n993uzg0hvsv8dn3029xhgfd4826c -p x -t 3
+  #   '';
+  # };
   # For CPU mining but error in the current version   
   # services.cpuminer-cryptonight = {
   #   enable = true;
