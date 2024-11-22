@@ -1,14 +1,14 @@
 { pkgs, ... }:
 {
-  xdg.desktopEntries.trezor-suite = {
-     name = "Trezor Suite";
-      exec =
-        "${pkgs.trezor-suite}/bin/trezor-suite --ozone-platform=wayland";
-      terminal = false;
-      type = "Application";
-      icon = "trezor-suite";
-      # StartupWMClass=Signal Beta
-  };
+  # xdg.desktopEntries.trezor-suite = {
+  #    name = "Trezor Suite";
+  #     exec =
+  #       "${pkgs.trezor-suite}/bin/trezor-suite --ozone-platform=wayland";
+  #     terminal = false;
+  #     type = "Application";
+  #     icon = "trezor-suite";
+  #     # StartupWMClass=Signal Beta
+  # };
   home.packages = with pkgs; [
     trezor-suite
   ];
