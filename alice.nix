@@ -43,8 +43,9 @@ in
     # firewall.allowedTCPPorts = [];
     # firewall.allowedUDPPorts = [];
     hostName = hostname;
-    networkmanager.enable = lib.mkForce false;
-    wireless.iwd.enable = true;
+    # networkmanager.enable = lib.mkForce false;
+    # wireless.iwd.enable = true;
+    # wireless.enable = true;
     firewall.enable = true;
   };
 
