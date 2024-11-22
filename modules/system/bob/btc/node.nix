@@ -1,9 +1,5 @@
 { ... }:
 {
-  imports = [
-    <nix-bitcoin/modules/presets/secure-node.nix>
-  ];
-
   # Automatically generate all secrets required by services.
   # The secrets are stored in /etc/nix-bitcoin-secrets
   nix-bitcoin.generateSecrets = true;
@@ -11,8 +7,6 @@
   # Add some backup
   services.backups.enable = true;
 
-  services.spark-wallet.enable = true;
-  
   # See ../configuration.nix for all available features.
   services.bitcoind = {
     enable = true;
