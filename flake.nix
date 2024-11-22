@@ -89,16 +89,21 @@
               # The secrets are stored in /etc/nix-bitcoin-secrets
               nix-bitcoin.generateSecrets = true;
 
+              nix-bitcoin.nodeinfo.enable = true;
+
               # Add some backup
               services.backups.enable = true;
 
-              # Add some pruning
-              services.bitcoind.prune = 100000;
-
-              # Enable some services.
               # See ../configuration.nix for all available features.
-              services.bitcoind.enable = true;
-              services.bitcoind.dataDir = "/run/media/et1";
+              services.bitcoind = {
+                enable = true;
+                listen = true;
+                # Add some pruning
+                prune = 100000;
+                dataDir = "/run/media/et1";              
+              };
+              
+              # Enable some services.
               services.clightning.enable = true;
 
               # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
