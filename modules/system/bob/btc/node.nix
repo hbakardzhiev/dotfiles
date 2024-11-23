@@ -11,17 +11,25 @@
   # Add some backup
   services.backups.enable = true;
 
+  # Set this to enable electrs, an efficient Electrum server implemented in Rust.
+  services.electrs.enable = true;
+
+  ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
+  services.rtl = {
+    enable = true;
+    # Automatically enables clightning.
+    nodes.clightning = {
+      enable = true;
+    };
+  };
+
   # See ../configuration.nix for all available features.
   services.bitcoind = {
     enable = true;
     listen = true;
-    # Add some pruning
-    prune = 100000;
     dataDir = "/run/media/et1";              
   };
   
-  # Enable some services.
-  services.clightning.enable = true;
   # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
   # interactive access to nix-bitcoin features (like bitcoin-cli) for your system's main user
   nix-bitcoin.operator = {

@@ -1,6 +1,6 @@
 { ... }:
 {
-  sops.secrets."nextcloud/Password" = {
-    owner = "nextcloud";
-  };
+  # sops.secrets."nextcloud/Password" = {
+  #   owner = "nextcloud";
+  # };
 }
