@@ -4,6 +4,10 @@
   # The secrets are stored in /etc/nix-bitcoin-secrets
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
+
+  # Custom mempool.space
+  services.mempool.enable = true;
+
   # Add some backup
   services.backups.enable = true;
 
