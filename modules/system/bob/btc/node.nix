@@ -9,7 +9,10 @@
   networking.firewall.allowedTCPPorts = [ 60845 ];
 
   # Custom mempool.space
-  services.mempool.enable = true;
+  services.mempool = {
+    frontend.enable = true;
+    enable = true;
+  };
 
   # Set this to enable electrs, an efficient Electrum server implemented in Rust.
   services.electrs.enable = true;
