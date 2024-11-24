@@ -1,12 +1,9 @@
-{ ... }:
+{ config, ... }:
 {
   # Automatically generate all secrets required by services.
   # The secrets are stored in /etc/nix-bitcoin-secrets
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
-
-  networking.firewall.allowedUDPPorts = [ 60845 ];
-  networking.firewall.allowedTCPPorts = [ 60845 ];
 
   # Custom mempool.space
   services.mempool = {
@@ -15,7 +12,16 @@
   };
 
   # Set this to enable electrs, an efficient Electrum server implemented in Rust.
-  services.electrs.enable = true;
+  services.electrs = {
+    enable = true;
+    # Listen to connections on all interfaces
+    address = "0.0.0.0";
+  
+    # Set this if you're using the `secure-node.nix` template
+    tor.enforce = false;
+  };
+  # Open the electrs port in the firewall
+  networking.firewall.allowedTCPPorts = [ config.services.electrs.port ];
 
   ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
   services.rtl = {
