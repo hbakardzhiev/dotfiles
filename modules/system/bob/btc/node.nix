@@ -5,6 +5,9 @@
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
 
+  networking.firewall.allowedUDPPorts = [ 60845 ];
+  networking.firewall.allowedTCPPorts = [ 60845 ];
+
   # Custom mempool.space
   services.mempool.enable = true;
 
