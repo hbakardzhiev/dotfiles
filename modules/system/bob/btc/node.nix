@@ -8,9 +8,6 @@
   # Custom mempool.space
   services.mempool.enable = true;
 
-  # Add some backup
-  services.backups.enable = true;
-
   # Set this to enable electrs, an efficient Electrum server implemented in Rust.
   services.electrs.enable = true;
 
