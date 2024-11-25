@@ -36,6 +36,9 @@
   services.bitcoind = {
     enable = true;
     listen = true;
+    extraConfig = ''
+      rpcworkqueue=64
+    '';
     dataDir = "/run/media/et1";              
   };
   
