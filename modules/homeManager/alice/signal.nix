@@ -19,5 +19,5 @@
   #   ];
   # };
 
-  home.packages = with pkgs; [ signal-desktop-beta ];
+  home.packages = with pkgs; [ signal-desktop ];
 }
