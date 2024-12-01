@@ -110,6 +110,6 @@
   #   owner = "alice";
   #   group = "users";
   #   mode = "600";
-  #   path = "/home/alice/.ssh/id_rsa";  
+  #   path = "/home/alice/.ssh/id_rsa";
   # };
 }

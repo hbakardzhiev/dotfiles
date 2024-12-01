@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let 
+let
   serviceName = "upload-obsidian-to-nextcloud";
 in
 {

@@ -16,7 +16,7 @@
     enable = true;
     # Listen to connections on all interfaces
     address = "0.0.0.0";
-  
+
     # Set this if you're using the `secure-node.nix` template
     tor.enforce = false;
   };
@@ -39,9 +39,9 @@
     extraConfig = ''
       rpcworkqueue=64
     '';
-    dataDir = "/run/media/et1";              
+    dataDir = "/run/media/et1";
   };
-  
+
   # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
   # interactive access to nix-bitcoin features (like bitcoin-cli) for your system's main user
   nix-bitcoin.operator = {
