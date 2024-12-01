@@ -333,7 +333,7 @@ in
       # intelephense
       python311Packages.python-lsp-server
       nodePackages.typescript-language-server
-      omnisharp-roslyn
+      # omnisharp-roslyn
     ];
     settings = {
       theme = chosenTheme;
