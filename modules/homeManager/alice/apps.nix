@@ -23,5 +23,6 @@
     okular
     portfolio
     bitwarden-desktop
+    libsForQt5.kdenlive
   ];
 }
