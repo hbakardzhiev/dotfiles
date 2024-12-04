@@ -302,6 +302,10 @@
                       name = "text";
                       value = "{searchTerms}";
                     }
+                    {
+                      name = "focus";
+                      value = "1";
+                    }
                   ];
                 }
               ];
