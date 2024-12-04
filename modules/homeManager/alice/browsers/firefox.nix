@@ -68,7 +68,7 @@
         name = "default";
         isDefault = true;
         settings = {
-          "browser.search.defaultenginename" = "Startpage";
+          "browser.search.defaultenginename" = "Grok";
           "general.smoothScroll" = false;
           "network.dns.echconfig.enabled" = true;
           "network.dns.http3_echconfig.enabled" = true;
@@ -99,8 +99,9 @@
         };
         search = {
           force = true;
-          default = "Startpage";
+          default = "Grok";
           order = [
+            "Grok"
             "Startpage"
             "DuckDuckGo"
             "Google"
@@ -291,6 +292,21 @@
               ];
               iconUpdateURL = "https://eu.startpage.com/sp/cdn/images/privacy-please-av-icon.svg";
               definedAliases = [ "@sp" ];
+            };
+            "Grok" = {
+              urls = [
+                {
+                  template = "https://x.com/i/grok";
+                  params = [
+                    {
+                      name = "text";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              iconUpdateURL = "https://static.wikia.nocookie.net/logopedia/images/a/a2/Grok_2023_%28Icon%29.svg/revision/latest?cb=20240105205222";
+              definedAliases = [ "@grok" ];
             };
           };
         };
