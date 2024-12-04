@@ -80,13 +80,13 @@
           "browser.send_pings" = false;
           "dom.battery.enabled" = false;
           # "media.video_stats.enabled" = false;
-          # "media.ffmpeg.vaapi.enabled" = true;
+          "media.ffmpeg.vaapi.enabled" = true;
           "media.peerconnection.enabled" = true;
           "network.cookie.cookieBehavior" = 1;
           "network.http.referer.spoofSource" = true;
-          # "gfx.webrender.all" = true;
-          # "gfx.webrender.compositor.force-enabled" = true;
-          # "hardware-video-decoding.force-enabled" = true;
+          "gfx.webrender.all" = true;
+          "gfx.webrender.compositor.force-enabled" = true;
+          "hardware-video-decoding.force-enabled" = true;
           "geo.enabled" = false;
           "privacy.donottrackheader.value" = 1;
           "privacy.donottrackheader.enabled" = true;
