@@ -21,7 +21,7 @@
     tor.enforce = false;
   };
   # Open the electrs port in the firewall
-  networking.firewall.allowedTCPPorts = [ config.services.electrs.port ];
+  networking.firewall.allowedTCPPorts = [ config.services.electrs.port config.services.mempool.frontend.port ];
 
   ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
   services.rtl = {
