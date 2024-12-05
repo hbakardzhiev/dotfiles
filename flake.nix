@@ -84,6 +84,11 @@
           modules = [
             ./${maastricht}.nix
             nix-bitcoin.nixosModules.default
+            {
+                imports = [
+                  (nix-bitcoin + /modules/presets/secure-node.nix)
+                ];
+            }
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
