@@ -27,14 +27,19 @@
   networking.firewall.allowedTCPPorts = [ config.services.electrs.port config.services.mempool.frontend.port ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
-  # nix-bitcoin.onionServices.lnd.public = true;
-  # services.rtl = {
-  #   enable = true;
-  #   # Automatically enables clightning.
-  #   nodes.lnd = {
-  #     enable = true;
-  #   };
-  # };
+  nix-bitcoin.onionServices.lnd.public = true;
+  services.rtl = {
+    enable = true;
+    # Automatically enables clightning.
+    nodes.lnd = {
+      enable = true;
+    };
+  };
+  services.lnd.connect = {
+    enable = true;
+    onion = true;
+  };
+   
 
   # See ../configuration.nix for all available features.
   services.bitcoind = {
