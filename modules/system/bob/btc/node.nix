@@ -7,6 +7,7 @@
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
   nix-bitcoin.onionServices.mempool-frontend.enable = true;
+  nix-bitcoin.useVersionLockedPkgs = true;
 
   # Custom mempool.space
   services.mempool = {
@@ -27,13 +28,13 @@
   networking.firewall.allowedTCPPorts = [ config.services.electrs.port config.services.mempool.frontend.port ];
 
   ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
-  # services.rtl = {
-  #   enable = true;
-  #   # Automatically enables clightning.
-  #   nodes.clightning = {
-  #     enable = true;
-  #   };
-  # };
+  services.rtl = {
+    enable = true;
+    # Automatically enables clightning.
+    nodes.clightning = {
+      enable = true;
+    };
+  };
 
   # See ../configuration.nix for all available features.
   services.bitcoind = {

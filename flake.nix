@@ -8,7 +8,6 @@
     nix-bitcoin = {
       url = "github:fort-nix/nix-bitcoin/release";
       inputs.nixpkgs.follows = "nixpkgs";
-      useVersionLockedPkgs = true;
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
