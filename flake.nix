@@ -42,7 +42,7 @@
             ./${pc}.nix
             home-manager.nixosModules.home-manager
             {
-              nixpkgs.overlays = [ nur.overlay ];
+              nixpkgs.overlays = [ nur.overlays.default ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
