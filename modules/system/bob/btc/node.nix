@@ -1,7 +1,7 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
-  security.doas.enable = lib.mkForce false;
-  security.sudo.enable = lib.mkForce true;
+  # security.doas.enable = lib.mkForce false;
+  # security.sudo.enable = lib.mkForce true;
   # Automatically generate all secrets required by services.
   # The secrets are stored in /etc/nix-bitcoin-secrets
   nix-bitcoin.generateSecrets = true;
