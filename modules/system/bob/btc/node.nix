@@ -35,7 +35,7 @@
       enable = true;
     };
   };
-  services.lnd.connect = {
+  services.lnd.lndconnect = {
     enable = true;
     onion = true;
   };
