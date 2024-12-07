@@ -30,7 +30,7 @@
   nix-bitcoin.onionServices.lnd.public = true;
   services.rtl = {
     enable = true;
-    user = "alice";
+    user = "lnd";
     nightTheme = false;
     # Automatically enables clightning.
     nodes.lnd = {
