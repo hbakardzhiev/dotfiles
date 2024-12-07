@@ -24,7 +24,7 @@
     tor.enforce = false;
   };
   # Open the electrs port in the firewall
-  networking.firewall.allowedTCPPorts = [ config.services.electrs.port config.services.mempool.frontend.port ];
+  networking.firewall.allowedTCPPorts = [ config.services.electrs.port config.services.mempool.frontend.port config.services.lnd.port ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
   nix-bitcoin.onionServices.lnd.public = true;
