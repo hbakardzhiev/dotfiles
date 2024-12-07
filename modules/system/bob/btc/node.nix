@@ -7,7 +7,7 @@
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
   nix-bitcoin.onionServices.mempool-frontend.enable = true;
-  nix-bitcoin.useVersionLockedPkgs = true;
+  nix-bitcoin.onionServices.lnd.public = true;
 
   # Custom mempool.space
   services.mempool = {
@@ -31,7 +31,7 @@
   services.rtl = {
     enable = true;
     # Automatically enables clightning.
-    nodes.clightning = {
+    nodes.lnd = {
       enable = true;
     };
   };
