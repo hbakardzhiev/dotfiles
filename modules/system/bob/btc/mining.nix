@@ -1,16 +1,21 @@
-{ pkgs, ... }:
+{ ... }:
 {
-  # # For GPU mining
-  # services.cgminer = {
-  #   enable = true;
-  #   pools = [
-  #     {
-  #       pass = "x";
-  #       url = "stratum+tcp://mine.ocean.xyz:3334";
-  #       user = "bc1qnslwaadh4n993uzg0hvsv8dn3029xhgfd4826c";
-  #     }
-  #   ];
-  # };
+  # For GPU mining
+  services.cgminer = {
+    enable = true;
+    pools = [
+      {
+        pass = "x";
+        url = "stratum+tcp://mine.ocean.xyz:3334";
+        user = "bc1qnslwaadh4n993uzg0hvsv8dn3029xhgfd4826c";
+      }
+    ];
+    config = {
+      auto-fan = true;
+      auto-gpu = true;
+      scan-time = 60;
+    };
+  };
 
   # systemd.user.services.miningBTC = {
   #   startAt = "10:00";
