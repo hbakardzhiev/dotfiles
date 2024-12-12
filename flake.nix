@@ -7,7 +7,6 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-bitcoin = {
       url = "github:fort-nix/nix-bitcoin/release";
-      inputs.nixpkgs.follows = "nix-bitcoin/nixpkgs";
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nur.url = "github:nix-community/NUR";
