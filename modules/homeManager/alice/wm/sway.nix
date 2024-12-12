@@ -82,14 +82,14 @@ in
           command = "${pkgs.thunderbird}/bin/thunderbird";
           always = false;
         }
-        # {
-        #   command = "${pkgs.iwgtk}/bin/iwgtk -i";
-        #   always = false;
-        # }
         {
-          command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
-          always = true;
+          command = "${pkgs.iwgtk}/bin/iwgtk -i";
+          always = false;
         }
+        # {
+        #   command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+        #   always = true;
+        # }
         {
           command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
           always = true;
