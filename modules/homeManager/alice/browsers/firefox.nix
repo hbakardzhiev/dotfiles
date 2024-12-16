@@ -325,6 +325,7 @@
           sponsorblock
           floccus
           leechblock-ng
+          grammarly
         ];
       };
     };
