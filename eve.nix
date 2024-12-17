@@ -43,7 +43,7 @@ in
     enable = true;
     package = pkgs.nextcloud30;
     # hostName = "eveee.v6.army";
-    hostName = "bakarh.ddns.net";
+    hostName = "eve.tail6dbb0b.ts.net";
     https = true;
     settings.overwriteprotocol = "https";
     # Let NixOS install and configure the database automatically.
