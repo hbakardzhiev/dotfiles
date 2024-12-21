@@ -7,6 +7,8 @@
       # "-incognito"
       "--enable-drdc"
       "--enable-drdc-vulkan"
+      "--skia-graphite-backend"
+      "--enable-vulkan"
       # "--enable-unsafe-webgpu"
       # "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
       # "--enable-features=UseOzonePlatform"
