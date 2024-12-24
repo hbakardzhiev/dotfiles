@@ -107,8 +107,7 @@ in
   services.udisks2.enable = true;
 
   # Virtualization
-  # virtualisation.libvirtd.enable = true;
-  # virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }
