@@ -8,6 +8,7 @@
         statsmodels
         requests
         scipy
+        matplotlib
       ]
     ))
 
