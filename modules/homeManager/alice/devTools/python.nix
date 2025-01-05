@@ -9,6 +9,7 @@
         requests
         scipy
         matplotlib
+        scikit-learn
       ]
     ))
 

@@ -25,6 +25,6 @@
     bitwarden-desktop
     libsForQt5.kdenlive
     popcorntime
-    vmware-horizon-client
+    qgis-ltr
   ];
 }
