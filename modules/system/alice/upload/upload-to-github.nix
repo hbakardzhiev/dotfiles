@@ -3,6 +3,7 @@ let
   pomodoroFolder = "/home/alice/.pomodoro/";
   obsidianFolder = "/drives/data/obsidian/";
   script = ''
+    git pull
     git add .
     git commit -m "Automated commit from script"
     git push origin main
