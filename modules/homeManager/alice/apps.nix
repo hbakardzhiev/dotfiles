@@ -24,7 +24,5 @@
     portfolio
     bitwarden-desktop
     libsForQt5.kdenlive
-    stremio
-    qgis-ltr
   ];
 }
