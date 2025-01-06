@@ -29,7 +29,7 @@ in
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "5m";
-      OnUnitActiveSec = "5m";
+      OnUnitActiveSec = "2m";
       Unit = "upload-obsidian.service";
     };
   };
