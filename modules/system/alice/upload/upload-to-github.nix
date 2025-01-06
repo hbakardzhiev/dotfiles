@@ -28,8 +28,8 @@ in
   systemd.user.timers.upload-obsidian = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnBootSec = "10m";
-      OnUnitActiveSec = "10m";
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
       Unit = "upload-obsidian.service";
     };
   };
