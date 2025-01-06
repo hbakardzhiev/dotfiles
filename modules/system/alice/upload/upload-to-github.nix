@@ -25,8 +25,16 @@ in
     '';
   };
 
+  systemd.user.timers.upload-obsidian = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "10m";
+      OnUnitActiveSec = "10m";
+      Unit = "upload-obsidian.service";
+    };
+  };
   systemd.user.services.upload-obsidian = {
-    startAt = "10:00";
+    # startAt = "10:00";
     wantedBy = [ "network-online.target" ];
     path = with pkgs; [
       git
