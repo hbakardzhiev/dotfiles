@@ -59,8 +59,10 @@ in
           "r" = "exec reboot";
           "Shift+s" = "exec poweroff";
           "l" = "exec ${pkgs.swaylock}/bin/swaylock; mode default";
-          "s" = "exec ${pkgs.swaylock}/bin/swaylock; mode default; exec ${pkgs.systemd}/bin/systemctl suspend-then-hibernate;";
-          "h" = "exec ${pkgs.swaylock}/bin/swaylock; mode default; exec ${pkgs.systemd}/bin/systemctl suspend-then-hibernate;";
+          "s" =
+            "exec ${pkgs.swaylock}/bin/swaylock; mode default; exec ${pkgs.systemd}/bin/systemctl suspend-then-hibernate;";
+          "h" =
+            "exec ${pkgs.swaylock}/bin/swaylock; mode default; exec ${pkgs.systemd}/bin/systemctl suspend-then-hibernate;";
           "Escape" = "mode default";
           "Return" = "mode default";
         };
