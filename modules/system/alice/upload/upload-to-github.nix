@@ -2,38 +2,25 @@
 let
   pomodoroFolder = "/home/alice/.pomodoro/";
   obsidianFolder = "/drives/data/obsidian/";
+  portfolioFolder = "/drives/data/portfolio/";
+  passwordsFolder = "/drives/data/Passwords/";
   script = ''
     git pull
     git add .
-    git commit -m "Automated commit from script"
+    git commit -m "Automated commit from script" || echo "Nothing to commit"
     git push origin main
   '';
 in
 {
-  systemd.user.services.upload-pomodoro = {
-    startAt = "10:00";
-    wantedBy = [ "network-online.target" ];
-    path = with pkgs; [
-      git
-      openssh
-    ];
-    script = ''
-      #!/bin/bash
-
-      cd ${pomodoroFolder}
-      ${script}
-    '';
-  };
-
-  systemd.user.timers.upload-obsidian = {
+  systemd.user.timers.upload-github = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "5m";
       OnUnitActiveSec = "2m";
-      Unit = "upload-obsidian.service";
+      Unit = "upload-github.service";
     };
   };
-  systemd.user.services.upload-obsidian = {
+  systemd.user.services.upload-github = {
     # startAt = "10:00";
     wantedBy = [ "network-online.target" ];
     path = with pkgs; [
@@ -45,6 +32,16 @@ in
 
       cd ${obsidianFolder}
       ${script}
+      echo "obsidian done"
+      cd ${portfolioFolder}
+      ${script}
+      echo "portfolio done"
+      cd ${passwordsFolder}
+      ${script}
+      echo "password done"
+      cd ${pomodoroFolder}
+      ${script}
+      echo "pomodoro done"
     '';
   };
 }
