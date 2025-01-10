@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    (python311.withPackages (
+    (python312.withPackages (
       p: with p; [
         pandas
         numpy
@@ -10,6 +10,7 @@
         scipy
         matplotlib
         scikit-learn
+        seaborn
       ]
     ))
 

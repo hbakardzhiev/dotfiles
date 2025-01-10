@@ -341,6 +341,7 @@ in
         # intelephense
         python311Packages.python-lsp-server
         nodePackages.typescript-language-server
+        markdown-oxide
         # omnisharp-roslyn
       ];
     settings = {
