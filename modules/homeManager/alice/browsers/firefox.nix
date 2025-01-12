@@ -50,8 +50,8 @@
       };
       DNSOverHTTPS = {
         Enabled = false;
-        #   ProviderURL = "https://security.cloudflare-dns.com/dns-query";
-        #   # ProviderURL = "https://dns.adguard-dns.com/dns-query";
+        ProviderURL = "https://security.cloudflare-dns.com/dns-query";
+        # ProviderURL = "https://dns.adguard-dns.com/dns-query";
       };
       EnableTrackingProtection = {
         Value = true;
@@ -72,7 +72,7 @@
           "general.smoothScroll" = false;
           "network.dns.echconfig.enabled" = true;
           "network.dns.http3_echconfig.enabled" = true;
-          "network.trr.mode" = 0;
+          # "network.trr.mode" = 0;
           "security.ssl.require_safe_negotiation" = true;
           "dom.security.https_only_mode" = true;
           "beacon.enabled" = false;
@@ -80,15 +80,15 @@
           "browser.send_pings" = false;
           "dom.battery.enabled" = false;
           # "media.video_stats.enabled" = false;
-          "media.ffmpeg.vaapi.enabled" = true;
-          "media.hardware-video-decoding.enabled" = true;
-          "media.hardware-video-decoding.force-enabled" = true;
+          # "media.ffmpeg.vaapi.enabled" = true;
+          # "media.hardware-video-decoding.enabled" = true;
+          # "media.hardware-video-decoding.force-enabled" = true;
           "media.peerconnection.enabled" = true;
           "network.cookie.cookieBehavior" = 1;
           "network.http.referer.spoofSource" = true;
-          "gfx.webrender.all" = true;
-          "gfx.webrender.compositor.force-enabled" = true;
-          "hardware-video-decoding.force-enabled" = true;
+          # "gfx.webrender.all" = true;
+          # "gfx.webrender.compositor.force-enabled" = true;
+          # "hardware-video-decoding.force-enabled" = true;
           "geo.enabled" = false;
           "privacy.donottrackheader.value" = 1;
           "privacy.donottrackheader.enabled" = true;
