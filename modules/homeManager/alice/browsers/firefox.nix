@@ -103,7 +103,7 @@
           force = true;
           default = "Grok";
           order = [
-            "Grok"
+           "Grok"
             "Startpage"
             "DuckDuckGo"
             "Google"
@@ -311,7 +311,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://static.wikia.nocookie.net/logopedia/images/a/a2/Grok_2023_%28Icon%29.svg/revision/latest?cb=20240105205222";
+              iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/XAI-Logo.svg/150px-XAI-Logo.svg.png";
               definedAliases = [ "@grok" ];
             };
           };
