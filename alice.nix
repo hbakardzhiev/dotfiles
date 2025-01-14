@@ -37,8 +37,6 @@ in
     options = [ "defaults" ];
   };
 
-  services.xserver.videoDrivers = [ "nouveau" ];
-
   networking = {
     # firewall.allowedTCPPorts = [];
     # firewall.allowedUDPPorts = [];
