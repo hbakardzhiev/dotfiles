@@ -303,12 +303,12 @@
                   template = "https://x.com/i/grok";
                   params = [
                     {
-                      name = "text";
-                      value = "{searchTerms}";
-                    }
-                    {
                       name = "focus";
                       value = "1";
+                    }
+                    {
+                      name = "text";
+                      value = "{searchTerms}";
                     }
                   ];
                 }
