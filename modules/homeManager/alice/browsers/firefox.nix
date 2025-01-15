@@ -49,7 +49,7 @@
         RejectTracker = true;
       };
       DNSOverHTTPS = {
-        Enabled = false;
+        Enabled = true;
         ProviderURL = "https://security.cloudflare-dns.com/dns-query";
         # ProviderURL = "https://dns.adguard-dns.com/dns-query";
       };
@@ -323,7 +323,6 @@
           vimium
           ublock-origin
           bitwarden
-          metamask
           sponsorblock
           floccus
           leechblock-ng
