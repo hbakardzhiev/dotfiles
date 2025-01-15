@@ -81,8 +81,10 @@
           "dom.battery.enabled" = false;
           # "media.video_stats.enabled" = false;
           # "media.ffmpeg.vaapi.enabled" = true;
-          # "media.hardware-video-decoding.enabled" = true;
-          # "media.hardware-video-decoding.force-enabled" = true;
+          "media.av1.enabled" = false;
+          "layers.acceleration.force-enabled" = true;
+          "media.hardware-video-decoding.enabled" = true;
+          "media.hardware-video-decoding.force-enabled" = true;
           "media.peerconnection.enabled" = true;
           "network.cookie.cookieBehavior" = 1;
           "network.http.referer.spoofSource" = true;
