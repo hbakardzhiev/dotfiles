@@ -4,7 +4,7 @@
   ...
 }:
 {
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = false;
