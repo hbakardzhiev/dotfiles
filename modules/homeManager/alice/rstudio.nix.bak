@@ -1,0 +1,26 @@
+{ pkgs, ... }:
+{
+  home.packages =
+    let
+      rstudio-with-packages = pkgs.rstudioWrapper.override {
+        packages = with pkgs.rPackages; [
+          tidyverse
+          kableExtra
+          janitor
+          skimr
+          psych
+          correlation
+          gt
+          ggplot2
+          car
+          haven
+          lavaan
+          interactions
+          afex
+          lsmeans
+        ];
+      };
+    in
+    with pkgs;
+    [ rstudio-with-packages ];
+}

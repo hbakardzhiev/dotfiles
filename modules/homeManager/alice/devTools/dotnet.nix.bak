@@ -1,0 +1,9 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    dotnet-sdk_8
+    vscode-fhs
+    # dotnet-runtime_8
+    # dotnet-aspnetcore_8
+  ];
+}
