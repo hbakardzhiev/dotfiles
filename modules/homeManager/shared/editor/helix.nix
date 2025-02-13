@@ -341,6 +341,7 @@ in
         # intelephense
         python311Packages.python-lsp-server
         nodePackages.typescript-language-server
+        intelephense
       ];
     settings = {
       theme = chosenTheme;
