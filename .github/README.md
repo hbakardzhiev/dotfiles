@@ -13,6 +13,7 @@ This repository leverages:
 - **Home Manager**: To manage user-specific configurations.
 - **Flakes**: An experimental feature in Nix for reproducible builds.
 - **Sops**: For secrets management, ensuring your sensitive information stays secure.
+- **LUKS**: This enabled encryption of the NVMe disk.
 
 ## Features
 
