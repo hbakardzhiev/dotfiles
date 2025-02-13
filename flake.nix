@@ -88,7 +88,6 @@
               imports = [
                 (nix-bitcoin + /modules/presets/secure-node.nix)
               ];
-              nix-bitcoin.useVersionLockedPkgs = true;
             }
             home-manager.nixosModules.home-manager
             {

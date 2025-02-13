@@ -7,6 +7,7 @@
   nix-bitcoin.generateSecrets = true;
   nix-bitcoin.nodeinfo.enable = true;
   nix-bitcoin.onionServices.mempool-frontend.enable = true;
+  nix-bitcoin.useVersionLockedPkgs = true;
 
   # Custom mempool.space
   services.mempool = {
