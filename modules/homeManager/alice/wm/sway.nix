@@ -90,6 +90,10 @@ in
         #   always = false;
         # }
         {
+          command = "${pkgs.vesktop}/bin/vesktop";
+          always = false;
+        }
+        {
           command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
           always = true;
         }
@@ -127,6 +131,8 @@ in
               [app_id = "com.github.finefindus.eyedropper"] floating enable
               [app_id = "org.kde.kcalc"] floating enable
               [app_id = "discord"] workspace number 4
+              [app_id = "vesktop"] workspace number 4
+              [app_id = "thunderbird"] workspace number 1
               [app_id = "org.twosheds.iwgtk"] floating enable
               [title = "Extension: (Bitwarden - Free Password Manager) - Bitwarden — Mozilla Firefox"] floating enable
               [window_role="pop-up"] floating enable

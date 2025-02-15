@@ -22,6 +22,7 @@
     portfolio
     bitwarden-desktop
     libsForQt5.kdenlive
+    vesktop
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
