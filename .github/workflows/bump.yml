@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
 
-      - uses: cachix/install-nix-action@v20
+      - uses: cachix/install-nix-action@v30
 
       - run: nix flake update
 
