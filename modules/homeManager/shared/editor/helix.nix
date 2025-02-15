@@ -187,14 +187,14 @@ in
       "ui.linenr.selected" = {
         fg = "gray80";
       };
-      "ui.statusline" = {
-        fg = "black";
-        bg = "gray75";
-      };
-      "ui.statusline.inactive" = {
-        fg = "gray20";
-        bg = "gray90";
-      };
+      # "ui.statusline" = {
+      #   fg = "black";
+      #   bg = "gray75";
+      # };
+      # "ui.statusline.inactive" = {
+      #   fg = "gray20";
+      #   bg = "gray90";
+      # };
       "ui.bufferline" = {
         fg = "gray36";
         bg = "gray90";
@@ -339,9 +339,6 @@ in
       ++ lib.optionals (hostname == "alice") [
         # Note the \n for the newline char, in case there's one in /etc/hostname
         # intelephense
-        python311Packages.python-lsp-server
-        nodePackages.typescript-language-server
-        intelephense
       ];
     settings = {
       theme = chosenTheme;
@@ -352,6 +349,11 @@ in
         true-color = true;
         lsp.display-messages = true;
         lsp.display-inlay-hints = true;
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
         statusline = {
           left = [
             "mode"
@@ -361,7 +363,7 @@ in
           ];
           mode = {
             normal = "NORM 👀";
-            insert = "INS 📝";
+            insert = "INS 📝"; 
             select = "SEL 🪄";
           };
           center = [ "file-name" ];
