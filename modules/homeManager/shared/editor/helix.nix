@@ -11,6 +11,10 @@ in
           file-types = [ "csv" ];
           scope = "source.csv";
         }
+        {
+          name = "nix";
+          auto-format = true;
+        }
       ];
       grammar = [
         {
