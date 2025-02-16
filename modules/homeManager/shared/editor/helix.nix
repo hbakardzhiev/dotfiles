@@ -11,10 +11,6 @@ in
           file-types = [ "csv" ];
           scope = "source.csv";
         }
-        {
-          name = "nix";
-          auto-format = true;
-        }
       ];
       grammar = [
         {
@@ -276,7 +272,7 @@ in
           enable = true;
           max-wrap = 25;
           max-indent-retain = 0;
-          wrap-indicator = "";
+          # wrap-indicator = ""; 
         };
       };
       keys.normal = {
