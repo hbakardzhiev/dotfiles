@@ -102,7 +102,6 @@
       isNormalUser = true;
       extraGroups = [
         "wheel"
-        "libvirtd"
         "adbusers"
         "video"
         "networkmanager"

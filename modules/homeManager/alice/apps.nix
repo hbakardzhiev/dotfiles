@@ -4,7 +4,6 @@
     wl-clipboard
     shotman
     pcmanfm
-    virt-manager
     libsForQt5.kcalc
     wl-mirror
     eyedropper
