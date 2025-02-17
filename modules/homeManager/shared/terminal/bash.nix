@@ -2,6 +2,9 @@
 {
   programs.bash = {
     enable = true;
+    initExtra = ''
+      echo "Your wish is my command, master!"
+    '';
     shellAliases = {
       l = "ls -alh";
       update = "sudo nix flake update /etc/nixos/";

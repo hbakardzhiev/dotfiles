@@ -19,7 +19,7 @@ in
       modifier = "Mod4"; # Super key
       terminal = "${pkgs.alacritty}/bin/alacritty";
       focus.wrapping = "workspace";
-      menu = "${pkgs.wofi}/bin/wofi --show drun --allow-images";
+      menu = "${pkgs.wofi}/bin/wofi --show drun --allow-images --allow-markup --insensitive --prompt \"Yes, master!\"";
       keybindings =
         let
           modifier = config.wayland.windowManager.sway.config.modifier;
