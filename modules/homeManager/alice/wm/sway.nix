@@ -90,7 +90,7 @@ in
         #   always = false;
         # }
         {
-          command = "${pkgs.discord}/bin/discord";
+          command = "${pkgs.vesktop}/bin/vesktop";
           always = false;
         }
         {
