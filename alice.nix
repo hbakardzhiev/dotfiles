@@ -29,14 +29,15 @@ in
   boot = {
     kernelParams = [ "psmouse.synaptics_intertouch=0" ];
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    initrd.luks.devices."luks-dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f".device = "/dev/disk/by-uuid/dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f";
+    initrd.luks.devices."luks-dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f".device =
+      "/dev/disk/by-uuid/dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f";
   };
 
   fileSystems."/drives/data" = {
     device = "/dev/mapper/luks-58149879-604e-4b89-b208-e5a4d86f3336";
     fsType = "ext4";
     options = [ "defaults" ];
- };
+  };
 
   networking = {
     # firewall.allowedTCPPorts = [];

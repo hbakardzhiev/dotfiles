@@ -22,6 +22,6 @@
     XDG_RUNTIME_DIR = "/run/user/$UID";
 
     # If mouse cursor becomes invisible
-    WLR_NO_HARDWARE_CURSORS=1;
+    WLR_NO_HARDWARE_CURSORS = 1;
   };
 }
