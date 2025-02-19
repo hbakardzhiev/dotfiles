@@ -17,10 +17,15 @@ in
     ${sway} 
   '';
 
+  environment.systemPackages = [ pkgs.gnome-keyring ];
+
+  services.gnome3.gnome-keyring.enable = true;
+
   # Password
   security.pam.services.greetd = { };
   security.pam.services.swaylock = { };
   security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.gdm-password.enableGnomeKeyring = true;
 
   systemd.user.services.gnome-keyring-daemon = {
     description = "GNOME Keyring Daemon";
