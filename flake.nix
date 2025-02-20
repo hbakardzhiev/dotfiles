@@ -18,7 +18,7 @@
   };
 
   outputs =
-    inputs@{
+    {
       nixpkgs,
       home-manager,
       nur,
