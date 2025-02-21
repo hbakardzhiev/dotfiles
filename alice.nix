@@ -72,7 +72,7 @@ in
   #NodeJS
   # programs.npm.enable = true;
 
-  # services.upower.enable = true;
+  services.upower.enable = true;
 
   # SAMBA
   services.gvfs.enable = true;
