@@ -14,7 +14,7 @@ in
 {
   wayland.windowManager.sway = {
     enable = true;
-    xwayland = false;
+    xwayland = true;
     config = {
       modifier = "Mod4"; # Super key
       terminal = "${pkgs.alacritty}/bin/alacritty";
