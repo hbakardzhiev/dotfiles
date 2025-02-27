@@ -15,7 +15,6 @@
     imagemagick
     torrential
     wev
-    ventoy-full
     nmap
     okular
     portfolio
