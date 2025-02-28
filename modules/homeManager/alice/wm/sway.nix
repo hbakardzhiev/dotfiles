@@ -134,6 +134,7 @@ in
               [app_id = "vesktop"] workspace number 1
               [app_id = "thunderbird"] workspace number 4
               [app_id = "org.twosheds.iwgtk"] floating enable
+              [title="Picture in picture"] floating enable
               [title = "Extension: (Bitwarden - Free Password Manager) - Bitwarden — Mozilla Firefox"] floating enable
               [window_role="pop-up"] floating enable
               [window_role="bubble"] floating enable
