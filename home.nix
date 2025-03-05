@@ -29,8 +29,6 @@ in
     p7zip
     udiskie
     tree
-    gparted
-    smartmontools
   ];
 
 }
