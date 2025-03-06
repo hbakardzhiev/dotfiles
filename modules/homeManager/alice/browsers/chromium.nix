@@ -18,7 +18,7 @@
       # { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } #ublock-origin
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
-      { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
+      # { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
       { id = "ifbmcpbgkhlpfcodhjhdbllhiaomkdej"; } # Office - Enable Copy and Paste (for word,excel...)
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
       { id = "kbfnbcaeplbcioakkpcpgfkobkghlhen"; } # Grammarly
