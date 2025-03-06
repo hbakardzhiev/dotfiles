@@ -9,7 +9,7 @@
       l = "ls -alh";
       update = "sudo nix flake update /etc/nixos/";
       clean = "sudo nix-collect-garbage --delete-older-than 1d";
-      switch = "sudo nixos-rebuild switch --flake /etc/nixos/.#$(hostname -s)";
+      switch = "nix-store --verify && sudo nixos-rebuild switch --flake /etc/nixos/.#$(hostname -s)";
       randomMac = "nmcli connection modify WIFI_CONN wifi.cloned-mac-address random";
       performance = "sudo cpupower frequency-set -g performance";
       powersave = "sudo cpupower frequency-set -g powersave";
