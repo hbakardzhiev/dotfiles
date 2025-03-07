@@ -2,6 +2,7 @@
 let
   browser = [
     "brave-browser.desktop"
+    "floorp.desktop"
   ];
   fileManager = [ "pcmanfm.desktop" ];
   imageViewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
