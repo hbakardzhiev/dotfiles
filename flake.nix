@@ -10,7 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nur.url = "github:nix-community/NUR";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +20,6 @@
     {
       nixpkgs,
       home-manager,
-      nur,
       sops-nix,
       nix-bitcoin,
       ...
@@ -42,7 +40,6 @@
             ./${pc}.nix
             home-manager.nixosModules.home-manager
             {
-              nixpkgs.overlays = [ nur.overlays.default ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
