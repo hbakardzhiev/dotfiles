@@ -1,8 +1,7 @@
 { pkgs, ... }:
 {
-  programs.firefox = {
+  programs.floorp = {
     enable = true;
-    package = pkgs.floorp;
     policies = {
       AppAutoUpdate = false;
       PasswordManagerEnabled = false;
@@ -329,16 +328,6 @@
             };
           };
         };
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          privacy-badger
-          vimium
-          ublock-origin
-          bitwarden
-          sponsorblock
-          floccus
-          leechblock-ng
-          grammarly
-        ];
       };
     };
   };
