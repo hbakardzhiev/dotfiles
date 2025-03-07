@@ -43,7 +43,7 @@ in
           "${modifier}+p" = "exec ${pkgs.nwg-displays}/bin/nwg-displays";
           "${modifier}+b" = "exec ${pkgs.blueman}/bin/blueman-manager";
           "${modifier}+F2" = "exec ${pkgs.pcmanfm}/bin/pcmanfm";
-          "${modifier}+F3" = "exec ${pkgs.firefox}/bin/firefox";
+          "${modifier}+F3" = "exec ${pkgs.brave}/bin/brave";
           XF86AudioMute = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
           XF86AudioMicMute = "exec ${pkgs.pulseaudio}/bin/pactl set-source-mute @DEFAULT_SOURCE@ toggle";
           XF86MonBrightnessUp = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +5%";
