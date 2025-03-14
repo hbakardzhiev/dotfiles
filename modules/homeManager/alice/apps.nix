@@ -21,6 +21,7 @@
     bitwarden-desktop
     libsForQt5.kdenlive
     vesktop
+    zoom-us
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
