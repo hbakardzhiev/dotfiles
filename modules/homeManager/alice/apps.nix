@@ -22,6 +22,7 @@
     libsForQt5.kdenlive
     vesktop
     zoom-us
+    rustdesk
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
