@@ -90,10 +90,6 @@ in
         #   always = false;
         # }
         {
-          command = "${pkgs.vesktop}/bin/vesktop";
-          always = false;
-        }
-        {
           command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
           always = true;
         }
