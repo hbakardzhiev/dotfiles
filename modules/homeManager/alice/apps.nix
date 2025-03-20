@@ -12,7 +12,6 @@
     otpclient
     thunderbird
     xournalpp
-    imagemagick
     torrential
     wev
     nmap
