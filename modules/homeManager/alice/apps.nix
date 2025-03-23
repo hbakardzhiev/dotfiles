@@ -22,6 +22,7 @@
     vesktop
     zoom-us
     rustdesk
+    bisq2
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
