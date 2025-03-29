@@ -44,6 +44,8 @@
   sops.secrets."rsa35" = { };
   sops.secrets."rsa36" = { };
   sops.secrets."rsa37" = { };
+  sops.secrets."syncthing/pixel/id" = { };
+  sops.secrets."syncthing/alice/id" = { };
 
   sops.templates."privateLaptopAll" = {
     owner = "alice";
