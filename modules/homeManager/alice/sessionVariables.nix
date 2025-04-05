@@ -20,6 +20,7 @@
     WORKSPACE_BASE = "/home/${hostname}/workspace";
     NIXOS_OZONE_WL = 1;
     XDG_RUNTIME_DIR = "/run/user/$UID";
+    HOME = "/home/alice";
 
     # If mouse cursor becomes invisible
     WLR_NO_HARDWARE_CURSORS = 1;
