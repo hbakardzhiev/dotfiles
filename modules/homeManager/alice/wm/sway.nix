@@ -73,10 +73,10 @@ in
         #   command = "${pkgs.signal-desktop-beta}/bin/signal-desktop-beta";
         #   always = false;
         # }
-        # {
-        #   command = "${pkgs.tailscale-systray}/bin/tailscale-systray";
-        #   always = false;
-        # }
+        {
+          command = "${pkgs.tailscale-systray}/bin/tailscale-systray";
+          always = false;
+        }
         # {
         #   command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &";
         #   always = false;
