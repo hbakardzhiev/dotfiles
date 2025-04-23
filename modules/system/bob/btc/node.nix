@@ -36,6 +36,7 @@
   services.rtl = {
     enable = true;
     nightTheme = false;
+    dataDir = "/home/alice/BTC/rtl";
     # Automatically enables clightning.
     nodes.lnd = {
       enable = true;
