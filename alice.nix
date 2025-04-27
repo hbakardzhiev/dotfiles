@@ -101,7 +101,7 @@ in
     # pulse.enable = true;
     wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
+    jack.enable = true;
   };
 
   services.udisks2.enable = true;
