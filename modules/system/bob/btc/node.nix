@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   # security.doas.enable = lib.mkForce false;
   # security.sudo.enable = lib.mkForce true;
@@ -51,7 +51,6 @@
   services.bitcoind = {
     enable = true;
     listen = true;
-    package = pkgs.bitcoind-knots;
     extraConfig = ''
       rpcworkqueue=64
     '';
