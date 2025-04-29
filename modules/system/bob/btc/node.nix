@@ -51,7 +51,6 @@
   services.bitcoind = {
     enable = true;
     listen = true;
-    package = config.nix-bitcoin.pkgs.pinned.pkgsUnstable.bitcoind-knots;
     extraConfig = ''
       rpcworkqueue=64
     '';
