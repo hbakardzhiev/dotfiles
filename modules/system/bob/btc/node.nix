@@ -53,8 +53,8 @@
     listen = true;
     package = pkgs.bitcoind-knots;
     extraConfig = ''
-      reindex
-    ''; #       rpcworkqueue=64
+      rpcworkqueue=64
+    '';
     dataDir = "/run/media/et1";
   };
 
