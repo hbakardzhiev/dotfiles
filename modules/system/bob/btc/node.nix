@@ -55,10 +55,12 @@
     extraConfig = ''
       rpcworkqueue=64
       upnp=1
+
       datacarrier=0
       dustdynamic=1
-      disablewallet=1
       rejectparasites=1
+
+      disablewallet=1
     '';
     dataDir = "/run/media/et1";
   };
