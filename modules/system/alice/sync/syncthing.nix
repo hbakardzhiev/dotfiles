@@ -2,7 +2,7 @@
 {
   services.syncthing = {
     enable = true;
-    configDir = /home/alice/syncthing;
+    configDir = ../../../../../../drives/data/syncthing/Photos;
     user = "alice";
     group = "users";
   };
