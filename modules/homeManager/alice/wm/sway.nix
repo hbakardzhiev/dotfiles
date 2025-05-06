@@ -6,6 +6,7 @@
 }:
 let
   mode = "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown";
+  terminalCommand = "${pkgs.alacritty}/bin/alacritty";
   pic = builtins.path {
     path = ./bds.jpeg;
     name = "bds";
@@ -17,7 +18,7 @@ in
     xwayland = false;
     config = {
       modifier = "Mod4"; # Super key
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = terminalCommand;
       focus.wrapping = "workspace";
       menu = "${pkgs.wofi}/bin/wofi --show drun --allow-images --allow-markup --insensitive --prompt \"Yes, master!\"";
       keybindings =
@@ -53,6 +54,7 @@ in
           "${modifier}+Shift+s" = "exec ${pkgs.shotman}/bin/shotman -C -c region";
           XF86AudioLowerVolume = "exec ${pkgs.pulseaudio}/bin/pactl -- set-sink-volume 0 -5%";
           XF86AudioRaiseVolume = "exec ${pkgs.pulseaudio}/bin/pactl -- set-sink-volume 0 +5%";
+          "${modifier}+v" = "exec ${terminalCommand} -e sh -c \"swaymsg floating enable, move position center; swaymsg resize set 120ppt 120ppt && ${pkgs.clipse}/bin/clipse\"";
         };
       modes = lib.mkOptionDefault {
         "${mode}" = {
@@ -89,6 +91,10 @@ in
         #   command = "${pkgs.iwgtk}/bin/iwgtk -i";
         #   always = false;
         # }
+        {
+          command = "${pkgs.clipse}/bin/clipse --listen";
+          always = true;
+        }
         {
           command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
           always = true;
