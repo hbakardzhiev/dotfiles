@@ -54,8 +54,7 @@ in
           "${modifier}+Shift+s" = "exec ${pkgs.shotman}/bin/shotman -C -c region";
           XF86AudioLowerVolume = "exec ${pkgs.pulseaudio}/bin/pactl -- set-sink-volume 0 -5%";
           XF86AudioRaiseVolume = "exec ${pkgs.pulseaudio}/bin/pactl -- set-sink-volume 0 +5%";
-          "${modifier}+v" = "exec ${terminalCommand} -e sh -c \"swaymsg floating enable, move position center; swaymsg resize set 120ppt 120ppt && ${pkgs.clipse}/bin/clipse\"";
-        };
+          "${modifier}+v" = "exec ${terminalCommand} -e sh -c 'swaymsg floating enable; swaymsg move position 250px 20px; ${pkgs.clipse}/bin/clipse'";        };
       modes = lib.mkOptionDefault {
         "${mode}" = {
           "r" = "exec reboot";
