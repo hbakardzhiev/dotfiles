@@ -123,6 +123,7 @@
             <tt>{calendar}</tt>'';
           format-alt = "{:%Y-%m-%d %H:%M:%S}";
           format = "{:%Y-%m-%d %H:%M}";
+          locale = "en_GB.UTF-8";
         };
         "cpu" = {
           format = "{usage}% ";

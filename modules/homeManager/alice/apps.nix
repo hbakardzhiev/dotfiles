@@ -22,6 +22,7 @@
     vesktop
     zoom-us
     rustdesk
+    texstudio
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
