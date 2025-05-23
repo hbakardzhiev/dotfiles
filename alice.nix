@@ -71,6 +71,8 @@ in
     };
   };
 
+  i18n.supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+
   # Android
   programs.adb.enable = true;
 
@@ -93,7 +95,9 @@ in
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
-    nerdfonts
+    nerd-fonts.noto
+    nerd-fonts.hack
+    nerd-fonts.tinos
     open-sans
   ];
 

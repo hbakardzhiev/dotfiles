@@ -117,12 +117,12 @@
           order = [
             "Grok"
             "Startpage"
-            "DuckDuckGo"
-            "Google"
-            "Ecosia"
+            "ddg"
+            "google"
+            "ecosia"
           ];
           engines = {
-            "Ecosia" = {
+            "ecosia" = {
               urls = [
                 {
                   template = "https://www.ecosia.org/search";
@@ -134,7 +134,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://theboar.org/wp-content/uploads/2020/10/1280px-Ecosia-like_logo.svg_.png";
+              icon = "https://theboar.org/wp-content/uploads/2020/10/1280px-Ecosia-like_logo.svg_.png";
               definedAliases = [ "@e" ];
             };
             "Ecosia Chat" = {
@@ -149,7 +149,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/593d1ad9-6d46-4c66-904e-c8fb6f312619/d6rf3li-2270b709-128c-463e-a142-0c0238908053.jpg";
+              icon = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/593d1ad9-6d46-4c66-904e-c8fb6f312619/d6rf3li-2270b709-128c-463e-a142-0c0238908053.jpg";
               definedAliases = [ "@ec" ];
             };
             "Nix Packages" = {
@@ -227,7 +227,7 @@
               ];
               definedAliases = [ "@od" ];
             };
-            "Google".metaData.alias = "@g";
+            "google".metaData.alias = "@g";
             "Home-manager options" = {
               urls = [
                 {
@@ -244,7 +244,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://home-manager-options.extranix.com/images/home-manager-option-search2.png";
+              icon = "https://home-manager-options.extranix.com/images/home-manager-option-search2.png";
               definedAliases = [ "@hm" ];
             };
             "Noogle" = {
@@ -259,7 +259,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://noogle.dev/favicon.png";
+              icon = "https://noogle.dev/favicon.png";
               definedAliases = [ "@ng" ];
             };
             "Google Scholar" = {
@@ -274,10 +274,10 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/240px-Google_Scholar_logo.svg.png";
+              icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/240px-Google_Scholar_logo.svg.png";
               definedAliases = [ "@scholar" ];
             };
-            "DuckDuckGo" = {
+            "ddg" = {
               urls = [
                 {
                   template = "https://duckduckgo.com/?k1=-1&kaj=m&kay=b&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kpsb=-1&k5=1&kbe=3";
@@ -289,7 +289,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png";
+              icon = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png";
               definedAliases = [ "@ddg" ];
             };
             "Startpage" = {
@@ -304,7 +304,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://eu.startpage.com/sp/cdn/images/privacy-please-av-icon.svg";
+              icon = "https://eu.startpage.com/sp/cdn/images/privacy-please-av-icon.svg";
               definedAliases = [ "@sp" ];
             };
             "Grok" = {
@@ -323,7 +323,7 @@
                   ];
                 }
               ];
-              iconUpdateURL = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/XAI-Logo.svg/150px-XAI-Logo.svg.png";
+              icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/XAI-Logo.svg/150px-XAI-Logo.svg.png";
               definedAliases = [ "@grok" ];
             };
           };

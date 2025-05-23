@@ -4,7 +4,7 @@
     wl-clipboard
     shotman
     pcmanfm
-    libsForQt5.kcalc
+    kdePackages.kcalc
     wl-mirror
     eyedropper
     shotwell
@@ -15,10 +15,10 @@
     torrential
     wev
     nmap
-    okular
+    kdePackages.okular
     portfolio
     bitwarden-desktop
-    libsForQt5.kdenlive
+    kdePackages.kdenlive
     vesktop
     zoom-us
     rustdesk
