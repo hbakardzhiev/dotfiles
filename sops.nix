@@ -7,7 +7,6 @@
     defaultSopsFormat = "yaml";
     defaultSopsFile = ./secrets/allSecrets/secrets.yaml;
     secrets = {
-      test = { };
       # "ssh/laptop" = {
       # owner = "alice";
       # neededForUsers = true;
@@ -16,9 +15,9 @@
       # owner = "alice";
       # neededForUsers = true;
       # };
-      "ddns/duckdns/token" = {
-        # owner = "alice";
-      };
+      # "ddns/duckdns/token" = {
+      #   # owner = "alice";
+      # };
     };
   };
 }
