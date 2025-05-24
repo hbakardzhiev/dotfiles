@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ config, ... }:
 {
   # security.doas.enable = lib.mkForce false;
   # security.sudo.enable = lib.mkForce true;
@@ -56,8 +56,10 @@
       rpcworkqueue=64
       upnp=1
 
-      datacarrier=0
+      datacarrier=1
+      datacarriersize=42
       rejectparasites=1
+      rejecttokens=1
 
       disablewallet=1
     '';
