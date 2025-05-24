@@ -23,9 +23,10 @@ in
   security.pam.services.greetd = { };
   security.pam.services.swaylock = { };
   security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.greetd.kwallet.enable = true;
   # security.pam.services.gdm-password.enableGnomeKeyring = true;
 
-  systemd.user.services.gnome-keyring-daemon = {
+  systemd.user.services.gnome-keyring-daemo = {
     description = "GNOME Keyring Daemon";
     wantedBy = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
