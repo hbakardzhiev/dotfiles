@@ -1,8 +1,6 @@
 {
   lib,
   modulesPath,
-  config,
-  pkgs,
   ...
 }:
 let
