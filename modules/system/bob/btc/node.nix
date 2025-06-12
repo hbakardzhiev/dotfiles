@@ -60,6 +60,7 @@
       datacarriersize=42
       rejectparasites=1
       rejecttokens=1
+      dustdynamic=target:1008
 
       disablewallet=1
     '';
