@@ -60,6 +60,8 @@
       datacarriersize=42
       rejectparasites=1
       rejecttokens=1
+      minrelaytxfee=0.00001000
+      dustrelayfee=0.00001000
       dustdynamic=target:1008
 
       disablewallet=1
