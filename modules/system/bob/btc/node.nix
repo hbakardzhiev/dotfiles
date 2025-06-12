@@ -36,7 +36,7 @@
   services.rtl = {
     enable = true;
     nightTheme = false;
-    dataDir = "/run/media/et1";
+    # dataDir = "/run/media/et1";
     # Automatically enables clightning.
     nodes.lnd = {
       enable = true;
