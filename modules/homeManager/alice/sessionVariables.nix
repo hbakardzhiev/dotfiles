@@ -3,6 +3,7 @@
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_USE_XINPUT2 = "1";
+    MOZ_DBUS_REMOTE = "1";
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "sway";
     SDL_VIDEODRIVER = "wayland";
@@ -15,6 +16,9 @@
     # gtk applications on wayland
     GDK_BACKEND = "wayland";
     SUDO_EDITOR = "${pkgs.helix.outPath}/bin/hx";
+    NIXOS_XDG_OPEN_USE_PORTAL = "1";
+    GTK_USE_PORTAL = "1";
+    CLUTTER_BACKEND = "wayland";
     DOTNET_CLI_TELEMETRY_OPTOUT = "1";
     LIBVA_DRIVER_NAME = "iHD";
     WORKSPACE_BASE = "/home/${hostname}/workspace";
