@@ -26,6 +26,9 @@ in
     ./sops.nix
   ] ++ filesToImport;
 
+  # Set your time zone.
+  time.timeZone = lib.mkForce "Europe/Sofia";
+
   boot = {
     kernelParams = [ "psmouse.synaptics_intertouch=0" ];
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
@@ -53,10 +56,6 @@ in
     firewall.enable = true;
   };
 
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-33.4.11"
-  ];
 
   xdg = {
     portal = {
