@@ -7,6 +7,10 @@
     defaultSopsFormat = "yaml";
     defaultSopsFile = ./secrets/allSecrets/secrets.yaml;
     secrets = {
+      "Nextcloud/Password" = {
+        owner = "alice";
+        neededForUsers = true;
+      };
       # "ssh/laptop" = {
       # owner = "alice";
       # neededForUsers = true;
