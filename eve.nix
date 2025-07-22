@@ -99,7 +99,6 @@ in
     mediaLocation = "/run/media/et1";
     openFirewall = true;
     user = "alice";
-    group = "alice";
     settings = {
       backup.database.enabled = true;
       server.externalDomain = "https://bakarh.ddns.net";
