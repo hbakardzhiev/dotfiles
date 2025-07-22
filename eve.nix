@@ -38,6 +38,7 @@ in
   networking.firewall.allowedTCPPorts = [
     80
     443
+    2283
   ];
   # services.nextcloud = {
   #   enable = true;
@@ -101,9 +102,7 @@ in
       server.externalDomain = "https://bakarh.ddns.net";
     };
   };
-
   users.users.immich.extraGroups = [ "video" "render" ];
-
   services.nginx.virtualHosts."bakarh.ddns.net" = {
     enableACME = true;
     forceSSL = true;
