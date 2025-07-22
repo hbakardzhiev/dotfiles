@@ -163,6 +163,6 @@ in
   fileSystems."/run/media/et1" = {
     device = "/dev/disk/by-uuid/D01235C71235B378";
     fsType = "ntfs-3g";
-    options = [ "defaults" "nofail" ];
+    options = [ "nofail" "uid=immich" "gid=immich" "umask=022" ];
   };
 }
