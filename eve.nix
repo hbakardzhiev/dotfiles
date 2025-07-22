@@ -39,86 +39,86 @@ in
     80
     443
   ];
-  services.nextcloud = {
-    enable = true;
-    package = pkgs.nextcloud30;
-    # hostName = "eveee.v6.army";
-    hostName = "bakarh.ddns.net";
-    https = true;
-    settings.overwriteprotocol = "https";
-    # Let NixOS install and configure the database automatically.
-    database.createLocally = true;
-    # Let NixOS install and configure Redis caching automatically.
-    configureRedis = true;
-    # Increase the maximum file upload size to avoid problems uploading videos.
-    maxUploadSize = "1G";
-    autoUpdateApps.enable = true;
-    extraAppsEnable = true;
-    extraApps = with config.services.nextcloud.package.packages.apps; {
-      # List of apps we want to install and are already packaged in
-      # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-      inherit groupfolders;
-    };
-    config = {
-      adminuser = "root";
-      adminpassFile = config.sops.secrets."nextcloud/Password".path;
-      dbtype = "pgsql";
-    };
-    settings.enabledPreviewProviders = [
-      "OC\\Preview\\BMP"
-      "OC\\Preview\\GIF"
-      "OC\\Preview\\JPEG"
-      "OC\\Preview\\Krita"
-      "OC\\Preview\\MarkDown"
-      "OC\\Preview\\MP3"
-      "OC\\Preview\\OpenDocument"
-      "OC\\Preview\\PNG"
-      "OC\\Preview\\TXT"
-      "OC\\Preview\\XBitmap"
-      "OC\\Preview\\HEIC"
-    ];
-  };
-  services.nginx.virtualHosts = {
-    ${config.services.nextcloud.hostName} = {
-      forceSSL = true;
-      enableACME = true;
-    };
-  };
-  security.acme = {
-    acceptTerms = true;
-    certs = {
-      ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
-    };
-  };
-
-  # services.immich = {
+  # services.nextcloud = {
   #   enable = true;
-  #   port = 2283;
-  #   accelerationDevices = null;
-  #   mediaLocation = "/run/media/et1";
-  #   settings = {
-  #     backup.database.enabled = false;
-  #     server.externalDomain = "https://${domain}";
+  #   package = pkgs.nextcloud30;
+  #   # hostName = "eveee.v6.army";
+  #   hostName = "bakarh.ddns.net";
+  #   https = true;
+  #   settings.overwriteprotocol = "https";
+  #   # Let NixOS install and configure the database automatically.
+  #   database.createLocally = true;
+  #   # Let NixOS install and configure Redis caching automatically.
+  #   configureRedis = true;
+  #   # Increase the maximum file upload size to avoid problems uploading videos.
+  #   maxUploadSize = "1G";
+  #   autoUpdateApps.enable = true;
+  #   extraAppsEnable = true;
+  #   extraApps = with config.services.nextcloud.package.packages.apps; {
+  #     # List of apps we want to install and are already packaged in
+  #     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
+  #     inherit groupfolders;
+  #   };
+  #   config = {
+  #     adminuser = "root";
+  #     adminpassFile = config.sops.secrets."nextcloud/Password".path;
+  #     dbtype = "pgsql";
+  #   };
+  #   settings.enabledPreviewProviders = [
+  #     "OC\\Preview\\BMP"
+  #     "OC\\Preview\\GIF"
+  #     "OC\\Preview\\JPEG"
+  #     "OC\\Preview\\Krita"
+  #     "OC\\Preview\\MarkDown"
+  #     "OC\\Preview\\MP3"
+  #     "OC\\Preview\\OpenDocument"
+  #     "OC\\Preview\\PNG"
+  #     "OC\\Preview\\TXT"
+  #     "OC\\Preview\\XBitmap"
+  #     "OC\\Preview\\HEIC"
+  #   ];
+  # };
+  # services.nginx.virtualHosts = {
+  #   ${config.services.nextcloud.hostName} = {
+  #     forceSSL = true;
+  #     enableACME = true;
+  #   };
+  # };
+  # security.acme = {
+  #   acceptTerms = true;
+  #   certs = {
+  #     ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
   #   };
   # };
 
-  # users.users.immich.extraGroups = [ "video" "render" ];
+  services.immich = {
+    enable = true;
+    port = 2283;
+    accelerationDevices = null;
+    mediaLocation = "/run/media/et1";
+    settings = {
+      backup.database.enabled = false;
+      server.externalDomain = "https://bakarh.ddns.net";
+    };
+  };
 
-  # services.nginx.virtualHosts."bakarh.ddns.net" = {
-  #   enableACME = true;
-  #   forceSSL = false;
-  #   locations."/" = {
-  #     proxyPass = "http://[::1]:${toString config.services.immich.port}";
-  #     proxyWebsockets = true;
-  #     recommendedProxySettings = true;
-  #     extraConfig = ''
-  #       client_max_body_size 50000M;
-  #       proxy_read_timeout   600s;
-  #       proxy_send_timeout   600s;
-  #       send_timeout         600s;
-  #     '';
-  #   };
-  # };
+  users.users.immich.extraGroups = [ "video" "render" ];
+
+  services.nginx.virtualHosts."bakarh.ddns.net" = {
+    enableACME = true;
+    forceSSL = false;
+    locations."/" = {
+      proxyPass = "http://[::1]:${toString config.services.immich.port}";
+      proxyWebsockets = true;
+      recommendedProxySettings = true;
+      extraConfig = ''
+        client_max_body_size 50000M;
+        proxy_read_timeout   600s;
+        proxy_send_timeout   600s;
+        send_timeout         600s;
+      '';
+    };
+  };
 
 
   # Systemd service for /run/media/backup
