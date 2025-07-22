@@ -7,6 +7,7 @@
 }:
 let
   hostname = "eve";
+  domain = "bakarh.ddns.net";
   getNixFiles = import ./modules/functions/getNixFiles.nix;
   filesToImport =
     getNixFiles {
@@ -95,6 +96,11 @@ in
     enable = true;
     port = 2283;
     accelerationDevices = null;
+    mediaLocation = "/run/media/et1";
+    settings = {
+      backup.database.enabled = false;
+      server.externalDomain = "https://${domain}";
+    };
   };
 
   users.users.immich.extraGroups = [ "video" "render" ];
