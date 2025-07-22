@@ -9,7 +9,6 @@
     secrets = {
       "Nextcloud/Password" = {
         owner = "alice";
-        neededForUsers = true;
       };
       # "ssh/laptop" = {
       # owner = "alice";
