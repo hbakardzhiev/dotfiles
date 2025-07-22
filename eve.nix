@@ -106,7 +106,7 @@ in
 
   services.nginx.virtualHosts."bakarh.ddns.net" = {
     enableACME = true;
-    forceSSL = false;
+    forceSSL = true;
     locations."/" = {
       proxyPass = "http://[::1]:${toString config.services.immich.port}";
       proxyWebsockets = true;
