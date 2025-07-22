@@ -63,7 +63,7 @@ in
     config = {
       adminuser = "root";
       adminpassFile = config.sops.secrets."nextcloud/Password".path;
-      dbtype = "pgsql";
+      dbtype = "sqlite";
     };
     settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
