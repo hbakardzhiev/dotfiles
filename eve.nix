@@ -7,7 +7,6 @@
 }:
 let
   hostname = "eve";
-  domain = "bakarh.ddns.net";
   getNixFiles = import ./modules/functions/getNixFiles.nix;
   filesToImport =
     getNixFiles {
