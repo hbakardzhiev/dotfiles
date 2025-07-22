@@ -121,6 +121,13 @@ in
       };
     };
   };
+  security.acme = {
+    acceptTerms = true;
+    certs = {
+      "bakarh.ddns.net".email = "h.bakardzhiev@gmx.com";
+    };
+  };
+
 
 
   # Systemd service for /run/media/backup
