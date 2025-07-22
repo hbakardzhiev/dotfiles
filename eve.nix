@@ -98,7 +98,6 @@ in
     port = 2283;
     mediaLocation = "/run/media/et1";
     openFirewall = true;
-    user = "alice";
     settings = {
       backup.database.enabled = true;
       server.externalDomain = "https://bakarh.ddns.net";
@@ -162,11 +161,11 @@ in
   fileSystems."/run/media/backup" = {
     device = "/dev/disk/by-uuid/19F41D271DCA2DF1";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" "nofail" ];
+    options = [ "defaults" "nofail" ];
   };
   fileSystems."/run/media/et1" = {
     device = "/dev/disk/by-uuid/D01235C71235B378";
     fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" "nofail" ];
+    options = [ "defaults" "nofail" ];
   };
 }
