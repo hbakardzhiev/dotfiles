@@ -96,6 +96,7 @@ in
     port = 2283;
     accelerationDevices = null;
     mediaLocation = "/run/media/et1";
+    openFirewall = true;
     settings = {
       backup.database.enabled = false;
       server.externalDomain = "https://bakarh.ddns.net";
