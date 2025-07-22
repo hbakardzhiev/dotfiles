@@ -130,6 +130,7 @@ in
       "bakarh.ddns.net".email = "h.bakardzhiev@gmx.com";
     };
   };
+  users.users.immich.isNormalUser = true;
 
 
   # Systemd service for /run/media/backup
