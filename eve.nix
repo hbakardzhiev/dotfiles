@@ -92,7 +92,6 @@ in
   #   };
   # };
 
-  environment.systemPackages = with pkgs; [ immich-cli ];
   services.immich = {
     enable = true;
     port = 2283;
@@ -128,8 +127,6 @@ in
       "bakarh.ddns.net".email = "h.bakardzhiev@gmx.com";
     };
   };
-  users.users.immich.isNormalUser = true;
-
 
   # Systemd service for /run/media/backup
   systemd.services.fix-ntfs-backup = {
