@@ -1,9 +1,9 @@
 { ... }:
 {
-  sops = {
-    "Nextcloud/Password" = {
-      owner = "alice";
-      neededForUsers = true;
-    };
+  sops.secrets."nextcloud/username" = {
+    owner = "alice";
+  };
+  sops.secrets."nextcloud/Password" = {
+    owner = "alice";
   };
 }
