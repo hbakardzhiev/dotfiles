@@ -94,11 +94,10 @@ in
   services.immich = {
     enable = true;
     port = 2283;
-    accelerationDevices = null;
     mediaLocation = "/run/media/et1";
     openFirewall = true;
     settings = {
-      backup.database.enabled = false;
+      backup.database.enabled = true;
       server.externalDomain = "https://bakarh.ddns.net";
     };
   };
