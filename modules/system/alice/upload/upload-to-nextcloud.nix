@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  serviceName = "upload-obsidian-to-nextcloud";
+  serviceName = "upload-to-nextcloud";
 in
 {
   environment.systemPackages = with pkgs; [
