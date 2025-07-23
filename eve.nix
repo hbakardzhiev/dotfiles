@@ -64,6 +64,10 @@ in
       adminuser = "root";
       adminpassFile = config.sops.secrets."nextcloud/Password".path;
       dbtype = "sqlite";
+      trustedDomains = [
+        "100.80.185.72"
+        "bakarh.ddns.net"
+      ];
     };
     settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
