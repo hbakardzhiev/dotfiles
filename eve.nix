@@ -90,11 +90,16 @@ in
       forceSSL = true;
       enableACME = true;
     };
+    "eveee.duckdns.org" = {
+      forceSSL = true;
+      enableACME = true;
+    };
   };
   security.acme = {
     acceptTerms = true;
     certs = {
       ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
+      "eveee.duckdns.org".email = "h.bakardzhiev@gmx.com";
     };
   };
 
