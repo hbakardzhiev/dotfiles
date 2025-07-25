@@ -55,6 +55,9 @@
         };
         ${server} = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            hostname = server;
+          };
           modules = [
             ./${server}.nix
             home-manager.nixosModules.home-manager
