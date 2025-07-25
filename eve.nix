@@ -66,9 +66,10 @@ in
       dbtype = "sqlite";
     };
     settings = {
-      trustedDomains = [
+      trusted_domains = [
         "100.80.185.72"
         "bakarh.ddns.net"
+        "eve.tail6dbb0b.ts.net"
       ];
       enabledPreviewProviders = [
         "OC\\Preview\\BMP"
@@ -90,16 +91,11 @@ in
       forceSSL = true;
       enableACME = true;
     };
-    "eveee.duckdns.org" = {
-      forceSSL = true;
-      enableACME = true;
-    };
   };
   security.acme = {
     acceptTerms = true;
     certs = {
       ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
-      "eveee.duckdns.org".email = "h.bakardzhiev@gmx.com";
     };
   };
 
