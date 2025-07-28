@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
-  services.printing ={
+  services.printing = {
     enable = true;
     drivers = [
       pkgs.brlaser

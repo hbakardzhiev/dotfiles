@@ -24,7 +24,8 @@ in
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./sops.nix
-  ] ++ filesToImport;
+  ]
+  ++ filesToImport;
 
   # Set your time zone.
   time.timeZone = lib.mkForce "Europe/Sofia";
@@ -56,7 +57,6 @@ in
     firewall.enable = true;
   };
 
-
   xdg = {
     portal = {
       xdgOpenUsePortal = true;
@@ -70,7 +70,10 @@ in
     };
   };
 
-  i18n.supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+  i18n.supportedLocales = [
+    "en_GB.UTF-8/UTF-8"
+    "en_US.UTF-8/UTF-8"
+  ];
 
   # Android
   programs.adb.enable = true;

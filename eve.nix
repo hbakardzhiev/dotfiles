@@ -26,7 +26,8 @@ in
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./sops.nix
-  ] ++ filesToImport;
+  ]
+  ++ filesToImport;
 
   system.stateVersion = "24.05"; # Did you read the comment?
   networking = {
@@ -165,11 +166,17 @@ in
   fileSystems."/run/media/backup" = {
     device = "/dev/disk/by-uuid/19F41D271DCA2DF1";
     fsType = "ntfs-3g";
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
   fileSystems."/run/media/et1" = {
     device = "/dev/disk/by-uuid/D01235C71235B378";
     fsType = "ntfs-3g";
-    options = [ "defaults" "nofail" ];
+    options = [
+      "defaults"
+      "nofail"
+    ];
   };
 }

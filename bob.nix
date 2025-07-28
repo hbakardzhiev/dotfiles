@@ -24,7 +24,8 @@ in
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./sops.nix
-  ] ++ filesToImport;
+  ]
+  ++ filesToImport;
 
   services.logind.lidSwitchExternalPower = "ignore";
 
