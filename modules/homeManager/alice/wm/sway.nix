@@ -125,7 +125,7 @@ in
                 # xkb_variant ,phonetic
                 xkb_options grp:alt_shift_toggle
             }
-            smart_borders on
+            smart_borders off
             for_window {
               [app_id = ".blueman-manager-wrapped"] floating enable
               [app_id = "nwg-displays"] floating enable
