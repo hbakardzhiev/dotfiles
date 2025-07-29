@@ -5,7 +5,7 @@ let
     "floorp.desktop"
   ];
   fileManager = [ "pcmanfm.desktop" ];
-  imageViewer = [ "org.gnome.Shotwell-Viewer.desktop" ];
+  imageViewer = [ "org.gnome.Loupe.desktop" ];
   editor = [ "Helix.desktop" ];
   obsidian = [ "obsidian.desktop" ];
   pdfReader = [

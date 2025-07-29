@@ -7,7 +7,7 @@
     kdePackages.kcalc
     wl-mirror
     eyedropper
-    shotwell
+    loupe
     libreoffice
     otpclient
     thunderbird
