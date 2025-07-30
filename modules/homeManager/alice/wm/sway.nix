@@ -104,6 +104,10 @@ in
           command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
           always = true;
         }
+        {
+          command = "${pkgs.nextcloud-client}/bin/nextcloud";
+          always = true;
+        }
       ];
       bars = [
         {
