@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
   obsidianFolder = "/drives/data/obsidian/";
-  portfolioFolder = "/drives/data/portfolio/";
-  passwordsFolder = "/drives/data/Passwords/";
-  configurationBackupFolder = "/drives/data/configurationBackup/";
+  # portfolioFolder = "/drives/data/portfolio/";
+  # passwordsFolder = "/drives/data/Passwords/";
+  # configurationBackupFolder = "/drives/data/configurationBackup/";
   script = ''
     git pull
     git add .
@@ -21,7 +21,6 @@ in
     };
   };
   systemd.user.services.upload-github = {
-    # startAt = "10:00";
     wantedBy = [ "network-online.target" ];
     path = with pkgs; [
       git
@@ -33,15 +32,16 @@ in
       cd ${obsidianFolder}
       ${script}
       echo "obsidian done"
-      cd ${portfolioFolder}
-      ${script}
-      echo "portfolio done"
-      cd ${passwordsFolder}
-      ${script}
-      echo "password done"
-      cd ${configurationBackupFolder}
-      ${script}
-      echo "configuration backup folder done"
+
     '';
   };
+  # cd ${portfolioFolder}
+  # ${script}
+  # echo "portfolio done"
+  # cd ${passwordsFolder}
+  # ${script}
+  # echo "password done"
+  # cd ${configurationBackupFolder}
+  # ${script}
+  # echo "configuration backup folder done"
 }
