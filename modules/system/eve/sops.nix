@@ -6,4 +6,5 @@
   sops.secrets."nextcloud/Password" = {
     owner = "alice";
   };
+  sops.secrets.gmx = { };
 }
