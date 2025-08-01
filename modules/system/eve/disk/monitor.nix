@@ -34,7 +34,7 @@
         port = 587;
         from = "h.bakardzhiev@gmx.com";
         user = "h.bakardzhiev@gmx.com";
-        password = config.sops.secrets.gmx.value;
+        passwordeval = "cat ${config.sops.secrets.gmx.path}";
         tls = true;
         tls_starttls = true;
       };
