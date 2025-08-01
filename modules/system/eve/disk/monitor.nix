@@ -8,11 +8,11 @@
     devices = [
       {
         device = "/dev/sdb"; # First disk
-        options = "-d sat -a -H -l error -l selftest -m your-email@gmail.com -M exec ${pkgs.msmtp}/bin/msmtp";
+        options = "-d sat,auto -a -H -l error -l selftest -m your-email@gmail.com -M exec ${pkgs.msmtp}/bin/msmtp";
       }
       {
         device = "/dev/sdc"; # Second disk
-        options = "-d sat -a -H -l error -l selftest -m your-email@gmail.com -M exec ${pkgs.msmtp}/bin/msmtp";
+        options = "-d sat,auto -a -H -l error -l selftest -m your-email@gmail.com -M exec ${pkgs.msmtp}/bin/msmtp";
       }
     ];
     notifications = {
