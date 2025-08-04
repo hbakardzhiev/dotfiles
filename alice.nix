@@ -27,9 +27,6 @@ in
   ]
   ++ filesToImport;
 
-  # Set your time zone.
-  time.timeZone = lib.mkForce "Europe/Sofia";
-
   boot = {
     kernelParams = [ "psmouse.synaptics_intertouch=0" ];
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
