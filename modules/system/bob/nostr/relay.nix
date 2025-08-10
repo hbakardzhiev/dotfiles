@@ -4,36 +4,34 @@
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
     settings = {
-      # Relay metadata (displayed to clients)
       info = {
         name = "My Private-Write Relay";
         description = "Only I can publish events; open for reading.";
-        pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"; # Optional: Hex pubkey for relay admin contact (can be same as your publishing key)
-        # contact = "your-email@example.com";  # Optional: Contact info
+        pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
       };
 
-      # Network settings
-      address = {
-        host = "0.0.0.0"; # Listen on all interfaces
-        port = 8080; # Default port; change if needed
+      network = {
+        address = "0.0.0.0";
+        port = 8080;
       };
 
-      # Restrict publishing to only your pubkey
       authorization = {
-        pubkey_whitelist = [ "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9" ]; # Replace with your hex pubkey (array for multiple if needed)
+        pubkey_whitelist = [
+          "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
+        ];
       };
 
-      # Optional: Other common settings (adjust as needed)
       options = {
-        max_event_size = 16384; # Default; increase for larger events
-        reject_future_seconds = 1800; # Reject events timestamped too far in the future
+        max_event_size = 16384;
+        reject_future_seconds = 1800;
       };
 
       limits = {
-        max_subscriptions = 20; # Per-client subscription limit
-        max_filters = 100; # Max filters per subscription
+        max_subscriptions = 20;
+        max_filters = 100;
       };
     };
+
   };
 
   # Open firewall for the relay port
