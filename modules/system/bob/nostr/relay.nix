@@ -11,11 +11,6 @@
         pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
       };
 
-      network = {
-        address = "0.0.0.0";
-        port = 8080;
-      };
-
       authorization = {
         pubkey_whitelist = [
           "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
