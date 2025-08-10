@@ -2,6 +2,7 @@
 {
   services.nostr-rs-relay = {
             enable = true;
+            dataDir = "/home/alice/nostr";
             settings = {
               # Relay metadata (displayed to clients)
               info = {
