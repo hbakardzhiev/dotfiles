@@ -3,12 +3,19 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
-    port = 8080;
-    settings = {
+   settings = {
       info = {
-        name = "My Private-Write Relay";
         description = "Only I can publish events; open for reading.";
         pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
+        relay_url = "wss://bobbb.duckdns.org";
+        name = "bobbb.duckdns.org";
+      };
+
+      network = {
+        # Bind to this network address
+        address = "0.0.0.0";
+        # Listen on this port
+        port = 8080;
       };
 
       authorization = {
