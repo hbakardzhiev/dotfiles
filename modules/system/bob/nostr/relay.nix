@@ -3,6 +3,7 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
+    port = 8080;
     settings = {
       info = {
         name = "My Private-Write Relay";
