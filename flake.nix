@@ -33,6 +33,7 @@
       nixosConfigurations = {
         ${pc} = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            hostname = pc;
             inherit sops-nix;
           }; # Pass flake inputs to our config
           system = "x86_64-linux";
@@ -78,6 +79,7 @@
         ${maastricht} = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
+            hostname = maastricht;
             inherit sops-nix;
             inherit nix-bitcoin;
           }; # Pass flake inputs to our config
