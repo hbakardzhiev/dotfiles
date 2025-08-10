@@ -38,6 +38,6 @@
   };
 
   # Open firewall for the relay port
-  networking.firewall.allowedTCPPorts = [ 8080 ]; # Add 80/443 if using a reverse proxy
+  networking.firewall.allowedTCPPorts = [ 8080 12849 ]; # Add 80/443 if using a reverse proxy
 
 }
