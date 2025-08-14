@@ -46,7 +46,6 @@
 services.caddy = {
   enable = true;
   virtualHosts."bobbb.duckdns.org" = {
-    enableACME = true;
 
     extraConfig = ''
       # WebSocket path
