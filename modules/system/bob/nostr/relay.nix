@@ -45,15 +45,34 @@
 
 services.caddy = {
   enable = true;
-  virtualHosts."bobbb.duckdns.org".extraConfig = ''
-    @ws {
-        path /ws*
-    }
-    reverse_proxy @ws 127.0.0.1:8080
+  virtualHosts."bobbb.duckdns.org" = {
+    enableACME = true;
 
-    # fallback for normal HTTP requests
-    reverse_proxy 127.0.0.1:8080
-  '';
+    extraConfig = ''
+      # WebSocket path
+      @ws {
+          path /ws*
+      }
+
+      # Proxy WebSocket connections
+      reverse_proxy @ws 127.0.0.1:8080 {
+          header_up Host {host}
+          header_up X-Real-IP {remote}
+          header_up X-Forwarded-For {remote}
+          header_up X-Forwarded-Port {server_port}
+          header_up X-Forwarded-Proto {scheme}
+      }
+
+      # Proxy all other requests
+      reverse_proxy 127.0.0.1:8080 {
+          header_up Host {host}
+          header_up X-Real-IP {remote}
+          header_up X-Forwarded-For {remote}
+          header_up X-Forwarded-Port {server_port}
+          header_up X-Forwarded-Proto {scheme}
+      }
+    '';
+  };
 };
 
 }
