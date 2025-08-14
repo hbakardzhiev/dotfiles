@@ -46,6 +46,12 @@
 services.caddy = {
   enable = true;
   virtualHosts."bobbb.duckdns.org".extraConfig = ''
+    @ws {
+        path /ws*
+    }
+    reverse_proxy @ws 127.0.0.1:8080
+
+    # fallback for normal HTTP requests
     reverse_proxy 127.0.0.1:8080
   '';
 };
