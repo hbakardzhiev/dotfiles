@@ -43,23 +43,12 @@
     443
   ]; # Add 80/443 if using a reverse proxy
 
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    virtualHosts."bobbb.duckdns.org" = {
-      enableACME = true; # Auto LetsEncrypt
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
-        proxyWebsockets = true;
-      };
-    };
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "ch.bakardgiev@gmail.com";
-  };
+services.caddy = {
+  enable = true;
+  virtualHosts."relay.example.com".extraConfig = ''
+    reverse_proxy /ws 127.0.0.1:8080
+    reverse_proxy 127.0.0.1:8080
+  '';
+};
 
 }
