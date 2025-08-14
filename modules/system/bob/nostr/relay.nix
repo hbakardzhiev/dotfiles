@@ -3,7 +3,7 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
-   settings = {
+    settings = {
       info = {
         description = "Only I can publish events; open for reading.";
         pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
@@ -38,6 +38,28 @@
   };
 
   # Open firewall for the relay port
-  networking.firewall.allowedTCPPorts = [ 8080 12849 ]; # Add 80/443 if using a reverse proxy
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ]; # Add 80/443 if using a reverse proxy
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    virtualHosts."bobbb.duckdns.org" = {
+      enableACME = true; # Auto LetsEncrypt
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8080";
+        proxyWebsockets = true;
+      };
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "ch.bakardgiev@gmail.com";
+  };
 
 }
