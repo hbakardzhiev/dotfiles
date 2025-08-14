@@ -3,6 +3,7 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
+    port = 8080;
     settings = {
       info = {
         description = "Only I can publish events; open for reading.";
@@ -15,7 +16,6 @@
         # Bind to this network address
         address = "0.0.0.0";
         # Listen on this port
-        port = 8080;
       };
 
       authorization = {
@@ -46,29 +46,13 @@
 services.caddy = {
   enable = true;
   virtualHosts."bobbb.duckdns.org" = {
-
     extraConfig = ''
-      # WebSocket path
-      @ws {
-          path /ws*
-      }
-
-      # Proxy WebSocket connections
-      reverse_proxy @ws 127.0.0.1:8080 {
-          header_up Host {host}
-          header_up X-Real-IP {remote}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Port {server_port}
-          header_up X-Forwarded-Proto {scheme}
-      }
-
-      # Proxy all other requests
       reverse_proxy 127.0.0.1:8080 {
-          header_up Host {host}
-          header_up X-Real-IP {remote}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Port {server_port}
-          header_up X-Forwarded-Proto {scheme}
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Port {server_port}
+        header_up X-Forwarded-Proto {scheme}
       }
     '';
   };
