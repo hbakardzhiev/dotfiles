@@ -3,7 +3,6 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
-    port = 8080;
     settings = {
       info = {
         description = "Only I can publish events; open for reading.";
@@ -47,7 +46,7 @@ services.caddy = {
   enable = true;
   virtualHosts."bobbb.duckdns.org" = {
     extraConfig = ''
-      reverse_proxy 127.0.0.1:8080 {
+      reverse_proxy 127.0.0.1:12849 {
         header_up Host {host}
         header_up X-Real-IP {remote}
         header_up X-Forwarded-For {remote}
