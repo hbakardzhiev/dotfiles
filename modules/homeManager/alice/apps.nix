@@ -21,6 +21,7 @@
     kdePackages.kdenlive
     vesktop
     rustdesk
+    gossip
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
