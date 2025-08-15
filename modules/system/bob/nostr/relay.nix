@@ -14,7 +14,7 @@
       network = {
         # Bind to this network address
         address = "0.0.0.0";
-        # Listen on this port
+        # Listen on port 12849 (this is the default). I have not managed to find any way to change it. KEEP IT default!
       };
 
       authorization = {
