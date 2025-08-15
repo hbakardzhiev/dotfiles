@@ -42,19 +42,19 @@
     443
   ]; # Add 80/443 if using a reverse proxy
 
-services.caddy = {
-  enable = true;
-  virtualHosts."bobbb.duckdns.org" = {
-    extraConfig = ''
-      reverse_proxy 127.0.0.1:12849 {
-        header_up Host {host}
-        header_up X-Real-IP {remote}
-        header_up X-Forwarded-For {remote}
-        header_up X-Forwarded-Port {server_port}
-        header_up X-Forwarded-Proto {scheme}
-      }
-    '';
+  services.caddy = {
+    enable = true;
+    virtualHosts."bobbb.duckdns.org" = {
+      extraConfig = ''
+        reverse_proxy 127.0.0.1:12849 {
+          header_up Host {host}
+          header_up X-Real-IP {remote}
+          header_up X-Forwarded-For {remote}
+          header_up X-Forwarded-Port {server_port}
+          header_up X-Forwarded-Proto {scheme}
+        }
+      '';
+    };
   };
-};
 
 }
