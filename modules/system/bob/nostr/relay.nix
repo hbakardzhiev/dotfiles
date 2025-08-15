@@ -46,13 +46,23 @@
     enable = true;
     virtualHosts."bobbb.duckdns.org" = {
       extraConfig = ''
-        reverse_proxy 127.0.0.1:12849 {
-          header_up Host {host}
-          header_up X-Real-IP {remote}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Port {server_port}
-          header_up X-Forwarded-Proto {scheme}
+        reverse_proxy 127.0.0.1:12849
+        
+        # CORS preflight (OPTIONS)
+        @cors_preflight {
+          method OPTIONS
         }
+        respond @cors_preflight 204 {
+          header Access-Control-Allow-Origin *
+          header Access-Control-Allow-Headers *
+          header Access-Control-Allow-Methods "GET, OPTIONS"
+        }
+        
+        # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
+        @nip11 header Accept *application/nostr+json*
+        header @nip11 Access-Control-Allow-Origin *
+        header @nip11 Access-Control-Allow-Headers *
+        header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
       '';
     };
   };
