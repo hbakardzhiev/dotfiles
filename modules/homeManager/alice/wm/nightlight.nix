@@ -7,5 +7,6 @@
     longitude = 5.7;
     tray = true;
     temperature.night = 3000;
+    temperature.day = 3500;
   };
 }
