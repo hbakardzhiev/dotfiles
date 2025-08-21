@@ -84,14 +84,18 @@ in
         #   command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &";
         #   always = false;
         # }
-        {
-          command = "${pkgs.thunderbird}/bin/thunderbird";
-          always = false;
-        }
+        # {
+        #   command = "${pkgs.thunderbird}/bin/thunderbird";
+        #   always = false;
+        # } # email client
         # {
         #   command = "${pkgs.iwgtk}/bin/iwgtk -i";
         #   always = false;
         # }
+        {
+          command = "${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all";
+          always = true;
+        }
         {
           command = "${pkgs.clipse}/bin/clipse --listen";
           always = true;
