@@ -10,7 +10,6 @@
     loupe
     libreoffice
     otpclient
-    thunderbird
     xournalpp
     torrential
     wev
