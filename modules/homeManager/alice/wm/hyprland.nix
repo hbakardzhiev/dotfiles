@@ -83,9 +83,6 @@ in
         "$mod, 8, workspace, 8"
         "$mod, 9, workspace, 9"
 
-        # Submap to power
-        "$mod, 0, submap, power"
-
         # Move windows to workspaces
         "$mod SHIFT, 1, movetoworkspace, 1"
         "$mod SHIFT, 2, movetoworkspace, 2"
@@ -112,17 +109,6 @@ in
         ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy"
       ];
 
-      # ── Submap ───────────────────────────────────
-      extraConfig = ''
-        submap = power
-        bind = , R, exec, systemctl reboot
-        bind = , S, exec, systemctl poweroff
-        bind = , E, exec, hyprctl dispatch exit
-        bind = , escape, submap, reset
-        bind = , return, submap, reset
-        submap = reset
-      '';
-    
       # ── Autostart ────────────────────────────────
       exec-once = [
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
