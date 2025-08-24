@@ -131,7 +131,7 @@ in
         "$mod SHIFT, 0, movetoworkspace, 10"
 
         # App key mappings
-        "$mod, P, exec, ${pkgs.nwg-displays}/bin/nwg-displays"
+        "$mod, P, exec, hyprctl keyword monitor 'eDP-1, disable'"
         "$mod, B, exec, ${pkgs.blueman}/bin/blueman-manager"
 
         # Launchers
@@ -169,7 +169,6 @@ in
       # ── Window Rules ─────────────────────────────
       windowrulev2 = [
         "float, class:^(blueman-manager)$"
-        "float, class:^(nwg-displays)$"
         "float, title:^(Picture-in-Picture)$"
         "float, title:^(kcalc)$"
       ];
@@ -184,7 +183,6 @@ in
   home.packages = with pkgs; [
     adwaita-icon-theme
     dconf
-    nwg-displays
     hyprutils
     grim
     slurp
