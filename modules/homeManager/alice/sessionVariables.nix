@@ -5,7 +5,6 @@
     MOZ_USE_XINPUT2 = "1";
     MOZ_DBUS_REMOTE = "1";
     XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "sway";
     SDL_VIDEODRIVER = "wayland";
     # needs qt5.qtwayland in systemPackages
     QT_QPA_PLATFORM = "wayland";

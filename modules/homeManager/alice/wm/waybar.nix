@@ -2,7 +2,6 @@
 {
   programs.waybar = {
     enable = true;
-    # package = pkgs.waybar.override { wireplumberSupport = false; };
     settings = {
       mainBar = {
         passthrough = false;
@@ -12,12 +11,12 @@
         position = "bottom";
         height = 32;
         modules-left = [
-          "sway/workspaces"
-          "sway/mode"
+          "hyprland/workspaces"
+          "hyprland/submap"
           "wlr/taskbar"
           "privacy"
         ];
-        # modules-center = [ "sway/window" ];
+        # modules-center = [ "hyprland/window" ];
         modules-right = [
           "custom/pomodoro"
           "pulseaudio"
@@ -25,7 +24,7 @@
           "cpu"
           "memory"
           "backlight"
-          "sway/language"
+          "hyprland/language"
           "temperature"
           "disk"
           "battery"
@@ -43,12 +42,12 @@
           on-click = "activate";
           on-click-right = "close";
         };
-        "sway/workspaces" = {
+        "hyprland/workspaces" = {
           disable-scroll = false;
           all-outputs = true;
         };
-        "sway/language" = {
-          format = "{flag}";
+        "hyprland/language" = {
+          format = "{short}";
         };
         "network" = {
           format-wifi = "{essid} ({signalStrength}%)";

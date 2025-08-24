@@ -14,6 +14,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprshell = {
+      url = "github:H3rmt/hyprshell?ref=hyprshell-release";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -22,6 +26,7 @@
       home-manager,
       sops-nix,
       nix-bitcoin,
+      hyprshell,
       ...
     }:
     let
@@ -34,7 +39,8 @@
         ${pc} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             hostname = pc;
-            inherit sops-nix;
+            inherit sops-nix
+                    hyprshell;
           }; # Pass flake inputs to our config
           system = "x86_64-linux";
           modules = [
@@ -48,6 +54,7 @@
               home-manager.users.alice = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 hostname = pc;
+                inherit hyprshell;
               };
               home-manager.backupFileExtension = "hm-backup";
             }
