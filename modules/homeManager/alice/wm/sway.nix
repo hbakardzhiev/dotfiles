@@ -94,7 +94,7 @@ in
         # }
         {
           command = "${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all";
-          always = true;
+          always = false;
         }
         {
           command = "${pkgs.clipse}/bin/clipse --listen";
