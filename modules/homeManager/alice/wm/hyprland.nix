@@ -22,8 +22,9 @@ in
         blur = {
           enabled = false;
         };
+
         active_opacity = 1.0;
-        inactive_opacity = 0.9;
+        inactive_opacity = 1.0;
       };
       animations = {
         enabled = false;
@@ -32,12 +33,43 @@ in
         vrr = 1;
         vfr = true;
         render_unfocused_fps = 15;
+
+        # Performance optimizations
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        mouse_move_enables_dpms = true;
+        key_press_enables_dpms = true;
+        always_follow_on_dnd = true;
+        layers_hog_keyboard_focus = true;
+        animate_manual_resizes = false;
+        animate_mouse_windowdragging = false;
+        enable_swallow = true;
+        swallow_regex = "^(Alacritty)$";
       };
+
+      # ── Intel-optimized rendering ────────────────
+      render = {
+        explicit_sync = 1;  # Lower value for Intel
+        direct_scanout = true;
+      };
+
+      # ── Cursor optimizations ─────────────────────
+      cursor = {
+        no_hardware_cursors = false;
+        enable_hyprcursor = true;
+      };
+
       # ── Input ────────────────────────────────────
       input = {
         kb_layout = "us,bg";
         follow_mouse = 1;
         sensitivity = 0;
+
+        # Performance additions
+        repeat_rate = 50;
+        repeat_delay = 300;
+        numlock_by_default = true;
+        resolve_binds_by_sym = 1;
       };
       gestures = {
         workspace_swipe = true;
