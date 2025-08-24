@@ -116,7 +116,8 @@ in
         "${pkgs.nextcloud-client}/bin/nextcloud"
         # "${pkgs.hyprpanel}/bin/hyprpanel"
         "${pkgs.waybar}/bin/waybar"
-        "${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
+        "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
+        "[workspace 2 silent] ${terminal}"
       ];
       # ── Monitor ──────────────────────────────────
       monitor = [ ",preferred,auto,1,vrr,1" ];

@@ -24,7 +24,6 @@
           "cpu"
           "memory"
           "backlight"
-          "hyprland/language"
           "temperature"
           "disk"
           "battery"
@@ -45,9 +44,6 @@
         "hyprland/workspaces" = {
           disable-scroll = false;
           all-outputs = true;
-        };
-        "hyprland/language" = {
-          format = "{short}";
         };
         "network" = {
           format-wifi = "{essid} ({signalStrength}%)";
