@@ -150,6 +150,7 @@ in
         "${pkgs.waybar}/bin/waybar"
         "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
         "[workspace 2 silent] ${terminal}"
+        "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"
       ];
       # ── Monitor ──────────────────────────────────
       monitor = [ ",preferred,auto,1,vrr,1" ];
