@@ -1,4 +1,3 @@
-# hyprland.nix
 { pkgs, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
@@ -37,7 +36,6 @@ in
       # ── Input ────────────────────────────────────
       input = {
         kb_layout = "us,bg";
-        kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 0;
       };
@@ -47,6 +45,8 @@ in
       };
       # ── Keybinds ─────────────────────────────────
       bind = [
+        # Language change
+        "$mod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
         # Launchers
         "$mod, Return, exec, ${terminal}"
         "$mod, D, exec, ${launcher}"
