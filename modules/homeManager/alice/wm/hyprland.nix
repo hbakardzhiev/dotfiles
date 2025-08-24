@@ -153,6 +153,12 @@ in
         ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy"
       ];
 
+      # ── Lid Switch Bindings ──────────────────────
+      bindl = [
+        ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, auto, 1, vrr, 1'"
+        ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
+      ];
+
       # ── Autostart ────────────────────────────────
       exec-once = [
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"

@@ -72,6 +72,12 @@ in
     "en_US.UTF-8/UTF-8"
   ];
 
+  # Disable lid close sleep behavior
+  services.logind = {
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
+
   # Android
   programs.adb.enable = true;
 
