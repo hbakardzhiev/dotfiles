@@ -132,6 +132,7 @@ in
 
         # App key mappings
         "mod, P, exec, ${pkgs.nwg-displays}/bin/nwg-displays"
+        "mod, B, exec, ${pkgs.blueman}/bin/blueman-manager"
 
         # Launchers
         "$mod, Return, exec, ${terminal}"
