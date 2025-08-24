@@ -79,31 +79,34 @@ in
       bind = [
         # Language change
         "$mod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
-        # Launchers
-        "$mod, Return, exec, ${terminal}"
-        "$mod, D, exec, ${launcher}"
+
         # Window actions
         "$mod, Q, killactive"
         "$mod, L, exec, hyprlock"
         "$mod SHIFT, R, exec, hyprctl reload"
+
         # Focus movement
         "$mod, H, movefocus, l"
         "$mod, J, movefocus, d"
         "$mod, K, movefocus, u"
         "$mod, L, movefocus, r"
+
         # Move windows
         "$mod SHIFT, H, movewindow, l"
         "$mod SHIFT, J, movewindow, d"
         "$mod SHIFT, K, movewindow, u"
         "$mod SHIFT, L, movewindow, r"
+
         # Move windows (arrows)
         "$mod SHIFT, left, movewindow, l"
         "$mod SHIFT, right, movewindow, r"
         "$mod SHIFT, up, movewindow, u"
         "$mod SHIFT, down, movewindow, d"
+
         # Sway-style tiling orientation
         "$mod, E, layoutmsg, addmaster"
         "$mod, W, layoutmsg, removemaster"
+
         # Workspaces (switch)
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
@@ -126,6 +129,14 @@ in
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
         "$mod SHIFT, 0, movetoworkspace, 10"
+
+        # App key mappings
+        "mod, P, exec, ${pkgs.nwg-displays}/bin/nwg-displays"
+
+        # Launchers
+        "$mod, Return, exec, ${terminal}"
+        "$mod, D, exec, ${launcher}"
+        
         # Workspaces (cycle with Ctrl+Super+Arrow)
         "CTRL $mod, left, workspace, -1"
         "CTRL $mod, right, workspace, +1"
