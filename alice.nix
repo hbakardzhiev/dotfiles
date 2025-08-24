@@ -63,7 +63,14 @@ in
         pkgs.xdg-desktop-portal-wlr
         pkgs.xdg-desktop-portal-gtk
       ];
-      configPackages = [ pkgs.sway ];
+    config = {
+        common = {
+          default = [
+            "wlr"
+            "gtk"
+          ];
+        };
+      };
     };
   };
 

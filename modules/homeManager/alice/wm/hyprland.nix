@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
-  launcher = "${pkgs.wofi}/bin/wofi --show drun --allow-images --allow-markup --insensitive";
+  launcher = "${pkgs.wofi}/bin/wofi --exec-search --show drun --allow-images --allow-markup --insensitive matching=fuzzy";
 in
 {
   wayland.windowManager.hyprland = {
