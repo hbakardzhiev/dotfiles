@@ -1,7 +1,12 @@
 { pkgs, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
-  launcher = "${pkgs.wofi}/bin/wofi --exec-search --show drun --allow-images --allow-markup --insensitive matching=fuzzy";
+  wofiLauncher = "${pkgs.wofi}/bin/wofi";
+  cliphist = "${pkgs.cliphist}/bin/cliphist";
+  clipboard = "${pkgs.wl-clipboard}";
+  wl-paste = "${clipboard}/bin/wl-paste";
+  wl-copy= "${clipboard}/bin/wl-copy";
+  launcher = "${wofiLauncher} --exec-search --show drun --allow-images --allow-markup --insensitive matching=fuzzy";
 in
 {
   wayland.windowManager.hyprland = {
@@ -77,6 +82,9 @@ in
       };
       # ── Keybinds ─────────────────────────────────
       bind = [
+        # Clipboard
+        "$mod, V, exec, ${cliphist} list | ${wofiLauncher} --dmenu | ${cliphist} decode | ${wl-copy}"
+        
         # Language change
         "$mod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
 
@@ -104,8 +112,7 @@ in
         "$mod SHIFT, down, movewindow, d"
 
         # Sway-style tiling orientation
-        "$mod, E, layoutmsg, addmaster"
-        "$mod, W, layoutmsg, removemaster"
+        "$mod, W, exec, hyprctl dispatch togglegroup"
 
         # Workspaces (switch)
         "$mod, 1, workspace, 1"
@@ -169,6 +176,8 @@ in
         "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
         "[workspace 2 silent] ${terminal}"
         "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"
+        "${wl-paste} --type text --watch ${cliphist} store"
+        "${wl-paste} --type image --watch ${cliphist} store"
       ];
       # ── Monitor ──────────────────────────────────
       monitor = [ ",preferred,auto,1,vrr,1" ];
