@@ -52,6 +52,11 @@ in
         swallow_regex = "^(Alacritty)$";
       };
 
+      # Back and forth
+      binds = {
+        allow_workspace_cycles = true;
+      };
+      
       # ── Intel-optimized rendering ────────────────
       render = {
         explicit_sync = 1;  # Lower value for Intel
@@ -66,10 +71,12 @@ in
 
       # ── Input ────────────────────────────────────
       input = {
+        # Language change
         kb_layout = "us,bg";
+        kb_options="grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 0;
-
+        
         # Performance additions
         repeat_rate = 50;
         repeat_delay = 300;
@@ -87,9 +94,9 @@ in
 
         # Color picker
         "$mod, C, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a -q" # automatically copy to clipboard and disable logging
-        
-        # Language change
-        "$mod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
+
+        # Back and forth
+        "ALT, Tab, workspace, previous"
 
         # Window actions
         "$mod, Q, killactive"
@@ -160,8 +167,9 @@ in
         ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%"
         # Screenshot
-        ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy"
+        ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${wl-copy}"
       ];
+
 
       # ── Lid Switch Bindings ──────────────────────
       bindl = [
