@@ -84,6 +84,9 @@ in
       bind = [
         # Clipboard
         "$mod, V, exec, ${cliphist} list | ${wofiLauncher} --dmenu | ${cliphist} decode | ${wl-copy}"
+
+        # Color picker
+        "$mod, C, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a -q" # automatically copy to clipboard and disable logging
         
         # Language change
         "$mod, SPACE, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
@@ -171,7 +174,6 @@ in
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
-        # "${pkgs.hyprpanel}/bin/hyprpanel"
         "${pkgs.waybar}/bin/waybar"
         "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
         "[workspace 2 silent] ${terminal}"
@@ -201,6 +203,5 @@ in
     hyprutils
     grim
     slurp
-    hyprpicker
   ];
 }
