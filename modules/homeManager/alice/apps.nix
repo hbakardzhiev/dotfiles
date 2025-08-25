@@ -6,7 +6,6 @@
     pcmanfm
     kdePackages.kcalc
     wl-mirror
-    eyedropper
     loupe
     libreoffice
     otpclient

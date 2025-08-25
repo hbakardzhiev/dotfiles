@@ -201,6 +201,6 @@ in
     hyprutils
     grim
     slurp
-    wl-clipboard # screenshots
+    hyprpicker
   ];
 }
