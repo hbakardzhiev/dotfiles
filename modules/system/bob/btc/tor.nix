@@ -1,12 +1,13 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 {
   services.tor.settings = {
       UseBridges = true;
       ClientTransportPlugin = "obfs4 exec ${pkgs.obfs4}/bin/lyrebird";
-      Bridge = config.sops.secrets.tor_bridges;
+      Bridge = lib.splitString "\n" (builtins.readFile config.sops.secrets.tor_bridges.path);
   };
 }
