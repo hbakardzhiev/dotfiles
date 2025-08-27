@@ -27,7 +27,11 @@ in
   ]
   ++ filesToImport;
 
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind = {
+    lidSwitch = "lidSwitch";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
 
   system.stateVersion = "24.05"; # Did you read the comment?
   networking = {
