@@ -2,7 +2,7 @@
   ...
 }:
 {
-  sops.secrets.tor_bridges_1 = {
+  sops.secrets.tor_bridge_1 = {
     # Optional: Set owner to the tor user for better security
     owner = "tor";
   };
