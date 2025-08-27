@@ -28,7 +28,7 @@ in
   ++ filesToImport;
 
   services.logind = {
-    lidSwitch = "lidSwitch";
+    lidSwitch = "ignore";
     lidSwitchDocked = "ignore";
     lidSwitchExternalPower = "ignore";
   };
