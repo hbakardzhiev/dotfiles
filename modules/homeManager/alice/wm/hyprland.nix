@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs-unstable, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
   wofiLauncher = "${pkgs.wofi}/bin/wofi";
@@ -182,7 +182,7 @@ in
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
-        "${pkgs.waybar}/bin/waybar"
+        "${nixpkgs-unstable.waybar}/bin/waybar"
         "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
         "[workspace 2 silent] ${terminal}"
         "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"
@@ -208,7 +208,6 @@ in
   home.packages = with pkgs; [
     adwaita-icon-theme
     dconf
-    hyprutils
     grim
     slurp
   ];

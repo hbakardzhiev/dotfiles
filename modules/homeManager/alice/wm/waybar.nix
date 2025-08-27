@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  nixpkgs-unstable,
+  ...
+}:
 {
   programs.waybar = {
     enable = true;
+    package = nixpkgs-unstable.waybar;
     settings = {
       mainBar = {
         passthrough = false;
@@ -13,7 +18,7 @@
         modules-left = [
           "hyprland/workspaces"
           "hyprland/submap"
-          "wlr/taskbar"
+          # "wlr/taskbar"
           "privacy"
         ];
         # modules-center = [ "hyprland/window" ];
@@ -42,8 +47,16 @@
           on-click-right = "close";
         };
         "hyprland/workspaces" = {
-          disable-scroll = false;
-          all-outputs = true;
+          format = "{icon}: {windows}";
+          format-window-separator = "";
+          workspace-taskbar = {
+            enable = true;
+            update-active-window = true;
+            format = "{icon} {title:.22}";
+            icon-size = 18;
+          };
+          # disable-scroll = false;
+          # all-outputs = true;
         };
         "network" = {
           format-wifi = "{essid} ({signalStrength}%)";
