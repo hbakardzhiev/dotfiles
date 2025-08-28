@@ -166,5 +166,4 @@
       };
     };
   };
-  home.packages = with pkgs; [ networkmanagerapplet ];
 }

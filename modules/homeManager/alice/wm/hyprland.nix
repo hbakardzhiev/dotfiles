@@ -179,7 +179,8 @@ in
 
       # ── Autostart ────────────────────────────────
       exec-once = [
-        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+        # "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+        "${pkgs.iwgtk}/bin/iwgtk -i"
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
         "${nixpkgs-unstable.waybar}/bin/waybar"
