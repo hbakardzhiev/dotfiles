@@ -128,7 +128,6 @@ in
 
   # Enable sound.
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     # alsa.enable = true;
