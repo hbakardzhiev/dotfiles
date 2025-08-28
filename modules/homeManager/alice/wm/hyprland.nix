@@ -199,7 +199,8 @@ in
       monitor = [ ",preferred,auto,1,vrr,1" ];
       # ── Window Rules ─────────────────────────────
       windowrulev2 = [
-        "maxsize 450 450, title:^(Bluejay)$"
+        "maxsize 700 300, title:^(Bluejay)$"
+        "minsize 700 300, title:^(Bluejay)$"
         "float, title:^(Bluejay)$"
         
         "float, class:^(blueman-manager)$"
