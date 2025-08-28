@@ -149,7 +149,7 @@ in
 
         # App key mappings
         "$mod, P, exec, hyprctl keyword monitor 'eDP-1, disable'"
-        "$mod, B, exec, ${pkgs.blueman}/bin/blueman-manager"
+        "$mod, B, exec, ${pkgs.bluejay}/bin/bluejay"
 
         # Launchers
         "$mod, Return, exec, ${terminal}"
@@ -185,7 +185,6 @@ in
 
       # ── Autostart ────────────────────────────────
       exec-once = [
-        # "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "${pkgs.iwgtk}/bin/iwgtk -i"
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
@@ -200,9 +199,12 @@ in
       monitor = [ ",preferred,auto,1,vrr,1" ];
       # ── Window Rules ─────────────────────────────
       windowrulev2 = [
+        "maxsize 450 450, title:^(Bluejay)$"
+        "float, title:^(Bluejay)$"
+        
         "float, class:^(blueman-manager)$"
         "float, title:^(Picture-in-Picture)$"
-        "float, title:^(kcalc)$"
+        "float, title:^(Kcalc)$"
         "float, title:^(iwgtk)$"
       ];
       # ── Gestures ─────────────────────────────────
