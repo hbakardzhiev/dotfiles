@@ -78,16 +78,12 @@ in
     portal = {
       xdgOpenUsePortal = true;
       enable = true;
-      wlr.enable = true;
       extraPortals = [
-        pkgs.xdg-desktop-portal-wlr
-        pkgs.xdg-desktop-portal-gtk
+        pkgs.xdg-desktop-portal-hyprland
       ];
     config = {
         common = {
           default = [
-            "wlr"
-            "gtk"
           ];
         };
       };
@@ -104,9 +100,6 @@ in
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
   };
-
-  # Android
-  programs.adb.enable = true;
 
   #NodeJS
   # programs.npm.enable = true;

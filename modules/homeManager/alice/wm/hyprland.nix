@@ -170,6 +170,12 @@ in
         ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${wl-copy}"
       ];
 
+      # Mouse binds
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+        "$mod ALT, mouse:272, resizewindow"
+      ];
 
       # ── Lid Switch Bindings ──────────────────────
       bindl = [
@@ -197,6 +203,7 @@ in
         "float, class:^(blueman-manager)$"
         "float, title:^(Picture-in-Picture)$"
         "float, title:^(kcalc)$"
+        "float, title:^(iwgtk)$"
       ];
       # ── Gestures ─────────────────────────────────
       bindg = [
