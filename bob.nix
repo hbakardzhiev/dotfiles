@@ -31,7 +31,7 @@ in
   config = {
     cloud.nextcloud = {
       enable = true;
-      hostname = "100.84.168.15";
+      hostname = [ "100.84.168.15" ];
     };
     
     services.logind = {
