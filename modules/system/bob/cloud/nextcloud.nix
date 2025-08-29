@@ -69,5 +69,20 @@ in
         owner = "alice";
       };
     };
+
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.enable [
+      80
+      443
+    ]; # Add 80/443 if using a reverse proxy
+
+    services.caddy = lib.mkIf cfg.enable {
+      enable = true;
+      virtualHosts."${cfg.hostname}" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:8080
+       '';
+      };
+    };
+
   };
 }
