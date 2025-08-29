@@ -23,12 +23,22 @@
       cfg = config.cloud.nextcloud;
     in
     lib.mkIf cfg.enable {
+      # Assert that variables that are needed are defined
       assertions = [
         {
           assertion = cfg.hostname == "";
           message = "hostname must be defined";
         }
       ];
+
+      # Secrets for Nextcloud
+      sops.secrets."nextcloud/username" = {
+        owner = "alice";
+      };
+      sops.secrets."nextcloud/Password" = {
+        owner = "alice";
+      };
+      # Nextcloud server config
       services.nextcloud = {
         enable = true;
         package = pkgs.nextcloud31;
