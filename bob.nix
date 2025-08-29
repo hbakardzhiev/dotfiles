@@ -30,7 +30,7 @@ in
 
   config = {
     cloud.nextcloud = {
-      enable = true;
+      enable = false;
       hostname = "100.84.168.15";
     };
     cloud.ddns = {
