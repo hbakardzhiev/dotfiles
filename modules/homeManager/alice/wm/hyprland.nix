@@ -5,7 +5,7 @@ let
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   clipboard = "${pkgs.wl-clipboard}";
   wl-paste = "${clipboard}/bin/wl-paste";
-  wl-copy= "${clipboard}/bin/wl-copy";
+  wl-copy = "${clipboard}/bin/wl-copy";
   launcher = "${wofiLauncher} --exec-search --show drun --allow-images --allow-markup --insensitive matching=fuzzy";
 in
 {
@@ -56,10 +56,10 @@ in
       binds = {
         allow_workspace_cycles = true;
       };
-      
+
       # ── Intel-optimized rendering ────────────────
       render = {
-        explicit_sync = 1;  # Lower value for Intel
+        explicit_sync = 1; # Lower value for Intel
         direct_scanout = true;
       };
 
@@ -73,10 +73,10 @@ in
       input = {
         # Language change
         kb_layout = "us,bg";
-        kb_options="grp:alt_shift_toggle";
+        kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         sensitivity = 0;
-        
+
         # Performance additions
         repeat_rate = 50;
         repeat_delay = 300;
@@ -154,7 +154,7 @@ in
         # Launchers
         "$mod, Return, exec, ${terminal}"
         "$mod, D, exec, ${launcher}"
-        
+
         # Workspaces (cycle with Ctrl+Super+Arrow)
         "CTRL $mod, left, workspace, -1"
         "CTRL $mod, right, workspace, +1"
@@ -202,7 +202,7 @@ in
         "maxsize 700 300, title:^(Bluejay)$"
         "minsize 700 300, title:^(Bluejay)$"
         "float, title:^(Bluejay)$"
-        
+
         "float, class:^(blueman-manager)$"
         "float, title:^(Picture-in-Picture)$"
         "float, title:^(Kcalc)$"

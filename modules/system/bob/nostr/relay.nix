@@ -47,17 +47,17 @@
     virtualHosts."bobbb.duckdns.org" = {
       extraConfig = ''
         reverse_proxy 127.0.0.1:12849
-        
+
         # CORS preflight (OPTIONS)
         @cors_preflight {
           method OPTIONS
         }
         respond @cors_preflight 204
-        
+
         header @cors_preflight Access-Control-Allow-Origin "*"
         header @cors_preflight Access-Control-Allow-Headers "*"
         header @cors_preflight Access-Control-Allow-Methods "GET, OPTIONS"
-        
+
         # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
         @nip11 header Accept *application/nostr+json*
         header @nip11 Access-Control-Allow-Origin "*"

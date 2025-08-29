@@ -81,7 +81,7 @@ in
       extraPortals = [
         pkgs.xdg-desktop-portal-hyprland
       ];
-    config = {
+      config = {
         common = {
           default = [
           ];

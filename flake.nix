@@ -50,7 +50,7 @@
               home-manager.users.alice = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 hostname = pc;
-                nixpkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux";} ;
+                nixpkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
               };
               home-manager.backupFileExtension = "hm-backup";
             }
