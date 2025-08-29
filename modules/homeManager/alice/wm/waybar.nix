@@ -28,6 +28,7 @@
           # "network"
           "cpu"
           "memory"
+          "hyprland/language"
           "bluetooth"
           "backlight"
           "temperature"
