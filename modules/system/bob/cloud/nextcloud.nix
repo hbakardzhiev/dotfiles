@@ -26,7 +26,7 @@ in
     services.nextcloud = lib.mkIf cfg.enable {
       enable = true;
       package = pkgs.nextcloud31;
-      hostName = cfg.hostname;
+      hostName = "localhost";
       https = true;
       settings.overwriteprotocol = "https";
       database.createLocally = true;
@@ -56,7 +56,10 @@ in
           "OC\\Preview\\XBitmap"
           "OC\\Preview\\HEIC"
         ];
-        trusted_domains = [ "127.0.0.1:8888" ];
+        trusted_domains = [
+          "127.0.0.1:8888"
+          cfg.hostname
+        ];
       };
     };
 
