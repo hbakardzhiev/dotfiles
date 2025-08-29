@@ -15,9 +15,6 @@
       # owner = "alice";
       # neededForUsers = true;
       # };
-      "ddns/duckdns/token" = {
-        # owner = "alice";
-      };
     };
   };
 }

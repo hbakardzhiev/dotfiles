@@ -7,9 +7,9 @@ in
   options.cloud.nextcloud = {
     enable = lib.mkEnableOption "Nextcloud";
     hostname = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
+      type = lib.types.str;
       description = "Nextcloud hostname";
-      default = [];
+      default = "";
     };
   };
 
@@ -17,7 +17,7 @@ in
     # Assertions for validation
     assertions = lib.optionals cfg.enable [
       {
-        assertion = cfg.hostname != [];
+        assertion = cfg.hostname != "";
         message = "cloud.nextcloud.hostname must be a non-empty string when cloud.nextcloud.enable is true.";
       }
     ];
@@ -26,7 +26,7 @@ in
     services.nextcloud = lib.mkIf cfg.enable {
       enable = true;
       package = pkgs.nextcloud31;
-      hostName = builtins.head cfg.hostname;
+      hostName = cfg.hostname;
       https = true;
       settings.overwriteprotocol = "https";
       database.createLocally = true;
@@ -56,7 +56,7 @@ in
           "OC\\Preview\\XBitmap"
           "OC\\Preview\\HEIC"
         ];
-        trusted_domains = cfg.hostname;
+        trusted_domains = [ cfg.hostname ];
       };
     };
 

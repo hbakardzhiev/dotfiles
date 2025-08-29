@@ -31,7 +31,12 @@ in
   config = {
     cloud.nextcloud = {
       enable = true;
-      hostname = [ "100.84.168.15" ];
+      hostname = "sofiaaa.duckdns.org";
+    };
+
+    cloud.ddns = {
+      enable = true;
+      hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
     };
     
     services.logind = {
