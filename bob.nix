@@ -29,14 +29,14 @@ in
 
 
   config = {
-    cloud.nextcloud = {
-      enable = false;
-      hostname = "100.84.168.15";
-    };
-    cloud.ddns = {
-      enable = true;
-      hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
-    };
+    # cloud.nextcloud = {
+    #   enable = false;
+    #   hostname = "100.84.168.15";
+    # };
+    # cloud.ddns = {
+    #   enable = true;
+    #   hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
+    # };
     
     services.logind = {
       lidSwitch = "ignore";
