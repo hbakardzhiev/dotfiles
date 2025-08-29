@@ -27,12 +27,14 @@ in
   ]
   ++ filesToImport;
 
-  options.cloud.nextcloud = {
-    enable = true;
-    hostname = "100.84.168.15";
-  };
 
   config = {
+    options.cloud.nextcloud = {
+        enable = true;
+        hostname = "100.84.168.15";
+      };
+    };
+    
     services.logind = {
       lidSwitch = "ignore";
       lidSwitchDocked = "ignore";
