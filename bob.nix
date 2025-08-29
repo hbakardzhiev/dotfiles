@@ -33,9 +33,8 @@ in
       enable = true;
       hostname = "sofiaaa.duckdns.org";
     };
-
     cloud.ddns = {
-      enable = true;
+      enable = false;
       hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
     };
     
