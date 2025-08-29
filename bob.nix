@@ -29,10 +29,9 @@ in
 
 
   config = {
-    options.cloud.nextcloud = {
-        enable = true;
-        hostname = "100.84.168.15";
-      };
+    cloud.nextcloud = {
+      enable = true;
+      hostname = "100.84.168.15";
     };
     
     services.logind = {
