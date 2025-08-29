@@ -8,7 +8,7 @@ in
     hostname = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       description = "DuckDNS hostname to update";
-      default = "";
+      default = [];
     };
   };
 
