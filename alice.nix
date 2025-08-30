@@ -99,6 +99,7 @@ in
   services.logind = {
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
+    libSwitch = "hybrid-sleep";
   };
 
   #NodeJS

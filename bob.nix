@@ -46,7 +46,6 @@ in
     system.stateVersion = "24.05"; # Did you read the comment?
     networking = {
       firewall.enable = true;
-      # firewall.allowedUDPPorts = [];
       hostName = hostname;
     };
 
