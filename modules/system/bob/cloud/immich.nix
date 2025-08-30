@@ -32,7 +32,7 @@ in
       enable = true;
       virtualHosts."${cfg.hostname}" = {
         extraConfig = ''
-          reverse_proxy 127.0.0.1:${builtins.toString portForImmich}
+          reverse_proxy localhost:${builtins.toString portForImmich}
        '';
       };
     };
