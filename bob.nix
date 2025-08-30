@@ -27,17 +27,16 @@ in
   ]
   ++ filesToImport;
 
-
   config = {
     cloud.ddns = {
       enable = true;
-      hostname = [  "bobbb.duckdns.org" ];
+      hostname = [ "bobbb.duckdns.org" ];
     };
     cloud.immich = {
       enable = true;
       hostname = "sofiaaa.duckdns.org";
     };
-    
+
     services.logind = {
       lidSwitch = "ignore";
       lidSwitchDocked = "ignore";

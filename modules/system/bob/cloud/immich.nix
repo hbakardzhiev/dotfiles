@@ -1,5 +1,5 @@
 { config, lib, ... }:
- let
+let
   cfg = config.cloud.immich;
   portForImmich = 2283;
 in
@@ -13,14 +13,13 @@ in
     };
   };
 
-  config = { 
+  config = {
     sops.secrets."ddns/duckdns/token" = lib.mkIf cfg.enable { };
     services.duckdns = lib.mkIf cfg.enable {
       enable = true;
       domains = [ cfg.hostname ];
       tokenFile = config.sops.secrets."ddns/duckdns/token".path;
     };
-
 
     services.immich = lib.mkIf cfg.enable {
       enable = true;
@@ -33,7 +32,7 @@ in
       virtualHosts."${cfg.hostname}" = {
         extraConfig = ''
           reverse_proxy localhost:${builtins.toString portForImmich}
-       '';
+        '';
       };
     };
   };

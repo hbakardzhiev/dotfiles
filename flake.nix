@@ -30,15 +30,18 @@
       pc = "alice";
       server = "eve";
       maastricht = "bob";
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
     in
     {
+      formatter.x86_64-linux = pkgs.nixfmt-tree;
       nixosConfigurations = {
         ${pc} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             hostname = pc;
             inherit sops-nix;
           }; # Pass flake inputs to our config
-          system = "x86_64-linux";
+          inherit system;
           modules = [
             ./${pc}.nix
             home-manager.nixosModules.home-manager
@@ -58,7 +61,7 @@
           ];
         };
         ${server} = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = {
             hostname = server;
           };
@@ -80,7 +83,7 @@
           ];
         };
         ${maastricht} = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = {
             hostname = maastricht;
             inherit sops-nix;

@@ -1,5 +1,5 @@
 { config, lib, ... }:
- let
+let
   cfg = config.cloud.ddns;
 in
 {
@@ -8,11 +8,11 @@ in
     hostname = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       description = "DuckDNS hostname to update";
-      default = [];
+      default = [ ];
     };
   };
 
-  config = { 
+  config = {
     sops.secrets."ddns/duckdns/token" = lib.mkIf cfg.enable { };
     services.duckdns = lib.mkIf cfg.enable {
       enable = true;
