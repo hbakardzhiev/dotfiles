@@ -83,9 +83,6 @@ in
       virtualHosts."localhost" = {
         forceSSL = true;
         enableACME = true;  # or use a self-signed certificate
-        listen = [
-          { addr = "127.0.0.1"; port = 8888; ssl = true; }
-        ];
       };
     };
 
