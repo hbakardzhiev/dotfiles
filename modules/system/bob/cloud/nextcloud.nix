@@ -81,6 +81,7 @@ in
     services.nginx = lib.mkIf cfg.enable {
       enable = true;
       virtualHosts."localhost" = {
+        reuseport = true;
         forceSSL = true;
         enableACME = true;  # or use a self-signed certificate
       };
