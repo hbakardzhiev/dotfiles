@@ -34,7 +34,7 @@ in
       hostname = [  "bobbb.duckdns.org" ];
     };
     cloud.immich = {
-      enable = true;
+      enable = false;
       hostname = "sofiaaa.duckdns.org";
     };
     
