@@ -25,7 +25,7 @@ in
     # Enable Nextcloud only if cfg.enable is true
     services.nextcloud = lib.mkIf cfg.enable {
       enable = true;
-      package = pkgs.nextcloud30;
+      package = pkgs.nextcloud31;
       hostName = "localhost";
       https = true;
       settings.overwriteprotocol = "https";
