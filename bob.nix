@@ -36,11 +36,9 @@ in
       enable = true;
       hostname = "sofiaaa.duckdns.org";
     };
-
-    services.logind = {
-      lidSwitch = "ignore";
-      lidSwitchDocked = "ignore";
-      lidSwitchExternalPower = "ignore";
+    tools.lidswitch = {
+      enable = true;
+      enableBattery = true;
     };
 
     system.stateVersion = "24.05"; # Did you read the comment?

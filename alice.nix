@@ -27,117 +27,117 @@ in
   ]
   ++ filesToImport;
 
-  boot = {
-    kernelParams = [ "psmouse.synaptics_intertouch=0" ];
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    initrd.luks.devices."luks-dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f".device =
-      "/dev/disk/by-uuid/dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f";
-  };
-
-  fileSystems."/drives/data" = {
-    device = "/dev/mapper/luks-58149879-604e-4b89-b208-e5a4d86f3336";
-    fsType = "ext4";
-    options = [ "defaults" ];
-  };
-
-  networking = {
-    # firewall.allowedTCPPorts = [];
-    # firewall.allowedUDPPorts = [];
-    hostName = hostname;
-    useNetworkd = true;
-    networkmanager.enable = lib.mkForce false;
-    # wireless.iwd.enable = true;
-    # networkmanager.wifi.backend = "iwd";
-    # networkmanager.wifi.powersave = false;
-    # networkmanager.wifi.scanRandMacAddress = false;
-
-    # wireless.enable = true;
-    firewall.enable = true;
-  };
-
-  # Enable iwd for WiFi (replaces wpa_supplicant)
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      General = {
-        # Let systemd-networkd handle IP/DHCP/routing, not iwd
-        EnableNetworkConfiguration = false;
-      };
-      Scan = {
-        # Optional: Disable periodic scanning if you want manual control via GUI
-        DisablePeriodicScan = true;
-      };
-      Settings = {
-        # Optional: Auto-connect to known networks
-        AutoConnect = true;
-      };
-    };
-  };
-
-  xdg = {
-    portal = {
-      xdgOpenUsePortal = true;
+  config = {
+    tools.lidswitch = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-      ];
-      config = {
-        common = {
-          default = [
-          ];
+    };
+
+    boot = {
+      kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+      # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+      initrd.luks.devices."luks-dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f".device =
+        "/dev/disk/by-uuid/dd6eaf2f-503c-468e-9dd6-b093c8cbcf6f";
+    };
+
+    fileSystems."/drives/data" = {
+      device = "/dev/mapper/luks-58149879-604e-4b89-b208-e5a4d86f3336";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+
+    networking = {
+      # firewall.allowedTCPPorts = [];
+      # firewall.allowedUDPPorts = [];
+      hostName = hostname;
+      useNetworkd = true;
+      networkmanager.enable = lib.mkForce false;
+      # wireless.iwd.enable = true;
+      # networkmanager.wifi.backend = "iwd";
+      # networkmanager.wifi.powersave = false;
+      # networkmanager.wifi.scanRandMacAddress = false;
+
+      # wireless.enable = true;
+      firewall.enable = true;
+    };
+
+    # Enable iwd for WiFi (replaces wpa_supplicant)
+    networking.wireless.iwd = {
+      enable = true;
+      settings = {
+        General = {
+          # Let systemd-networkd handle IP/DHCP/routing, not iwd
+          EnableNetworkConfiguration = false;
+        };
+        Scan = {
+          # Optional: Disable periodic scanning if you want manual control via GUI
+          DisablePeriodicScan = true;
+        };
+        Settings = {
+          # Optional: Auto-connect to known networks
+          AutoConnect = true;
         };
       };
     };
+
+    xdg = {
+      portal = {
+        xdgOpenUsePortal = true;
+        enable = true;
+        extraPortals = [
+          pkgs.xdg-desktop-portal-hyprland
+        ];
+        config = {
+          common = {
+            default = [
+            ];
+          };
+        };
+      };
+    };
+
+    i18n.supportedLocales = [
+      "en_GB.UTF-8/UTF-8"
+      "en_US.UTF-8/UTF-8"
+    ];
+
+    #NodeJS
+    # programs.npm.enable = true;
+
+    services.upower.enable = true;
+
+    # SAMBA
+    services.gvfs.enable = true;
+
+    # Fonts
+    fonts.packages = with pkgs; [
+      font-awesome
+      font-awesome_5
+      font-awesome_4
+      powerline-fonts
+      powerline-symbols
+      dejavu_fonts
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      nerd-fonts.noto
+      nerd-fonts.hack
+      nerd-fonts.tinos
+      open-sans
+    ];
+
+    # Enable sound.
+    hardware.bluetooth.enable = true;
+    services.pipewire = {
+      enable = true;
+      # alsa.enable = true;
+      # pulse.enable = true;
+      wireplumber.enable = true;
+      # If you want to use JACK applications, uncomment this
+      jack.enable = true;
+    };
+
+    services.udisks2.enable = true;
+
+    system.stateVersion = "24.11"; # Did you read the comment?
   };
-
-  i18n.supportedLocales = [
-    "en_GB.UTF-8/UTF-8"
-    "en_US.UTF-8/UTF-8"
-  ];
-
-  # Disable lid close sleep behavior
-  services.logind = {
-    lidSwitchExternalPower = "ignore";
-    lidSwitchDocked = "ignore";
-  };
-
-  #NodeJS
-  # programs.npm.enable = true;
-
-  services.upower.enable = true;
-
-  # SAMBA
-  services.gvfs.enable = true;
-
-  # Fonts
-  fonts.packages = with pkgs; [
-    font-awesome
-    font-awesome_5
-    font-awesome_4
-    powerline-fonts
-    powerline-symbols
-    dejavu_fonts
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    nerd-fonts.noto
-    nerd-fonts.hack
-    nerd-fonts.tinos
-    open-sans
-  ];
-
-  # Enable sound.
-  hardware.bluetooth.enable = true;
-  services.pipewire = {
-    enable = true;
-    # alsa.enable = true;
-    # pulse.enable = true;
-    wireplumber.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-  };
-
-  services.udisks2.enable = true;
-
-  system.stateVersion = "24.11"; # Did you read the comment?
 }
