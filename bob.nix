@@ -29,10 +29,6 @@ in
 
 
   config = {
-    cloud.nextcloud = {
-      enable = true;
-      hostname = "sofiaaa.duckdns.org";
-    };
     cloud.ddns = {
       enable = true;
       hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
