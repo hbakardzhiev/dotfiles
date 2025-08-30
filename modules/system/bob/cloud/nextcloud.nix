@@ -78,6 +78,24 @@ in
       443
     ]; # Add 80/443 if using a reverse proxy
 
+    services.nginx = lib.mkIf cfg.enable {
+      enable = true;
+      virtualHosts."localhost" = {
+        forceSSL = true;
+        enableACME = true;  # or use a self-signed certificate
+        listen = [
+          { addr = "127.0.0.1"; port = 8888; ssl = true; }
+        ];
+      };
+    };
+
+    security.acme = lib.mkIf cfg.enable {
+      acceptTerms = true;
+      certs = {
+        ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
+      };
+    };
+
     services.caddy = lib.mkIf cfg.enable {
       enable = true;
       virtualHosts."${cfg.hostname}" = {
@@ -86,6 +104,5 @@ in
        '';
       };
     };
-
   };
 }
