@@ -96,13 +96,13 @@ in
       };
     };
 
-    services.caddy = lib.mkIf cfg.enable {
-      enable = true;
-      virtualHosts."${cfg.hostname}" = {
-        extraConfig = ''
-          reverse_proxy 127.0.0.1:8888
-       '';
-      };
-    };
+    # services.caddy = lib.mkIf cfg.enable {
+    #   enable = true;
+    #   virtualHosts."${cfg.hostname}" = {
+    #     extraConfig = ''
+    #       reverse_proxy 127.0.0.1:8888
+    #    '';
+    #   };
+    # };
   };
 }
