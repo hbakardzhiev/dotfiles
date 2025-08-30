@@ -31,7 +31,11 @@ in
   config = {
     cloud.ddns = {
       enable = true;
-      hostname = [ "sofiaaa.duckdns.org" "bobbb.duckdns.org" ];
+      hostname = [  "bobbb.duckdns.org" ];
+    };
+    cloud.immich = {
+      enable = true;
+      hostname = "sofiaaa.duckdns.org";
     };
     
     services.logind = {
