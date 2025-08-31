@@ -25,7 +25,6 @@ in
 
   home.packages = with pkgs; [
     htop
-    nixfmt-rfc-style
     p7zip
     udiskie
     tree
