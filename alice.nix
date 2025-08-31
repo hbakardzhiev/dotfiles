@@ -126,7 +126,10 @@ in
     ];
 
     # Enable sound.
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = false;
+    };
     services.pipewire = {
       enable = true;
       # alsa.enable = true;
