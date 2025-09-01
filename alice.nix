@@ -31,6 +31,11 @@ in
     tools.lidswitch = {
       enable = true;
     };
+    tools.networking = {
+      enable = true;
+      hostname = hostname;
+      enableIwdWifi = true;
+    };
 
     boot = {
       kernelParams = [ "psmouse.synaptics_intertouch=0" ];
@@ -43,40 +48,6 @@ in
       device = "/dev/mapper/luks-58149879-604e-4b89-b208-e5a4d86f3336";
       fsType = "ext4";
       options = [ "defaults" ];
-    };
-
-    networking = {
-      # firewall.allowedTCPPorts = [];
-      # firewall.allowedUDPPorts = [];
-      hostName = hostname;
-      useNetworkd = true;
-      networkmanager.enable = lib.mkForce false;
-      # wireless.iwd.enable = true;
-      # networkmanager.wifi.backend = "iwd";
-      # networkmanager.wifi.powersave = false;
-      # networkmanager.wifi.scanRandMacAddress = false;
-
-      # wireless.enable = true;
-      firewall.enable = true;
-    };
-
-    # Enable iwd for WiFi (replaces wpa_supplicant)
-    networking.wireless.iwd = {
-      enable = true;
-      settings = {
-        General = {
-          # Let systemd-networkd handle IP/DHCP/routing, not iwd
-          EnableNetworkConfiguration = false;
-        };
-        Scan = {
-          # Optional: Disable periodic scanning if you want manual control via GUI
-          DisablePeriodicScan = true;
-        };
-        Settings = {
-          # Optional: Auto-connect to known networks
-          AutoConnect = true;
-        };
-      };
     };
 
     xdg = {
