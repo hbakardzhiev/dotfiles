@@ -44,7 +44,7 @@ in
     };
     tools.networking = {
       enable = true;
-      hostName = hostname;
+      hostname = hostname;
     };
 
     # services.samba = {
