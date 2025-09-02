@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
   wofiLauncher = "${pkgs.wofi}/bin/wofi";
@@ -188,7 +188,7 @@ in
         "${pkgs.iwgtk}/bin/iwgtk -i"
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
-        "${nixpkgs-unstable.waybar}/bin/waybar"
+        "${pkgs-unstable.waybar}/bin/waybar"
         "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
         "[workspace 2 silent] ${terminal}"
         "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"

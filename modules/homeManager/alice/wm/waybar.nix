@@ -1,12 +1,12 @@
 {
   pkgs,
-  nixpkgs-unstable,
+  pkgs-unstable,
   ...
 }:
 {
   programs.waybar = {
     enable = true;
-    package = nixpkgs-unstable.waybar;
+    package = pkgs-unstable.waybar;
     settings = {
       mainBar = {
         passthrough = false;

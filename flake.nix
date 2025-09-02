@@ -32,6 +32,7 @@
       maastricht = "bob";
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
     in
     {
       formatter.x86_64-linux = pkgs.nixfmt-tree;
@@ -40,6 +41,7 @@
           specialArgs = {
             hostname = pc;
             inherit sops-nix;
+            inherit pkgs-unstable;
           }; # Pass flake inputs to our config
           inherit system;
           modules = [
@@ -53,7 +55,7 @@
               home-manager.users.alice = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 hostname = pc;
-                nixpkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+                inherit pkgs-unstable;
               };
               home-manager.backupFileExtension = "hm-backup";
             }
@@ -64,6 +66,7 @@
           inherit system;
           specialArgs = {
             hostname = server;
+            inherit pkgs-unstable;
           };
           modules = [
             ./${server}.nix
@@ -88,6 +91,7 @@
             hostname = maastricht;
             inherit sops-nix;
             inherit nix-bitcoin;
+            inherit pkgs-unstable;
           }; # Pass flake inputs to our config
           modules = [
             ./${maastricht}.nix
