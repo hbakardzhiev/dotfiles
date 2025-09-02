@@ -36,6 +36,7 @@ in
       hostname = hostname;
       enableIwdWifi = true;
     };
+    cloud.nextcloud.client.upload.enable = true;
 
     boot = {
       kernelParams = [ "psmouse.synaptics_intertouch=0" ];
