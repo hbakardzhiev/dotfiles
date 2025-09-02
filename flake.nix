@@ -79,6 +79,7 @@
               home-manager.users.alice = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 hostname = server;
+                inherit pkgs-unstable;
               };
               home-manager.backupFileExtension = "hm-backup";
             }
@@ -110,6 +111,7 @@
               home-manager.users.alice = import ./home.nix;
               home-manager.extraSpecialArgs = {
                 hostname = maastricht;
+                inherit pkgs-unstable;
               };
               home-manager.backupFileExtension = "hm-backup";
             }
