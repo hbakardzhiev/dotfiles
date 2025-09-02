@@ -28,6 +28,8 @@ in
   ++ filesToImport;
 
   config = {
+    system.stateVersion = "24.05"; # Did you read the comment?
+
     cloud.ddns = {
       enable = true;
       hostname = [ "bobbb.duckdns.org" ];
@@ -40,10 +42,8 @@ in
       enable = true;
       enableBattery = true;
     };
-
-    system.stateVersion = "24.05"; # Did you read the comment?
-    networking = {
-      firewall.enable = true;
+    tools.networking = {
+      enable = true;
       hostName = hostname;
     };
 

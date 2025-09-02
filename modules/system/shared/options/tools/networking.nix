@@ -27,6 +27,7 @@ in
       hostName = cfg.hostname;
 
       useNetworkd = lib.mkIf cfg.enableIwdWifi true;
+      # This disables networkmanager and only uses Iwd for WiFi
       networkmanager.enable = if cfg.enableIwdWifi then lib.mkForce false else true;
       # wireless.iwd.enable = true;
       # networkmanager.wifi.backend = "iwd";
@@ -52,6 +53,6 @@ in
           AutoConnect = true;
         };
       };
-    };  
+    };
   };
 }
