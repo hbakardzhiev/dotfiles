@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   modulesPath,
@@ -39,7 +38,8 @@ in
     cloud.nextcloud = {
       enable = true;
       hostname = [
-        "bakarh.ddns.net" # To be used as a general hostname
+        # To be used as a general hostname
+        "bakarh.ddns.net"
         # tailscale hostnames
         "100.80.185.72"
         "eve.tail6dbb0b.ts.net"
