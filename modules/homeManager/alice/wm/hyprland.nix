@@ -13,6 +13,34 @@ in
     enable = true;
     xwayland.enable = false;
 
+    extraConfig = ''
+      # BEGIN Submap for resize
+      bind = $mod, R, submap, resize
+  
+      submap = resize
+      binde = , right, resizeactive, 10 0
+      binde = , left, resizeactive, -10 0
+      binde = , up, resizeactive, 0 -10
+      binde = , down, resizeactive, 0 10
+      bind = , escape, submap, reset
+
+      submap = reset
+      # END Submap for resize
+      
+
+
+      # BEGIN Submap for power menu  
+      bind = $mod, 0, submap, power menu Shift+s for shutdown and R for reboot
+  
+      submap = power menu Shift+s for shutdown and R for reboot
+      binde = SHIFT, s, exec, systemctl poweroff
+      binde = , R, exec, systemctl reboot
+      bind = , escape, submap, reset
+
+      submap = reset
+      # END Submap for power menu  
+    '';
+
     settings = {
       "$mod" = "SUPER";
       # ── Appearance ───────────────────────────────
@@ -145,7 +173,6 @@ in
         "$mod SHIFT, 7, movetoworkspace, 7"
         "$mod SHIFT, 8, movetoworkspace, 8"
         "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, 0, movetoworkspace, 10"
 
         # App key mappings
         "$mod, P, exec, hyprctl keyword monitor 'eDP-1, disable'"
