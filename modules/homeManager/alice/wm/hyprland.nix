@@ -177,11 +177,11 @@ in
         "$mod ALT, mouse:272, resizewindow"
       ];
 
-      # ── Lid Switch Bindings ──────────────────────
-      bindl = [
-        ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, preferred, auto, 1, vrr, 1'"
-        ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
-      ];
+      # # ── Lid Switch Bindings ──────────────────────
+      # bindl = [
+      #   ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, preferred, auto, 1, vrr, 1'"
+      #   ", switch:on:Lid Switch, exec, hyprctl keyword monitor 'eDP-1, disable'"
+      # ];
 
       # ── Autostart ────────────────────────────────
       exec-once = [
