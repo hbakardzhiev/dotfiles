@@ -72,11 +72,12 @@
     # hardware.opengl in 24.05
     enable = true;
     extraPackages = with pkgs; [
-      intel-media-driver
-      # intel-vaapi-driver # previously vaapiIntel
-      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
-      # vpl-gpu-rt # QSV on 11th gen or newer
-      # intel-media-sdk # QSV up to 11th gen
+      intel-media-driver  # For Broadwell+ Intel GPUs (most common for VA-API video decode)
+      intel-vaapi-driver  # Alternative driver, often better for browsers on Skylake+
+      intel-compute-runtime  # For OpenCL support if needed (e.g., filters)
+      vpl-gpu-rt  # Keep this if you have 11th gen+ Intel; it's for QSV
+      vaapiVdpau  # Helps with compatibility in hybrid setups
+      libvdpau-va-gl  # VDPAU to VA-API bridge, useful for NVIDIA fallback
     ];
   };
 
