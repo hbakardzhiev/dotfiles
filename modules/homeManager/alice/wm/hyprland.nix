@@ -16,7 +16,7 @@ in
     extraConfig = ''
       # BEGIN Submap for resize
       bind = $mod, R, submap, resize
-  
+
       submap = resize
       binde = , right, resizeactive, 10 0
       binde = , left, resizeactive, -10 0
@@ -26,12 +26,12 @@ in
 
       submap = reset
       # END Submap for resize
-      
+
 
 
       # BEGIN Submap for power menu  
       bind = $mod, 0, submap, power menu Shift+s for shutdown and R for reboot
-  
+
       submap = power menu Shift+s for shutdown and R for reboot
       binde = SHIFT, s, exec, systemctl poweroff
       binde = , R, exec, systemctl reboot

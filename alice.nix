@@ -37,6 +37,9 @@ in
       enableIwdWifi = true;
     };
     cloud.nextcloud.client.upload.enable = true;
+    custom.containers.docker = {
+      enable = false;
+    };
 
     boot = {
       kernelParams = [ "psmouse.synaptics_intertouch=0" ];
