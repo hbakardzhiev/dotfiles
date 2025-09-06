@@ -232,7 +232,7 @@ in
 
         "float, class:^(blueman-manager)$"
         "float, title:^(Picture-in-Picture)$"
-        "float, title:^(Kcalc)$"
+        "float, title:^(KCalc)$"
         "float, title:^(iwgtk)$"
       ];
       # ── Gestures ─────────────────────────────────
