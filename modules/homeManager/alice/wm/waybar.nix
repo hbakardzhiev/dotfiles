@@ -30,6 +30,7 @@
           "memory"
           "hyprland/language"
           "bluetooth"
+          "network"
           "backlight"
           "temperature"
           "disk"
