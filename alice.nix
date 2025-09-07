@@ -103,7 +103,7 @@ in
     # Enable sound.
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = false;
+      powerOnBoot = true;
     };
     services.pipewire = {
       enable = true;
