@@ -7,6 +7,7 @@ let
   wl-paste = "${clipboard}/bin/wl-paste";
   wl-copy = "${clipboard}/bin/wl-copy";
   launcher = "${wofiLauncher} --exec-search --show drun --allow-images --allow-markup --insensitive matching=fuzzy";
+  filemanager = "${pkgs.pcmanfm}/bin/pcmanfm";
 in
 {
   wayland.windowManager.hyprland = {
@@ -122,6 +123,9 @@ in
 
         # Color picker
         "$mod, C, exec, ${pkgs.hyprpicker}/bin/hyprpicker -a -q" # automatically copy to clipboard and disable logging
+
+        # Filemanager
+        "$mod, F2, exec, ${filemanager}"
 
         # Back and forth
         "ALT, Tab, workspace, previous"
