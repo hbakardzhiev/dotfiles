@@ -30,6 +30,10 @@ in
   config = {
     system.stateVersion = "24.05"; # Did you read the comment?
 
+    cloud.dynv6 = {
+      enable = true;
+      hostname = "nostr.v6.army";
+    };
     cloud.ddns = {
       enable = true;
       hostname = [ "bobbb.duckdns.org" ];
