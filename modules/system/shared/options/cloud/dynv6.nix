@@ -19,7 +19,7 @@ in
         message = "Hostname must be set";
       }
     ];
-    sops.secrets."${cfg.hostname}" = {};
+    sops.secrets."${cfg.hostname}" = { };
 
     services.ddclient = {
       enable = true;
