@@ -72,9 +72,6 @@ in
           "OC\\Preview\\HEIC"
         ];
       };
-      notify_push = {
-        enable = true;
-      };
     };
     services.nginx.virtualHosts = {
       ${config.services.nextcloud.hostName} = {
