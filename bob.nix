@@ -32,7 +32,7 @@ in
 
     cloud.dynv6 = {
       enable = true;
-      hostname = "nostr.v6.army";
+      hostname = "nostr.v6.army.bob";
     };
     cloud.ddns = {
       enable = true;
