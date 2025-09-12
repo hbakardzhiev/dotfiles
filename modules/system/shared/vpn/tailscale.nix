@@ -1,11 +1,11 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   # enable the tailscale daemon; this will do a variety of tasks:
   # 1. create the TUN network device
   # 2. setup some IP routes to route through the TUN
   services.tailscale = {
     enable = true;
-    package = pkgs-unstable.tailscale;
+    package = pkgs.tailscale;
   };
 
   # Let's open the UDP port with which the network is tunneled through
@@ -17,7 +17,4 @@
   # first using `tailscale up`
   # Better to rely on EC2 SecurityGroups
   # services.openssh.openFirewall = false;
-
-  # Let's make the tailscale binary available to all users
-  environment.systemPackages = [ pkgs-unstable.tailscale ];
 }
