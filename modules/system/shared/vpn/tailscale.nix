@@ -5,7 +5,7 @@
   # 2. setup some IP routes to route through the TUN
   services.tailscale = {
     enable = true;
-    package = pkgs.tailscale;
+    package = pkgs.tailscale.overrideAttrs { doCheck = false; };
   };
 
   # Let's open the UDP port with which the network is tunneled through
