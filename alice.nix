@@ -9,6 +9,7 @@
 }:
 let
   hostname = "alice";
+  username = "alice";
   getNixFiles = import ./modules/functions/getNixFiles.nix;
   filesToImport =
     getNixFiles {
@@ -30,6 +31,11 @@ in
   config = {
     tools.lidswitch = {
       enable = true;
+    };
+    tools.android = {
+      enable = true;
+      username = username;
+      enableAndroidStudio = true;
     };
     tools.networking = {
       enable = true;

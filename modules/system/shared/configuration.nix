@@ -103,7 +103,6 @@
       isNormalUser = true;
       extraGroups = [
         "wheel"
-        "adbusers"
         "video"
         "networkmanager"
         "kvm"
