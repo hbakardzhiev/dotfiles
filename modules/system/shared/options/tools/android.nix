@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.tools.android;
+  android-studio-wayland = pkgs.android-studio.override { forceWayland = true; };
 in
 {
   options.tools.android = {
@@ -17,7 +18,7 @@ in
     };
     enableAndroidStudio = lib.mkEnableOption "Enable Android Studio";
   };
-  # Define options for lid switch behavior
+
   config = lib.mkIf cfg.enable {
     assertions = [
       {
@@ -30,6 +31,8 @@ in
     services.udev.packages = [
       pkgs.android-udev-rules
     ];
-    environment.systemPackages = lib.mkIf cfg.enableAndroidStudio [ pkgs.android-studio ];
+    environment.systemPackages = lib.mkIf cfg.enableAndroidStudio [
+      android-studio-wayland
+    ];
   };
 }
