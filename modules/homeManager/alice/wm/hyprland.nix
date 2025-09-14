@@ -71,8 +71,8 @@ in
         # Performance optimizations
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
-        mouse_move_enables_dpms = true;
-        key_press_enables_dpms = true;
+        mouse_move_enables_dpms = false;
+        key_press_enables_dpms = false;
         always_follow_on_dnd = true;
         layers_hog_keyboard_focus = true;
         animate_manual_resizes = false;
@@ -179,7 +179,8 @@ in
         "$mod SHIFT, 9, movetoworkspace, 9"
 
         # App key mappings
-        "$mod, P, exec, hyprctl keyword monitor 'eDP-1, disable'"
+        "$mod, P, exec, hyprctl dispatch dpms off eDP-1"
+        "$mod SHIFT, P, exec, hyprctl dispatch dpms on eDP-1"
         "$mod, B, exec, ${pkgs.bluejay}/bin/bluejay"
 
         # Launchers
@@ -227,7 +228,10 @@ in
         "${wl-paste} --type image --watch ${cliphist} store"
       ];
       # ── Monitor ──────────────────────────────────
-      monitor = [ ",preferred,auto,1,vrr,1" ];
+      monitor = [
+        "eDP-1,preferred,auto,1,vrr,1"
+        "HDMI-A-1,preferred,auto,1"
+      ];
       # ── Window Rules ─────────────────────────────
       windowrulev2 = [
         "maxsize 700 300, title:^(Bluejay)$"
