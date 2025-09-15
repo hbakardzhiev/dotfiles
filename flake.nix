@@ -32,7 +32,10 @@
       maastricht = "bob";
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
-      pkgs-unstable = import nixpkgs-unstable { system = "x86_64-linux"; };
+      pkgs-unstable = import nixpkgs-unstable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
     in
     {
       formatter.x86_64-linux = pkgs.nixfmt-tree;
