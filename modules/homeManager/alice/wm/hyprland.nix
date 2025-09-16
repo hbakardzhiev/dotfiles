@@ -256,5 +256,6 @@ in
     dconf
     grim
     slurp
+    nwg-displays
   ];
 }
