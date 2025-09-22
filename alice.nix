@@ -35,7 +35,7 @@ in
     tools.android = {
       enable = true;
       username = username;
-      enableAndroidStudio = true;
+      enableAndroidStudio = false;
     };
     tools.networking = {
       enable = true;
