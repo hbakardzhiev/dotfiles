@@ -44,10 +44,6 @@ in
           # Let systemd-networkd handle IP/DHCP/routing, not iwd
           EnableNetworkConfiguration = false;
         };
-        Scan = {
-          # Optional: Disable periodic scanning if you want manual control via GUI
-          DisablePeriodicScan = true;
-        };
         Settings = {
           # Optional: Auto-connect to known networks
           AutoConnect = true;
