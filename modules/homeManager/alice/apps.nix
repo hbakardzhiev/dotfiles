@@ -21,6 +21,9 @@
     rustdesk
     gossip
     vscode-fhs
+    zoom-us.override {
+        hyprlandXdgDesktopPortalSupport = true;
+    }
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
