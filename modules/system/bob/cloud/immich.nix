@@ -27,6 +27,9 @@ in
       port = portForImmich;
     };
 
+    networking.firewall.allowedUDPPorts = lib.mkIf cfg.enable [ portForImmich ];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.enable [ portForImmich ];
+
     services.caddy = lib.mkIf cfg.enable {
       enable = true;
       virtualHosts."${cfg.hostname}" = {
