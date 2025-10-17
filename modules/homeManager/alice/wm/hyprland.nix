@@ -199,7 +199,8 @@ in
         ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl s 5%-"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl s +5%"
         # Screenshot
-        ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${wl-copy}"
+        ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | tee /home/alice/screenshots/screenshot-$(date +%Y-%m-%d-%H-%M-%S).png | ${wl-copy}"
+        # ", Print, exec, ${pkgs.grim}/bin/grim -g \"$(slurp)\" - | ${wl-copy}"
       ];
 
       # Mouse binds
