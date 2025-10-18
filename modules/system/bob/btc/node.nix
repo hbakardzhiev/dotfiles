@@ -56,15 +56,15 @@
       rpcworkqueue=64
       upnp=1
 
-      datacarrier=1
-      datacarriersize=42
-      rejectparasites=1
-      rejecttokens=1
-      minrelaytxfee=0.00001000
-      dustrelayfee=0.00001000
-      dustdynamic=target:1008
+      # datacarrier=1
+      # datacarriersize=42
+      # rejectparasites=1
+      # rejecttokens=1
+      # minrelaytxfee=0.00001000
+      # dustrelayfee=0.00001000
+      # dustdynamic=target:1008
 
-      disablewallet=1
+      # disablewallet=1
     '';
     dataDir = "/run/media/et1";
   };
