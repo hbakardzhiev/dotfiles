@@ -31,6 +31,7 @@
     config.services.electrs.port
     config.services.mempool.frontend.port
     config.services.lnd.port
+    config.services.bitcoind.port
   ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
