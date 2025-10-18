@@ -13,6 +13,7 @@
   services.mempool = {
     frontend.enable = true;
     enable = true;
+    tor.enforce = true;
   };
 
   # Set this to enable electrs, an efficient Electrum server implemented in Rust.
