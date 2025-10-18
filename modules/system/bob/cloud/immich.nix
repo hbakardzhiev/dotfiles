@@ -25,6 +25,7 @@ in
       enable = true;
       host = "localhost";
       port = portForImmich;
+      openFirewall = true;
     };
 
     services.caddy = lib.mkIf cfg.enable {
