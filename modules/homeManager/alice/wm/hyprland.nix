@@ -1,6 +1,7 @@
 { pkgs, pkgs-unstable, ... }:
 let
   terminal = "${pkgs.alacritty}/bin/alacritty";
+  emailClient = "${pkgs.geary}/bin/geary";
   wofiLauncher = "${pkgs.wofi}/bin/wofi";
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   clipboard = "${pkgs.wl-clipboard}";
@@ -222,8 +223,8 @@ in
         "${pkgs.tailscale-systray}/bin/tailscale-systray"
         "${pkgs.nextcloud-client}/bin/nextcloud"
         "${pkgs-unstable.waybar}/bin/waybar"
-        "[workspace 1 silent] ${pkgs.brave}/bin/brave https://mail.google.com/mail/u/0/#all"
-        "[workspace 2 silent] ${terminal}"
+        "[workspace 1 silent] ${emailClient}"
+        "[workspace 2 silent] ${pkgs.brave}/bin/brave"
         "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"
         "${wl-paste} --type text --watch ${cliphist} store"
         "${wl-paste} --type image --watch ${cliphist} store"

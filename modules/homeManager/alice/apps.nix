@@ -21,6 +21,7 @@
     rustdesk
     gossip
     vscode-fhs
+    geary
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
