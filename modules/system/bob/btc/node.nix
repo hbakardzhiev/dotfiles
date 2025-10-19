@@ -54,11 +54,8 @@
   services.bitcoind = {
     enable = true;
     listen = true;
+    # Open node for p2p
     address = "0.0.0.0";
-    # Listen to connections on all interfaces
-    rpc = {
-      allowip = [ "0.0.0.0" ];
-    };
     # package = config.nix-bitcoin.pkgs.bitcoind-knots;
 
     extraConfig = ''
