@@ -55,7 +55,9 @@
     enable = true;
     listen = true;
     # Listen to connections on all interfaces
-    allowip = [ "0.0.0.0" ];
+    rpc = {
+      allowip = [ "0.0.0.0" ];
+    };
     # package = config.nix-bitcoin.pkgs.bitcoind-knots;
 
     extraConfig = ''
