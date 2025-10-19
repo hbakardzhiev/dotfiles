@@ -60,7 +60,7 @@
                 hostname = pc;
                 inherit pkgs-unstable;
               };
-              home-manager.backupFileExtension = "hm-backup";
+              home-manager.backupFileExtension = "backup";
             }
             sops-nix.nixosModules.sops
           ];

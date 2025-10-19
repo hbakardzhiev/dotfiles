@@ -242,6 +242,7 @@ in
         "float, class:^(blueman-manager)$"
         "float, title:^(Picture-in-Picture)$"
         "float, title:^(KCalc)$"
+        "float, title:^(Bitwarden)$"
         "float, title:^(iwgtk)$"
       ];
       # ── Gestures ─────────────────────────────────
