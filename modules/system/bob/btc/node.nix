@@ -64,6 +64,7 @@
     extraConfig = ''
       rpcworkqueue=64
       upnp=1
+      disablewallet=1
 
       # datacarrier=1
       # datacarriersize=42
@@ -73,7 +74,6 @@
       # dustrelayfee=0.00001000
       # dustdynamic=target:1008
 
-      # disablewallet=1
     '';
     dataDir = "/run/media/et1";
   };
