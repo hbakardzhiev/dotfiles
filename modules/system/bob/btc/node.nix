@@ -54,7 +54,7 @@
   services.bitcoind = {
     enable = true;
     listen = true;
-    addresss = "0.0.0.0";
+    address = "0.0.0.0";
     # Listen to connections on all interfaces
     rpc = {
       allowip = [ "0.0.0.0" ];
