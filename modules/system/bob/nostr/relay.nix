@@ -12,9 +12,9 @@
       };
 
       network = {
-        # Bind to this network address (includes HTTP/WS on same port)
+        # Bind to this network address (enables HTTP/WS on same port)
         address = "0.0.0.0";
-        listen = "0.0.0.0:12849";  # Explicit port bind (overrides default if needed)
+        listen = "0.0.0.0:12849";  # Explicit port (overrides default)
       };
 
       authorization = {
@@ -71,7 +71,7 @@
         header Access-Control-Allow-Headers *
         header Access-Control-Allow-Methods GET, POST, OPTIONS
 
-        # NIP-11: Static JSON for /api/v1/info (fallback if relay's dynamic doesn't trigger)
+        # NIP-11: Static JSON for /api/v1/info (only on matching Accept)
         handle /api/v1/info {
           @nip11 {
             header Accept application/nostr+json
@@ -83,7 +83,7 @@
             "pubkey": "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9",
             "relay_url": "wss://nostr.v6.army",
             "software": "nostr-rs-relay",
-            "version": "0.10.1",  # Update via `nostr-rs-relay --version` if needed
+            "version": "0.9.0",
             "supported_nips": [1, 2, 4, 9, 11, 12, 15, 16, 20, 22, 28, 40, 42, 50, 51],
             "limitation": {
               "message_length": 16384,
@@ -101,13 +101,23 @@
             header Access-Control-Allow-Methods GET, OPTIONS
           }
 
-          # Non-matching /api/v1/info requests (e.g., no Accept header) proxy to relay
-          reverse_proxy 127.0.0.1:12849
+          # Non-matching /api/v1/info (e.g., wrong Accept) proxy to relay
+          reverse_proxy 127.0.0.1:12849 {
+            header_up Accept {http.request.header.Accept}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+          }
         }
 
-        # Other /api paths (e.g., future extensions) proxy to relay
+        # Other /api paths proxy to relay
         handle /api/* {
-          reverse_proxy 127.0.0.1:12849
+          reverse_proxy 127.0.0.1:12849 {
+            header_up Accept {http.request.header.Accept}
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+          }
         }
 
         # Root path
