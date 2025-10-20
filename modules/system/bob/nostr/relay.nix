@@ -11,16 +11,10 @@
         name = "bobbb.duckdns.org";
       };
 
-      http = {
-        enable = true;
-        address = "127.0.0.0";  # Local bind for HTTP
-        port = 12849;  # Match your proxy
-      };
-
       network = {
-        # Bind to this network address
+        # Bind to this network address (includes HTTP/WS on same port)
         address = "0.0.0.0";
-        # Listen on port 12849 (this is the default). I have not managed to find any way to change it. KEEP IT default!
+        listen = "0.0.0.0:12849";  # Explicit port bind (overrides default if needed)
       };
 
       authorization = {
@@ -39,7 +33,6 @@
         max_filters = 100;
       };
     };
-
   };
 
   # Open firewall for the relay port
@@ -73,7 +66,12 @@
     };
     virtualHosts."nostr.v6.army" = {
       extraConfig = ''
-        # NIP-11: Static JSON for /api/v1/info (matches your [info] + defaults)
+        # Global CORS
+        header Access-Control-Allow-Origin *
+        header Access-Control-Allow-Headers *
+        header Access-Control-Allow-Methods GET, POST, OPTIONS
+
+        # NIP-11: Static JSON for /api/v1/info (fallback if relay's dynamic doesn't trigger)
         handle /api/v1/info {
           @nip11 {
             header Accept application/nostr+json
@@ -85,7 +83,7 @@
             "pubkey": "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9",
             "relay_url": "wss://nostr.v6.army",
             "software": "nostr-rs-relay",
-            "version": "0.10.1",  # Run `nostr-rs-relay --version` (or check pkgs) and update
+            "version": "0.10.1",  # Update via `nostr-rs-relay --version` if needed
             "supported_nips": [1, 2, 4, 9, 11, 12, 15, 16, 20, 22, 28, 40, 42, 50, 51],
             "limitation": {
               "message_length": 16384,
@@ -102,12 +100,16 @@
             header Access-Control-Allow-Headers *
             header Access-Control-Allow-Methods GET, OPTIONS
           }
-          
-          # Fallback for non-NIP-11 /api requests (plain text or proxy)
-          handle /api/* {
-            reverse_proxy 127.0.0.1:12849
-          }
-          
+
+          # Non-matching /api/v1/info requests (e.g., no Accept header) proxy to relay
+          reverse_proxy 127.0.0.1:12849
+        }
+
+        # Other /api paths (e.g., future extensions) proxy to relay
+        handle /api/* {
+          reverse_proxy 127.0.0.1:12849
+        }
+
         # Root path
         handle / {
           respond "Please use a Nostr client to connect." 200 {
@@ -115,20 +117,16 @@
             header Access-Control-Allow-Origin *
           }
         }
-        
-        # Proxy all else (WS + other paths)
-        reverse_proxy 127.0.0.1:12849 {
-          header_up X-Real-IP {remote_host}
-          header_up X-Forwarded-For {remote_host}
-          header_up X-Forwarded-Proto {scheme}
+
+        # Proxy everything else (WS + other paths)
+        handle {
+          reverse_proxy 127.0.0.1:12849 {
+            header_up X-Real-IP {remote_host}
+            header_up X-Forwarded-For {remote_host}
+            header_up X-Forwarded-Proto {scheme}
+          }
         }
-        
-        # Global CORS
-        header Access-Control-Allow-Origin *
-        header Access-Control-Allow-Headers *
-        header Access-Control-Allow-Methods GET, POST, OPTIONS
       '';
     };
   };
-
 }
