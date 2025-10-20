@@ -94,12 +94,12 @@
             "restrict": {
               "pubkey_whitelist": ["7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"]
             }
-          }` 200 {
-            content_type application/nostr+json
-            header Access-Control-Allow-Origin *
-            header Access-Control-Allow-Headers *
-            header Access-Control-Allow-Methods GET, OPTIONS
-          }
+          }` 200
+
+          header @nip11 Content-Type "application/nostr+json"
+          header @nip11 Access-Control-Allow-Origin *
+          header @nip11 Access-Control-Allow-Headers *
+          header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
 
           # Non-matching /api/v1/info (e.g., wrong Accept) proxy to relay
           reverse_proxy 127.0.0.1:12849 {
@@ -122,10 +122,10 @@
 
         # Root path
         handle / {
-          respond "Please use a Nostr client to connect." 200 {
-            content_type text/plain
-            header Access-Control-Allow-Origin *
-          }
+          respond "Please use a Nostr client to connect." 200
+
+          header Content-Type "text/plain"
+          header Access-Control-Allow-Origin *
         }
 
         # Proxy everything else (WS + other paths)
