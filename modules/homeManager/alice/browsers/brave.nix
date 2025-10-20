@@ -21,7 +21,7 @@
       # { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
       { id = "ifbmcpbgkhlpfcodhjhdbllhiaomkdej"; } # Office - Enable Copy and Paste (for word,excel...)
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      # { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
+      { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
       # { id = "cnjifjpddelmedmihgijeibhnjfabmlf"; } # Obsidian Web Clipper
     ];
     package = pkgs.brave;
