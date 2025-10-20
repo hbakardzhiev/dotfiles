@@ -11,6 +11,12 @@
         name = "bobbb.duckdns.org";
       };
 
+      http = {
+        enable = true;
+        address = "127.0.0.0";  # Local bind for HTTP
+        port = 12849;  # Match your proxy
+      };
+
       network = {
         # Bind to this network address
         address = "0.0.0.0";
