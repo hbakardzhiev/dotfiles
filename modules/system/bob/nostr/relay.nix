@@ -74,8 +74,8 @@
         # NIP-11: Static JSON for /api/v1/info (only on matching Accept)
         handle /api/v1/info {
           @nip11 {
-            header Accept application/nostr+json
-            header Accept application/json
+            header Accept *application/nostr+json*
+            header Accept *application/json*
           }
           respond @nip11 `{
             "name": "bobbb.duckdns.org",
