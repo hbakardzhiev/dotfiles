@@ -32,7 +32,7 @@ in
 
 
       # BEGIN Submap for power menu  
-      bind = $mod, 0, submap, power menu Shift+s for shutdown, R for reboot, E for exit
+      bind = $mod, 0, submap, power menu Shift+s for shutdown and R for reboot and E for exit
 
       submap = power menu Shift+s for shutdown and R for reboot
       binde = SHIFT, s, exec, systemctl poweroff
