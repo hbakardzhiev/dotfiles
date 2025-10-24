@@ -34,10 +34,10 @@ in
       # BEGIN Submap for power menu  
       bind = $mod, 0, submap, power menu Shift+s for shutdown and R for reboot and E for exit
 
-      submap = power menu Shift+s for shutdown and R for reboot
+      submap = power menu Shift+s for shutdown and R for reboot and E for exit
       binde = SHIFT, s, exec, systemctl poweroff
       binde = , R, exec, systemctl reboot
-      binde = , e, exec, exit
+      binde = , e, exit
       bind = , escape, submap, reset
 
       submap = reset
