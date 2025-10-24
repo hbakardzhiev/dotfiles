@@ -62,7 +62,7 @@ in
 
     xdg = {
       portal = {
-        xdgOpenUsePortal = true;
+        xdgOpenUsePortal = false;
         enable = true;
         extraPortals = with pkgs; [
           xdg-desktop-portal-hyprland
@@ -71,8 +71,10 @@ in
         ];
         config = {
           common = {
-            default = [
-            ];
+            default = [ "hyprland" "gtk" "wlr" ];  
+            "org.freedesktop.portal.OpenURI" = [ "gtk" ];  
+            "org.freedesktop.portal.Settings" = [ "gtk" ];  
+            "org.freedesktop.portal.FileChooser" = [ "gtk" ];
           };
         };
       };
