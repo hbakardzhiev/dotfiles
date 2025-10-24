@@ -32,11 +32,12 @@ in
 
 
       # BEGIN Submap for power menu  
-      bind = $mod, 0, submap, power menu Shift+s for shutdown and R for reboot
+      bind = $mod, 0, submap, power menu Shift+s for shutdown, R for reboot, E for exit
 
       submap = power menu Shift+s for shutdown and R for reboot
       binde = SHIFT, s, exec, systemctl poweroff
       binde = , R, exec, systemctl reboot
+      binde = , e, exec, exit
       bind = , escape, submap, reset
 
       submap = reset
@@ -228,6 +229,7 @@ in
         "[workspace 3 silent] ${pkgs.obsidian}/bin/obsidian"
         "${wl-paste} --type text --watch ${cliphist} store"
         "${wl-paste} --type image --watch ${cliphist} store"
+        "systemctl --user restart xdg-desktop-portal xdg-desktop-portal-gtk xdg-desktop-portal-hyprland"
       ];
       # ── Monitor ──────────────────────────────────
       monitor = [
