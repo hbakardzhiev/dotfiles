@@ -26,7 +26,11 @@
       "--no-write-lock-file"
       "-L" # print build logs
     ];
-    dates = "05:00";
+    dates = "03:00";
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
     allowReboot = true;
     randomizedDelaySec = "45min";
   };
