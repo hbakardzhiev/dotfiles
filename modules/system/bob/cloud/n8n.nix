@@ -3,6 +3,9 @@
   services.n8n = {
     enable = true;
     openFirewall = true;
+    settings = {
+      N8N_EDITOR_BASE_URL = "https://n888n.v6.army";
+    };
   };
   services.caddy = {
     enable = true;
