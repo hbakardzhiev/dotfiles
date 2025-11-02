@@ -7,7 +7,6 @@
   systemd.services.n8n.environment = {
     N8N_EDITOR_BASE_URL = "https://n888n.v6.army";
     N8N_HOST = "n888n.v6.army";
-    N8N_PORT = "443";
     N8N_PROTOCOL = "https";
     # Example: Enable basic auth (use a generated secret in prod)
     # N8N_BASIC_AUTH_ACTIVE = "true";
