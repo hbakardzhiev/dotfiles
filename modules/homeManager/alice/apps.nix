@@ -22,6 +22,7 @@
     gossip
     vscode-fhs
     geary
+    kotatogram-desktop
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
