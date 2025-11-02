@@ -47,7 +47,6 @@ in
       enable = false;
     };
 
-
     nixpkgs.config.permittedInsecurePackages = [
       "python3.12-ecdsa-0.19.1"
     ];
@@ -76,9 +75,9 @@ in
     #     ];
     #     config = {
     #       common = {
-    #         default = [ "hyprland" "gtk" "wlr" ];  
-    #         "org.freedesktop.portal.OpenURI" = [ "gtk" ];  
-    #         "org.freedesktop.portal.Settings" = [ "gtk" ];  
+    #         default = [ "hyprland" "gtk" "wlr" ];
+    #         "org.freedesktop.portal.OpenURI" = [ "gtk" ];
+    #         "org.freedesktop.portal.Settings" = [ "gtk" ];
     #         "org.freedesktop.portal.FileChooser" = [ "gtk" ];
     #       };
     #     };
