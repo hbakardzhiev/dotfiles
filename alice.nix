@@ -30,7 +30,7 @@ in
 
   config = {
     tools.lidswitch = {
-      enable = true;
+      enable = false;
     };
     tools.android = {
       enable = true;
