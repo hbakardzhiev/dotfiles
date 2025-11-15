@@ -16,12 +16,6 @@ in
     # Enable Docker
     virtualisation.docker = {
       enable = true;
-      daemon.settings = {
-        pruning = {
-          enabled = true;
-          interval = "24h";
-        };
-      };
     };
     users.users.alice.extraGroups = [ "docker" ];
   };
