@@ -18,5 +18,14 @@ in
       enable = true;
     };
     users.users.alice.extraGroups = [ "docker" ];
+
+    services.caddy = {
+      enable = true;
+      virtualHosts."nocobase.v6.army" = {
+        extraConfig = ''
+          reverse_proxy 127.0.0.1:13000
+        '';
+      };
+    };
   };
 }
