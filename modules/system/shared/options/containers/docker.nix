@@ -23,7 +23,7 @@ in
       enable = true;
       virtualHosts."nocobase.v6.army" = {
         extraConfig = ''
-          reverse_proxy 127.0.0.1:13000
+          reverse_proxy 127.0.0.1:8055
         '';
       };
     };
