@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs-unstable, ... }:
 {
   # enable the tailscale daemon; this will do a variety of tasks:
   # 1. create the TUN network device
   # 2. setup some IP routes to route through the TUN
   services.tailscale = {
     enable = true;
-    package = pkgs.tailscale;
+    package = pkgs-unstable.tailscale;
   };
 
   # Let's open the UDP port with which the network is tunneled through
