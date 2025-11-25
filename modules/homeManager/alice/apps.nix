@@ -23,6 +23,7 @@
     vscode-fhs
     geary
     kotatogram-desktop
+    vlc
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
