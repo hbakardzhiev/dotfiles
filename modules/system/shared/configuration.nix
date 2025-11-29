@@ -88,9 +88,6 @@
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
 
-  # Zip archive
-  programs.file-roller.enable = true;
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
