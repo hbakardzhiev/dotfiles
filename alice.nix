@@ -97,23 +97,6 @@ in
     # SAMBA
     services.gvfs.enable = true;
 
-    # Fonts
-    fonts.packages = with pkgs; [
-      font-awesome
-      font-awesome_5
-      font-awesome_4
-      powerline-fonts
-      powerline-symbols
-      dejavu_fonts
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      nerd-fonts.noto
-      nerd-fonts.hack
-      nerd-fonts.tinos
-      open-sans
-    ];
-
     # Enable sound.
     hardware.bluetooth = {
       enable = true;
