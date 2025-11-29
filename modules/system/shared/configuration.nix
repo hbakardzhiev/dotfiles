@@ -84,10 +84,6 @@
   # SSD
   services.fstrim.enable = true;
 
-  # Password
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
