@@ -21,6 +21,7 @@
       kcalc
       okular
       kdenlive
+      kmail-account-wizard
     ];
   };
 }
