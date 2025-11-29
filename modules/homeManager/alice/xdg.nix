@@ -27,7 +27,7 @@ let
     "text/markdown" = obsidian ++ editor;
     "inode/directory" = fileManager;
     "application/x-gnome-saved-search" = fileManager;
-    "application/zip" = [ "org.gnome.FileRoller.desktop" ];
+    "application/zip" = [ "org.kde.ark.desktop" ];
   };
 in
 {
