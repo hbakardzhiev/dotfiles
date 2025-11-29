@@ -22,6 +22,9 @@
       okular
       kdenlive
       kmail-account-wizard
+      loupe
+      ktorrent
+      keysmith
     ];
   };
 }

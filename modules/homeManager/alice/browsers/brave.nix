@@ -22,6 +22,7 @@
       { id = "ifbmcpbgkhlpfcodhjhdbllhiaomkdej"; } # Office - Enable Copy and Paste (for word,excel...)
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
       { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
+      { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma browser integration
       # { id = "cnjifjpddelmedmihgijeibhnjfabmlf"; } # Obsidian Web Clipper
     ];
     package = pkgs.brave;

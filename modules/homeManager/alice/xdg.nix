@@ -4,7 +4,7 @@ let
     "brave-browser.desktop"
     "floorp.desktop"
   ];
-  fileManager = [ "pcmanfm.desktop" ];
+  fileManager = [ "org.kde.dolphin.desktop" ];
   imageViewer = [ "org.gnome.Loupe.desktop" ];
   editor = [ "Helix.desktop" ];
   obsidian = [ "obsidian.desktop" ];

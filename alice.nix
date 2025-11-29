@@ -64,26 +64,6 @@ in
       options = [ "defaults" ];
     };
 
-    # xdg = {
-    #   portal = {
-    #     xdgOpenUsePortal = false;
-    #     enable = true;
-    #     extraPortals = with pkgs; [
-    #       xdg-desktop-portal-hyprland
-    #       xdg-desktop-portal-gtk
-    #       xdg-desktop-portal-wlr
-    #     ];
-    #     config = {
-    #       common = {
-    #         default = [ "hyprland" "gtk" "wlr" ];
-    #         "org.freedesktop.portal.OpenURI" = [ "gtk" ];
-    #         "org.freedesktop.portal.Settings" = [ "gtk" ];
-    #         "org.freedesktop.portal.FileChooser" = [ "gtk" ];
-    #       };
-    #     };
-    #   };
-    # };
-
     i18n.supportedLocales = [
       "en_GB.UTF-8/UTF-8"
       "en_US.UTF-8/UTF-8"
