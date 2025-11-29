@@ -24,8 +24,11 @@
       kmail-account-wizard
       ktorrent
       keysmith
-    ] ++ [
-      pkgs.loupe
-    ];
+    ] ++ (
+      with pkgs; [
+        loupe
+        otpclient
+      ]
+    );
   };
 }
