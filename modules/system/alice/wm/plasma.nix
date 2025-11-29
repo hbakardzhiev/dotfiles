@@ -28,6 +28,7 @@
       with pkgs; [
         loupe
         otpclient
+        vlc
       ]
     );
   };
