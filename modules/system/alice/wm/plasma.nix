@@ -17,19 +17,16 @@
       elisa
     ];
     systemPackages = with pkgs.kdePackages; [
-      kmail
       kcalc
       okular
       kdenlive
-      kmail-account-wizard
-      mailimporter
-      mbox-importer
       ktorrent
       keysmith
     ] ++ (
       with pkgs; [
-        otpclient
         vlc
+        geary
+        otpclient
       ]
     );
   };
