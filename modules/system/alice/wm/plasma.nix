@@ -6,9 +6,12 @@
     settings.General.DisplayServer = "wayland";
   };
   services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    elisa
-  ];
-
+  environment = {
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      elisa
+    ];
+    systemPackages = with pkgs.kdePackages; [
+      kmail
+    ];
+  };
 }
