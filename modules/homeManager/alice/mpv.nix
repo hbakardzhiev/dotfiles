@@ -1,6 +1,0 @@
-{ ... }:
-{
-  programs.mpv = {
-    enable = true;
-  };
-}
