@@ -3,7 +3,13 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm = {
     wayland.enable = true;
-    settings.General.DisplayServer = "wayland";
+    settings = {
+      General.DisplayServer = "wayland";
+      Autologin = {
+        Session = "plasma.desktop";
+        User = "alice";
+      };
+    };
   };
   services.desktopManager.plasma6.enable = true;
   environment = {
@@ -12,6 +18,9 @@
     ];
     systemPackages = with pkgs.kdePackages; [
       kmail
+      kcalc
+      okular
+      kdenlive
     ];
   };
 }

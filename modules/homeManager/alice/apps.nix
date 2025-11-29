@@ -4,7 +4,6 @@
     wl-clipboard
     shotman
     pcmanfm
-    kdePackages.kcalc
     wl-mirror
     loupe
     libreoffice
@@ -13,10 +12,8 @@
     torrential
     wev
     nmap
-    kdePackages.okular
     portfolio
     bitwarden-desktop
-    kdePackages.kdenlive
     vesktop
     rustdesk
     gossip
