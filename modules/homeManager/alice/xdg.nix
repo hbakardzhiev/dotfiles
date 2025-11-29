@@ -5,7 +5,7 @@ let
     "floorp.desktop"
   ];
   fileManager = [ "org.kde.dolphin.desktop" ];
-  imageViewer = [ "org.gnome.Loupe.desktop" ];
+  imageViewer = [ "org.kde.gwenview.desktop" ];
   editor = [ "Helix.desktop" ];
   obsidian = [ "obsidian.desktop" ];
   pdfReader = [

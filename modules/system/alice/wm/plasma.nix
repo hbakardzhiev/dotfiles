@@ -22,11 +22,12 @@
       okular
       kdenlive
       kmail-account-wizard
+      mailimporter
+      mbox-importer
       ktorrent
       keysmith
     ] ++ (
       with pkgs; [
-        loupe
         otpclient
         vlc
       ]
