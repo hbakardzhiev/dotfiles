@@ -22,9 +22,10 @@
       okular
       kdenlive
       kmail-account-wizard
-      loupe
       ktorrent
       keysmith
+    ] ++ [
+      pkgs.loupe
     ];
   };
 }
