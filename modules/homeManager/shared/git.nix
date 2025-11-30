@@ -2,12 +2,14 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "h.bakardzhiev@gmx.com";
-    userName = "hbakardzhiev";
-    aliases = { };
-    extraConfig = {
-      safe = {
-        directory = "/etc/nixos";
+    settings = {
+      userEmail = "h.bakardzhiev@gmx.com";
+      userName = "hbakardzhiev";
+      aliases = { };
+      extraConfig = {
+        safe = {
+          directory = "/etc/nixos";
+        };
       };
     };
   };

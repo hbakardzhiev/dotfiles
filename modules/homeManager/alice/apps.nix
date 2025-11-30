@@ -9,7 +9,6 @@
     bitwarden-desktop
     vesktop
     rustdesk
-    vscode-fhs
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube

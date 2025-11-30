@@ -32,7 +32,7 @@ in
       enable = false;
     };
     tools.android = {
-      enable = true;
+      enable = false;
       username = username;
       enableAndroidStudio = false;
     };
@@ -47,7 +47,7 @@ in
     };
 
     nixpkgs.config.permittedInsecurePackages = [
-      "python3.12-ecdsa-0.19.1"
+      "python3.13-ecdsa-0.19.1"
     ];
 
     boot = {

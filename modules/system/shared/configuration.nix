@@ -76,7 +76,7 @@
       intel-vaapi-driver # Alternative driver, often better for browsers on Skylake+
       intel-compute-runtime # For OpenCL support if needed (e.g., filters)
       vpl-gpu-rt # Keep this if you have 11th gen+ Intel; it's for QSV
-      vaapiVdpau # Helps with compatibility in hybrid setups
+      libva-vdpau-driver # Helps with compatibility in hybrid setups
       libvdpau-va-gl # VDPAU to VA-API bridge, useful for NVIDIA fallback
     ];
   };
