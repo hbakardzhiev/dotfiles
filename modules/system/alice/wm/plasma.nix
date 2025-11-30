@@ -16,18 +16,19 @@
     plasma6.excludePackages = with pkgs.kdePackages; [
       elisa
     ];
-    systemPackages = with pkgs.kdePackages; [
-      kcalc
-      okular
-      kdenlive
-      ktorrent
-      keysmith
-    ] ++ (
-      with pkgs; [
+    systemPackages =
+      with pkgs.kdePackages;
+      [
+        kcalc
+        okular
+        kdenlive
+        ktorrent
+        keysmith
+      ]
+      ++ (with pkgs; [
         vlc
         geary
         otpclient
-      ]
-    );
+      ]);
   };
 }

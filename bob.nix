@@ -54,7 +54,6 @@ in
       enable = true;
     };
 
-
     # services.samba = {
     #   enable = true;
     #   openFirewall = true;

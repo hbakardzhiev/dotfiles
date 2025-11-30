@@ -1,6 +1,7 @@
 { ... }:
-  let port = 8888;
-in 
+let
+  port = 8888;
+in
 {
   services.metabase = {
     enable = true;
