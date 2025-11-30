@@ -3,13 +3,13 @@
   programs.git = {
     enable = true;
     settings = {
-      userEmail = "h.bakardzhiev@gmx.com";
-      userName = "hbakardzhiev";
-      aliases = { };
-      extraConfig = {
-        safe = {
-          directory = "/etc/nixos";
-        };
+      user = {
+        email = "h.bakardzhiev@gmx.com";
+        name = "hbakardzhiev";
+      };
+      alias = { };
+      safe = {
+        directory = "/etc/nixos";
       };
     };
   };
