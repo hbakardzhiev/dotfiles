@@ -3,9 +3,9 @@
   services.n8n = {
     enable = true;
     openFirewall = true;
-    webhookUrl = "https://n888n.v6.army";
   };
   systemd.services.n8n.environment = {
+    WEBHOOK_URL = "https://n888n.v6.army";
     N8N_EDITOR_BASE_URL = "https://n888n.v6.army";
     N8N_HOST = "n888n.v6.army";
     N8N_PROTOCOL = "https";
