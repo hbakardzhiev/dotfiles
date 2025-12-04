@@ -46,10 +46,6 @@ in
       enable = false;
     };
 
-    nixpkgs.config.permittedInsecurePackages = [
-      "python3.13-ecdsa-0.19.1"
-    ];
-
     boot = {
       kernelParams = [ "psmouse.synaptics_intertouch=0" ];
       # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
