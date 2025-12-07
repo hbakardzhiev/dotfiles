@@ -47,7 +47,7 @@
   };
   services.lnd.lndconnect = {
     enable = true;
-    # onion = true;
+    onion = true;
   };
 
   # See ../configuration.nix for all available features.
