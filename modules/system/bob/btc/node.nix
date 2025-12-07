@@ -49,16 +49,6 @@
     enable = true;
     # onion = true;
   };
-  services.lnd = {
-    enable = true;
-    tor.enforce = false;
-
-    extraConfig = ''
-      listen=0.0.0.0:${toString config.services.lnd.port}
-      externalip=lnd-connect.v6.army:${toString config.services.lnd.port}
-      nat=true
-    '';
-  };
 
   # See ../configuration.nix for all available features.
   services.bitcoind = {
