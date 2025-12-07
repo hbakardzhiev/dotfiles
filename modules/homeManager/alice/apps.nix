@@ -7,7 +7,6 @@
     xournalpp
     portfolio
     bitwarden-desktop
-    vesktop
     rustdesk
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
