@@ -9,8 +9,9 @@ let
   editor = [ "Helix.desktop" ];
   obsidian = [ "obsidian.desktop" ];
   pdfReader = [
-    "org.pwmt.zathura.desktop"
+    "org.kde.okular.desktop"
     "okularApplication_pdf.desktop"
+    "org.pwmt.zathura.desktop"
   ];
   dict = {
     "application/pdf" = pdfReader;
