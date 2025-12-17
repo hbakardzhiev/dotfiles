@@ -90,6 +90,12 @@
   services.dbus.enable = true;
   security.rtkit.enable = true;
 
+  users.groups = {
+    plugdev = { };
+    dialout = { };
+    uucp = { };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     alice = {
@@ -100,6 +106,9 @@
         "networkmanager"
         "kvm"
         "wireshark"
+        "plugdev"
+        "dialout"
+        "uucp"
       ];
       hashedPassword = "$y$j9T$Je7oMqyFeQFF244VubtEw.$53YOarmB6y1l8ZIvqIOCZtGuzg/c7C4rG6wGfVPnAR5";
       openssh.authorizedKeys.keys = [
