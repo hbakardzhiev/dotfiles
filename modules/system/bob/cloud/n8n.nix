@@ -9,6 +9,7 @@
     N8N_EDITOR_BASE_URL = "https://n888n.v6.army";
     N8N_HOST = "n888n.v6.army";
     N8N_PROTOCOL = "https";
+    N8N_METRICS = true;
     # Example: Enable basic auth (use a generated secret in prod)
     # N8N_BASIC_AUTH_ACTIVE = "true";
     # N8N_BASIC_AUTH_USER = "admin";
