@@ -30,6 +30,7 @@
         vlc
         geary
         otpclient
+        viber
       ]);
   };
 }
