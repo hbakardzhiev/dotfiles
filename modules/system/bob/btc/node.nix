@@ -49,6 +49,13 @@
     enable = true;
     onion = true;
   };
+  # For clightning
+  services.clightning = {
+    plugins.clnrest = {
+      enable = true;
+      lnconnect.enable = true;
+    };
+  };
 
   # See ../configuration.nix for all available features.
   services.bitcoind = {
