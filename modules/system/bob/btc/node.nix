@@ -79,7 +79,7 @@
       # dustdynamic=target:1008
 
     '';
-    dataDir = "/run/media/et1";
+    dataDir = "/run/media/bitcoin";
   };
 
   # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
