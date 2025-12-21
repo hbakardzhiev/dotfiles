@@ -69,7 +69,6 @@
       rpcworkqueue=64
       upnp=1
       disablewallet=1
-      reindex-chainstate=1
 
       # datacarrier=1
       # datacarriersize=42
