@@ -26,6 +26,7 @@ in
       host = "localhost";
       port = portForImmich;
       openFirewall = true;
+      mediaLocation = "/run/media/et1";
     };
 
     services.caddy = lib.mkIf cfg.enable {
