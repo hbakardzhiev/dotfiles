@@ -11,8 +11,8 @@
 
   # Custom mempool.space
   services.mempool = {
-    frontend.enable = false;
-    enable = false;
+    frontend.enable = true;
+    enable = true;
     # Set this if you're using the `secure-node.nix` template
     tor.enforce = false;
   };
