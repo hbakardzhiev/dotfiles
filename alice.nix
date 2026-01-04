@@ -43,7 +43,7 @@ in
     };
     cloud.nextcloud.client.upload.enable = true;
     custom.containers.docker = {
-      enable = false;
+      enable = true;
     };
 
     boot = {

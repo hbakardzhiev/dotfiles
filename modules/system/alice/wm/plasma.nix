@@ -31,6 +31,7 @@
         geary
         otpclient
         viber
+        code-cursor-fhs
       ]);
   };
 }
