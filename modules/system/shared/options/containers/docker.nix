@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -18,6 +19,9 @@ in
       enable = true;
     };
     users.users.alice.extraGroups = [ "docker" ];
+    environment.systemPackages = with pkgs; [
+      docker-compose
+    ];
 
     # services.caddy = {
     #   enable = true;
