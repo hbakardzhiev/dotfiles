@@ -32,9 +32,9 @@
         otpclient
         viber
         code-cursor-fhs
+        grayjay
       ])
       ++ (with pkgs-unstable; [
-        grayjay
       ]);
   };
 }
