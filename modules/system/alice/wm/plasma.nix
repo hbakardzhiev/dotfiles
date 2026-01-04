@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm = {
@@ -32,6 +32,9 @@
         otpclient
         viber
         code-cursor-fhs
+      ])
+      ++ (with pkgs-unstable; [
+        grayjay
       ]);
   };
 }
