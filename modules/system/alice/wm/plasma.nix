@@ -33,6 +33,7 @@
         viber
         code-cursor-fhs
         grayjay
+        dbeaver-bin
       ])
       ++ (with pkgs-unstable; [
       ]);
