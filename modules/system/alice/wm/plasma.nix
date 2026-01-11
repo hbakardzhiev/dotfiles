@@ -16,6 +16,7 @@
     plasma6.excludePackages = with pkgs.kdePackages; [
       elisa
       ktexteditor
+      kcalc
     ];
     systemPackages =
       with pkgs.kdePackages;
@@ -34,6 +35,7 @@
         code-cursor-fhs
         grayjay
         dbeaver-bin
+        qalculate-qt
       ])
       ++ (with pkgs-unstable; [
       ]);
