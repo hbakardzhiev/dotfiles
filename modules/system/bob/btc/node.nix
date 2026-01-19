@@ -66,8 +66,6 @@
       minrelaytxfee=0.00000100     # ~0.1 sat/vB (100 sat/kvB)
       incrementalrelayfee=0.00000100
 
-      maxmempool=1000 # 1GB 3 times more than default
-
       # datacarrier=1
       # datacarriersize=42
       # rejectparasites=1
