@@ -63,6 +63,9 @@
       upnp=1
       disablewallet=1
 
+      minrelaytxfee=0.00000100     # ~0.1 sat/vB (100 sat/kvB)
+      incrementalrelayfee=0.00000100
+
       # datacarrier=1
       # datacarriersize=42
       # rejectparasites=1
