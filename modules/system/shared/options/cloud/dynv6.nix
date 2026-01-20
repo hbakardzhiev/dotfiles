@@ -23,6 +23,7 @@ in
 
     services.ddclient = {
       enable = true;
+      interval = "1min";
       configFile = config.sops.secrets."${cfg.hostname}".path;
     };
   };
