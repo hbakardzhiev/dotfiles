@@ -1,27 +1,41 @@
 { pkgs, pkgs-unstable, ... }:
 {
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm = {
-    wayland.enable = true;
-    settings = {
-      General.DisplayServer = "wayland";
-      Autologin = {
-        Session = "plasma.desktop";
-        User = "alice";
+  services.displayManager = {
+    sddm = {
+      wayland.enable = true;
+      settings = {
+        # General.DisplayServer = "wayland";
+        Autologin = {
+          Session = "sway";
+          User = "alice";
+        };
       };
     };
+    defaultSession = "sway";
   };
-  services.desktopManager.plasma6.enable = true;
+
+  programs = {
+    sway = {
+      enable = true;
+      wrapperFeatures = {
+        base = true;
+        gtk = true;
+      };
+      extraOptions = [
+        "--unsupported-gpu"
+      ];
+      xwayland.enable = true;
+    };
+    waybar = {
+      enable = true;
+    };
+  };
+
   environment = {
-    plasma6.excludePackages = with pkgs.kdePackages; [
-      elisa
-      ktexteditor
-      kcalc
-    ];
     systemPackages =
       with pkgs.kdePackages;
       [
-        kcalc
         okular
         kdenlive
         ktorrent
@@ -36,6 +50,7 @@
         grayjay
         dbeaver-bin
         qalculate-qt
+        nerd-fonts._3270
       ])
       ++ (with pkgs-unstable; [
       ]);

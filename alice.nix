@@ -39,7 +39,7 @@ in
     tools.networking = {
       enable = true;
       hostname = hostname;
-      enableIwdWifi = false;
+      enableIwdWifi = true;
     };
     cloud.nextcloud.client.upload.enable = true;
     custom.containers.docker = {
