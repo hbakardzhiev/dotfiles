@@ -39,7 +39,7 @@
         okular
         kdenlive
         ktorrent
-        keysmith
+        gwenview
       ]
       ++ (with pkgs; [
         vlc
@@ -51,6 +51,8 @@
         dbeaver-bin
         qalculate-qt
         nerd-fonts._3270
+        pcmanfm
+        slurp
       ])
       ++ (with pkgs-unstable; [
       ]);
