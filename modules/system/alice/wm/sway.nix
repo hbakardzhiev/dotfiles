@@ -1,5 +1,6 @@
 { pkgs, pkgs-unstable, ... }:
 {
+  services.gnome.gnome-keyring.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager = {
     sddm = {
