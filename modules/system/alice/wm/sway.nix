@@ -1,9 +1,9 @@
 { pkgs, pkgs-unstable, ... }:
 {
   services.gnome.gnome-keyring.enable = true;
-  services.displayManager.sddm.enable = true;
   services.displayManager = {
     sddm = {
+      enable = true;
       wayland.enable = true;
       settings = {
         # General.DisplayServer = "wayland";
@@ -15,6 +15,8 @@
     };
     defaultSession = "sway";
   };
+
+  services.power-profiles-daemon.enable = true;
 
   programs = {
     sway = {
@@ -51,11 +53,17 @@
         grayjay
         dbeaver-bin
         qalculate-qt
-        nerd-fonts._3270
         pcmanfm
         slurp
       ])
       ++ (with pkgs-unstable; [
+        # wireless utility
+        iwgtk
+      ])
+      # Fonts
+      ++ (with pkgs; [
+        adwaita-icon-theme
+        nerd-fonts._3270
       ]);
   };
 }
