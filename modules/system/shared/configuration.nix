@@ -109,6 +109,7 @@
         "plugdev"
         "dialout"
         "uucp"
+        "input"
       ];
       hashedPassword = "$y$j9T$Je7oMqyFeQFF244VubtEw.$53YOarmB6y1l8ZIvqIOCZtGuzg/c7C4rG6wGfVPnAR5";
       openssh.authorizedKeys.keys = [
