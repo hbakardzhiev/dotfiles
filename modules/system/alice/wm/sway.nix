@@ -55,6 +55,8 @@
         qalculate-qt
         pcmanfm
         slurp
+        gammastep
+        file-roller
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
