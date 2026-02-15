@@ -49,7 +49,6 @@
         geary
         otpclient
         viber
-        code-cursor-fhs
         grayjay
         dbeaver-bin
         qalculate-qt
@@ -61,6 +60,7 @@
       ++ (with pkgs-unstable; [
         # wireless utility
         iwgtk
+        code-cursor-fhs
       ])
       # Fonts
       ++ (with pkgs; [
