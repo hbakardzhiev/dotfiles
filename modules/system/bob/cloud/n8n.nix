@@ -1,9 +1,8 @@
-{ pkgs-unstable, ... }:
+{ ... }:
 {
   services.n8n = {
     enable = true;
     openFirewall = true;
-    package = pkgs-unstable.n8n;
   };
   systemd.services.n8n.environment = {
     WEBHOOK_URL = "https://n888n.v6.army";
