@@ -1,39 +1,53 @@
 { ... }:
 {
-  services.nostr-rs-relay = {
-    enable = true;
-    dataDir = "/var/lib/nostr-rs-relay";
+  # services.nostr-rs-relay = {
+  #   enable = true;
+  #   dataDir = "/var/lib/nostr-rs-relay";
+  #   settings = {
+  #     info = {
+  #       description = "Only I can publish events; open for reading.";
+  #       pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
+  #       relay_url = "wss://bobbb.duckdns.org";
+  #       name = "bobbb.duckdns.org";
+  #     };
+
+  #     network = {
+  #       # Bind to this network address
+  #       address = "0.0.0.0";
+  #       # Listen on port 12849 (this is the default). I have not managed to find any way to change it. KEEP IT default!
+  #     };
+
+  #     authorization = {
+  #       pubkey_whitelist = [
+  #         "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
+  #       ];
+  #     };
+
+  #     options = {
+  #       max_event_size = 16384;
+  #       reject_future_seconds = 1800;
+  #     };
+
+  #     limits = {
+  #       max_subscriptions = 20;
+  #       max_filters = 100;
+  #     };
+  #   };
+
+  # };
+
+  services.haven = {
     settings = {
-      info = {
-        description = "Only I can publish events; open for reading.";
-        pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
-        relay_url = "wss://bobbb.duckdns.org";
-        name = "bobbb.duckdns.org";
-      };
-
-      network = {
-        # Bind to this network address
-        address = "0.0.0.0";
-        # Listen on port 12849 (this is the default). I have not managed to find any way to change it. KEEP IT default!
-      };
-
-      authorization = {
-        pubkey_whitelist = [
-          "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
-        ];
-      };
-
-      options = {
-        max_event_size = 16384;
-        reject_future_seconds = 1800;
-      };
-
-      limits = {
-        max_subscriptions = 20;
-        max_filters = 100;
-      };
+      RELAY_URL = "nostr.v6.army";
+      OWNER_PUB = "npub10uf2fr0wlg4edurnhs4zr066tsy4sz3pzzqpm6hwr5xm4rf3xkusfsdvsv";
     };
-
+    importRelays = [
+      "relay.damus.io"
+      "nos.lol"
+      "relay.primal.net"
+      "nostr.wine"
+    ];
+    enable = true;
   };
 
   # Open firewall for the relay port
@@ -44,47 +58,41 @@
 
   services.caddy = {
     enable = true;
+
+    globalConfig = ''
+      (nostr-proxy) {
+        reverse_proxy 127.0.0.1:3355 {
+          header_up Host {http.request.host}
+          header_up X-Real-IP {http.request.remote.host}
+          header_up X-Forwarded-For {http.request.remote.host}
+          header_up X-Forwarded-Proto {http.request.scheme}
+          transport http { versions 1.1 }
+        }
+        
+        request_body { max_size 100MB }
+        
+        header {
+          Access-Control-Allow-Origin "*"
+          Access-Control-Allow-Methods "GET, POST, OPTIONS"
+          Access-Control-Allow-Headers "*"
+        }
+        
+        @nip11 header Accept application/nostr+json
+        handle @nip11 {
+          header { Access-Control-Allow-Origin "*" }
+        }
+        
+        @options method OPTIONS
+        handle @options { respond 204 }
+      }
+    '';
+
     virtualHosts."bobbb.duckdns.org" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:12849
-
-        # CORS preflight (OPTIONS)
-        @cors_preflight {
-          method OPTIONS
-        }
-        respond @cors_preflight 204
-
-        header @cors_preflight Access-Control-Allow-Origin "*"
-        header @cors_preflight Access-Control-Allow-Headers "*"
-        header @cors_preflight Access-Control-Allow-Methods "GET, OPTIONS"
-
-        # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
-        @nip11 header Accept *application/nostr+json*
-        header @nip11 Access-Control-Allow-Origin "*"
-        header @nip11 Access-Control-Allow-Headers "*"
-        header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
-      '';
+      extraConfig = "import nostr-proxy";
     };
+
     virtualHosts."nostr.v6.army" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:12849
-
-        # CORS preflight (OPTIONS)
-        @cors_preflight {
-          method OPTIONS
-        }
-        respond @cors_preflight 204
-
-        header @cors_preflight Access-Control-Allow-Origin "*"
-        header @cors_preflight Access-Control-Allow-Headers "*"
-        header @cors_preflight Access-Control-Allow-Methods "GET, OPTIONS"
-
-        # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
-        @nip11 header Accept *application/nostr+json*
-        header @nip11 Access-Control-Allow-Origin "*"
-        header @nip11 Access-Control-Allow-Headers "*"
-        header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
-      '';
+      extraConfig = "import nostr-proxy";
     };
   };
 
