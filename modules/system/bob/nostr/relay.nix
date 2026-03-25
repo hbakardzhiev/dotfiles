@@ -39,7 +39,7 @@
   services.haven = {
     settings = {
       RELAY_URL = "nostr.v6.army";
-      OWNER_PUB = "npub10uf2fr0wlg4edurnhs4zr066tsy4sz3pzzqpm6hwr5xm4rf3xkusfsdvsv";
+      OWNER_PUB = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
     };
     importRelays = [
       "relay.damus.io"
