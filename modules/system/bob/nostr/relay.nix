@@ -59,7 +59,7 @@
   services.caddy = {
     enable = true;
 
-    globalConfig = ''
+    extraConfig = ''
       (nostr-proxy) {
         reverse_proxy 127.0.0.1:3355 {
           header_up Host {http.request.host}
@@ -90,10 +90,8 @@
     virtualHosts."bobbb.duckdns.org" = {
       extraConfig = "import nostr-proxy";
     };
-
     virtualHosts."nostr.v6.army" = {
       extraConfig = "import nostr-proxy";
     };
   };
-
 }
