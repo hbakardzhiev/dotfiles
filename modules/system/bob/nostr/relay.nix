@@ -41,11 +41,12 @@
       RELAY_URL = "nostr.v6.army";
       OWNER_PUB = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
     };
-    importRelays = [
+    blastrRelays = [
       "relay.damus.io"
       "nos.lol"
       "relay.primal.net"
       "nostr.wine"
+      "nostr.pub"
     ];
     enable = true;
   };
