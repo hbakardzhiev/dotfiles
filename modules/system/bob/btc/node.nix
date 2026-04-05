@@ -32,6 +32,7 @@
     config.services.mempool.frontend.port
     config.services.lnd.port
     config.services.bitcoind.port
+    10009
   ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
@@ -45,9 +46,15 @@
       enable = true;
     };
   };
-  services.lnd.lndconnect = {
-    enable = true;
-    onion = true;
+  services.lnd = {
+    # Listen on all interfaces so external connections work
+    extraConfig = ''
+      rpclisten=0.0.0.0:10009
+    '';
+    lndconnect = {
+      enable = true;
+      onion = true;
+    };
   };
 
   # See ../configuration.nix for all available features.
