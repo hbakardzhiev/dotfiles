@@ -32,7 +32,7 @@
     config.services.mempool.frontend.port
     config.services.lnd.port
     config.services.bitcoind.port
-    10009
+    config.services.lnd.rpcPort
   ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
@@ -48,9 +48,10 @@
   };
   services.lnd = {
     # Listen on all interfaces so external connections work
-    extraConfig = ''
-      rpclisten=0.0.0.0:10009
-    '';
+    rpcAddress = "0.0.0.0"; # gRPC port 10009 for Zeus (this was the missing piece)
+    address = "0.0.0.0"; # Lightning p2p port 9735 (optional, for inbound channels)
+    tor.enforce = false; # allow clearnet inbound
+
     lndconnect = {
       enable = true;
       onion = true;
