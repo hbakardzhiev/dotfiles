@@ -33,6 +33,7 @@
     config.services.lnd.port
     config.services.bitcoind.port
     config.services.lnd.rpcPort
+    8080
   ];
 
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
