@@ -34,7 +34,7 @@
       Type = "simple";
       ExecStart = ''
         ${pkgs.nak}/bin/nak bunker \
-          --sec ${config.sops.secrets."nostr/nsec".path} \
+          --sec "$(cat ${config.sops.secrets."nostr/nsec".path})" \
           wss://nos.lol \
           wss://nostr-01.uid.ovh \
           wss://nostr-02.uid.ovh \
