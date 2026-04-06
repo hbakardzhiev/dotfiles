@@ -33,18 +33,18 @@
     serviceConfig = {
       Type = "simple";
       ExecStart = '''
-        ${pkgs.nak}/bin/nak bunker \
-          --sec "$(cat ${config.sops.secrets."nostr/nsec".path})" \
-          wss://nos.lol \
-          wss://nostr-01.uid.ovh \
-          wss://nostr-02.uid.ovh \
-          wss://nostr.mom \
-          wss://nostr.v6.army \
-          wss://nostr.wine \
-          wss://relay.camelus.app \
-          wss://relay.damus.io \
-          wss://relay.ditto.pub \
-          wss://relay.primal.net \
+        ${pkgs.nak}/bin/nak bunker 
+          --sec "$(cat ${config.sops.secrets."nostr/nsec".path})"
+          wss://nos.lol 
+          wss://nostr-01.uid.ovh 
+          wss://nostr-02.uid.ovh 
+          wss://nostr.mom 
+          wss://nostr.v6.army 
+          wss://nostr.wine 
+          wss://relay.camelus.app 
+          wss://relay.damus.io 
+          wss://relay.ditto.pub 
+          wss://relay.primal.net 
           wss://relay.snort.social 
       ''';
       Restart = "always";
