@@ -32,21 +32,23 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = '''
-        ${pkgs.nak}/bin/nak bunker 
-          --sec "$(cat ${config.sops.secrets."nostr/nsec".path})"
-          nos.lol 
-          nostr-01.uid.ovh 
-          nostr-02.uid.ovh 
-          nostr.mom 
-          nostr.v6.army 
-          nostr.wine 
-          relay.camelus.app 
-          relay.damus.io 
-          relay.ditto.pub 
-          relay.primal.net 
-          relay.snort.social 
-      ''';
+      ExecStart = pkgs.writeShellScript "nak-bunker-start" ''
+        exec ${pkgs.nak}/bin/nak bunker \
+          --profile main \
+          --persist \
+          --sec "$(cat ${config.sops.secrets."nostr/nsec".path})" \
+          wss://relay.damus.io \
+          wss://nos.lol \
+          wss://nostr-01.uid.ovh \
+          wss://nostr-02.uid.ovh \
+          wss://nostr.mom \
+          wss://nostr.v6.army \
+          wss://nostr.wine \
+          wss://relay.camelus.app \
+          wss://relay.ditto.pub \
+          wss://relay.primal.net \
+          wss://relay.snort.social
+      '';
       Restart = "always";
       RestartSec = "5s";
 
