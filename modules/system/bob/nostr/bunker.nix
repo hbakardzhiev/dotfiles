@@ -52,6 +52,8 @@
       Restart = "always";
       RestartSec = "5s";
 
+      Environment = "HOME=/var/lib/nak-bunker";
+
       # Security hardening
       User = "nak-bunker";
       Group = "nak-bunker";
