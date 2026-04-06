@@ -32,7 +32,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = ''
+      ExecStart = '''
         ${pkgs.nak}/bin/nak bunker \
           --sec "$(cat ${config.sops.secrets."nostr/nsec".path})" \
           wss://nos.lol \
@@ -46,7 +46,7 @@
           wss://relay.ditto.pub \
           wss://relay.primal.net \
           wss://relay.snort.social 
-      '';
+      ''';
       Restart = "always";
       RestartSec = "5s";
 
