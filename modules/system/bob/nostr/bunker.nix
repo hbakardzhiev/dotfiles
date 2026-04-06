@@ -35,17 +35,17 @@
       ExecStart = '''
         ${pkgs.nak}/bin/nak bunker 
           --sec "$(cat ${config.sops.secrets."nostr/nsec".path})"
-          wss://nos.lol 
-          wss://nostr-01.uid.ovh 
-          wss://nostr-02.uid.ovh 
-          wss://nostr.mom 
-          wss://nostr.v6.army 
-          wss://nostr.wine 
-          wss://relay.camelus.app 
-          wss://relay.damus.io 
-          wss://relay.ditto.pub 
-          wss://relay.primal.net 
-          wss://relay.snort.social 
+          nos.lol 
+          nostr-01.uid.ovh 
+          nostr-02.uid.ovh 
+          nostr.mom 
+          nostr.v6.army 
+          nostr.wine 
+          relay.camelus.app 
+          relay.damus.io 
+          relay.ditto.pub 
+          relay.primal.net 
+          relay.snort.social 
       ''';
       Restart = "always";
       RestartSec = "5s";
