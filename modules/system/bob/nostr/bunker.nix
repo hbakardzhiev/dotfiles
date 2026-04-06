@@ -47,17 +47,13 @@
           --profile main \
           --persist \
           --sec "$(cat ${config.sops.secrets."nostr/nsec".path})" \
-          wss://relay.damus.io \
           wss://nos.lol \
           wss://nostr-01.uid.ovh \
-          wss://nostr-02.uid.ovh \
           wss://nostr.mom \
-          wss://nostr.v6.army \
           wss://nostr.wine \
           wss://relay.camelus.app \
           wss://relay.ditto.pub \
-          wss://relay.primal.net \
-          wss://relay.snort.social
+          wss://relay.primal.net
       '';
       Restart = "always";
       RestartSec = "5s";
