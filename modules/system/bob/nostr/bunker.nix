@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  # === ALLOW ADMIN TO RUN NAK AS BUNKER USER ===
+  security.doas.extraRules = [
+    {
+      users = [ "alice" ];
+      targetUsers = [ "nak-bunker" ];
+      cmd = [ "nak" ]; # or use full path "${pkgs.nak}/bin/nak" if you prefer
+      persist = true; # no password after first use (optional but convenient)
+    }
+  ];
+
   # === SOPS-NIX SETUP ===
   sops = {
     secrets = {
