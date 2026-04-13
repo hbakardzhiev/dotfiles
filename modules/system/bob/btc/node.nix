@@ -63,6 +63,10 @@
       upnp=1
       disablewallet=1
 
+      # === Allow sub-1 sat/vB fees (and 0 sat/vB) ===
+      minrelaytxfee=0
+      dustrelayfee=0
+
       # datacarrier=1
       # datacarriersize=42
       # rejectparasites=1
