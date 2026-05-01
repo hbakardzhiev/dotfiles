@@ -47,7 +47,6 @@
       ++ (with pkgs; [
         vlc
         geary
-        teamviewer
         otpclient
         viber
         grayjay
