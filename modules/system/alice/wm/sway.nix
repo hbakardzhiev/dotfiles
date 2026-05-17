@@ -56,6 +56,7 @@
         slurp
         gammastep
         file-roller
+        nwg-displays
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
