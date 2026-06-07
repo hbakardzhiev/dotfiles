@@ -6,7 +6,7 @@
     libreoffice
     xournalpp
     portfolio
-    bitwarden-desktop
+    # bitwarden-desktop
     rustdesk
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
