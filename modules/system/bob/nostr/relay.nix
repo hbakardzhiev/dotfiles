@@ -3,6 +3,10 @@
   services.nostr-rs-relay = {
     enable = true;
     dataDir = "/var/lib/nostr-rs-relay";
+    # debugging
+    environment = {
+      RUST_LOG = "debug";
+    };
     settings = {
       info = {
         description = "Only I can publish events; open for reading.";
