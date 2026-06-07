@@ -17,9 +17,9 @@
       };
       authorization = {
         nip42_auth = true;
-        pubkey_whitelist = [
-          "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
-        ];
+        # pubkey_whitelist = [
+        # "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9"
+        # ];
       };
       options = {
         max_event_size = 16384;
