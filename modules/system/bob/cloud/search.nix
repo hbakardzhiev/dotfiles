@@ -1,6 +1,6 @@
 { ... }:
 {
-  services.websurfx = {
+  services.searx = {
     enable = true;
     # settings = {
     #   upstream_search_engines = {
