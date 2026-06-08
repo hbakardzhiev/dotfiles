@@ -3,7 +3,7 @@
   services.websurfx = {
     enable = true;
     settings = {
-      port = 4567;
+      port = "4567"; # Has to be string :)
       ### Search Engines ###
       upstream_search_engines = {
         DuckDuckGo = true;
