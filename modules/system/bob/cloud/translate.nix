@@ -1,0 +1,6 @@
+{ ... }:
+{
+  services.libretranslate = {
+    enable = true;
+  };
+}
