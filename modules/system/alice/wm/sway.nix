@@ -57,6 +57,7 @@
         gammastep
         file-roller
         nwg-displays
+        websurfx
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
