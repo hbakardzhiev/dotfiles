@@ -7,7 +7,7 @@
     xournalpp
     portfolio
     # bitwarden-desktop
-    # rustdesk
+    rustdesk
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
     #   youtube
