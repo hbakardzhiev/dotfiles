@@ -74,6 +74,13 @@
     '';
     dataDir = "/run/media/bitcoin";
   };
+  services.liquidd = {
+    # Enable `validatepegin` to verify that a transaction sending BTC into
+    # Liquid exists on Bitcoin. Without it, a malicious liquid federation can
+    # make the node accept a sidechain that is not fully backed.
+    validatepegin = true;
+    listen = true;
+  };
 
   # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
   # interactive access to nix-bitcoin features (like bitcoin-cli) for your system's main user
