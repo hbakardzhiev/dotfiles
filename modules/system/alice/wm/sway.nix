@@ -58,6 +58,7 @@
         file-roller
         nwg-displays
         websurfx
+        pavucontrol
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
