@@ -32,6 +32,7 @@
     };
     waybar = {
       enable = true;
+      systemd.target = "none.target";
     };
   };
 
