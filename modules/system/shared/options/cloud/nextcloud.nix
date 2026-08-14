@@ -34,7 +34,7 @@ in
     ];
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud33;
+      package = pkgs.nextcloud34;
       hostName = builtins.head cfg.hostname;
       https = true;
       settings.overwriteprotocol = "https";
