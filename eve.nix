@@ -39,10 +39,10 @@ in
       enable = true;
       hostname = [
         # To be used as a general hostname
+        "eve.tail6dbb0b.ts.net"
         "bakarh.ddns.net"
         # tailscale hostnames
         "100.80.185.72"
-        "eve.tail6dbb0b.ts.net"
       ];
     };
 
