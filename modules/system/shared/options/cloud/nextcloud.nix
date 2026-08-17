@@ -27,11 +27,6 @@ in
     ];
     security.sops.nextcloud.enable = true;
 
-    networking.firewall.allowedTCPPorts = [
-      80
-      443
-      # 2283
-    ];
     services.nextcloud = {
       enable = true;
       package = pkgs.nextcloud34;
@@ -71,18 +66,6 @@ in
           "OC\\Preview\\XBitmap"
           "OC\\Preview\\HEIC"
         ];
-      };
-    };
-    services.nginx.virtualHosts = {
-      ${config.services.nextcloud.hostName} = {
-        forceSSL = true;
-        enableACME = true;
-      };
-    };
-    security.acme = {
-      acceptTerms = true;
-      certs = {
-        ${config.services.nextcloud.hostName}.email = "h.bakardzhiev@gmx.com";
       };
     };
   };
