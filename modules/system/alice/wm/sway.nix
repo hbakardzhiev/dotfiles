@@ -44,6 +44,7 @@
         kdenlive
         ktorrent
         gwenview
+        krdc
       ]
       ++ (with pkgs; [
         vlc
