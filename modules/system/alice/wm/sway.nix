@@ -61,6 +61,7 @@
         nwg-displays
         websurfx
         pavucontrol
+        sparrow
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
