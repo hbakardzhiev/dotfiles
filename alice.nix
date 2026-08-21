@@ -73,10 +73,6 @@ in
     services.gvfs.enable = true;
 
     # Enable sound.
-    hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
     services.pipewire = {
       enable = true;
       # alsa.enable = true;
