@@ -8,7 +8,6 @@
     # "nvidia"
     "intel"
   ];
-  services.flatpak.enable = true;
   # hardware.nvidia = {
   #   # Modesetting is required.
   #   modesetting.enable = true;
