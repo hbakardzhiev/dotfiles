@@ -45,6 +45,7 @@ in
         # List of apps we want to install and are already packaged in
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit groupfolders;
+        inherit (config.services.nextcloud.package.packages.apps) richdocuments;
       };
       config = {
         adminuser = "root";
