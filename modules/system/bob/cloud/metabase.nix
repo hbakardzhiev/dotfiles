@@ -9,12 +9,4 @@ in
     openFirewall = true;
     ssl.enable = false;
   };
-  services.caddy = {
-    enable = true;
-    virtualHosts."metabase.v6.army" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:${builtins.toString port}
-      '';
-    };
-  };
 }

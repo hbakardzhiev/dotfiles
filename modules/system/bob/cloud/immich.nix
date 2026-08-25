@@ -29,20 +29,5 @@ in
       mediaLocation = "/run/media/et1";
     };
 
-    services.caddy = lib.mkIf cfg.enable {
-      enable = true;
-      virtualHosts = {
-        "${cfg.hostname}" = {
-          extraConfig = ''
-            reverse_proxy localhost:${builtins.toString portForImmich}
-          '';
-        };
-        "sofia.v6.army" = {
-          extraConfig = ''
-            reverse_proxy localhost:${builtins.toString portForImmich}
-          '';
-        };
-      };
-    };
   };
 }

@@ -15,12 +15,4 @@
     # N8N_BASIC_AUTH_USER = "admin";
     # N8N_BASIC_AUTH_PASSWORD = (lib.fileContents /etc/nixos/secrets/n8n-password);  # Or use sops-nix for secrets
   };
-  services.caddy = {
-    enable = true;
-    virtualHosts."n888n.v6.army" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:5678
-      '';
-    };
-  };
 }

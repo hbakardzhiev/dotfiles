@@ -89,13 +89,4 @@
     name = "alice";
   };
 
-  services.caddy = {
-    enable = true;
-    virtualHosts."mempool.v6.army" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:${builtins.toString config.services.mempool.frontend.port}
-      '';
-    };
-  };
-
 }
