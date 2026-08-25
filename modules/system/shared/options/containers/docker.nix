@@ -23,13 +23,5 @@ in
       docker-compose
     ];
 
-    # services.caddy = {
-    #   enable = true;
-    #   virtualHosts."nocobase.v6.army" = {
-    #     extraConfig = ''
-    #       reverse_proxy 127.0.0.1:8055
-    #     '';
-    #   };
-    # };
   };
 }
