@@ -41,12 +41,15 @@
     nightTheme = false;
     # dataDir = "/run/media/et1";
     # Automatically enables clightning.
+
+    # Disable lightning node
     nodes.lnd = {
-      enable = true;
+      enable = false;
     };
   };
+  # Disable lightning node
   services.lnd.lndconnect = {
-    enable = true;
+    enable = false;
     # onion = true;
   };
 
