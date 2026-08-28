@@ -88,7 +88,7 @@
             sops-nix.nixosModules.sops
           ];
         };
-        ${maastricht} = nixpkgs.lib.nixosSystem {
+        ${maastricht} = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           specialArgs = {
             hostname = maastricht;
