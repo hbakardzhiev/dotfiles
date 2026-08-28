@@ -8,7 +8,6 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     sovran = {
       url = "git+https://git.sovransystems.com/Sovran_Systems/Sovran_SystemsOS?ref=stable";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix = {
