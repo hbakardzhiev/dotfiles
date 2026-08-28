@@ -37,21 +37,18 @@
   # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
   # Disable lightning node
   nix-bitcoin.onionServices.lnd.public = true;
-  # Disable lightning node
   services.rtl = {
-    enable = false;
+    enable = true;
     nightTheme = false;
     # dataDir = "/run/media/et1";
     # Automatically enables clightning.
 
-    # Disable lightning node
     nodes.lnd = {
-      enable = false;
+      enable = true;
     };
   };
-  # Disable lightning node
   services.lnd.lndconnect = {
-    enable = false;
+    enable = true;
     # onion = true;
   };
 
