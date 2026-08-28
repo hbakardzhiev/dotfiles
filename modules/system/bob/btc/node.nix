@@ -1,94 +1,101 @@
-{ config, ... }:
+{ ... }:
+
 {
-  # security.doas.enable = lib.mkForce false;
-  # security.sudo.enable = lib.mkForce true;
-  # Automatically generate all secrets required by services.
-  # The secrets are stored in /etc/nix-bitcoin-secrets
+  #
+  # Sovran Bitcoin stack
+  #
+  # Sovran's modules/bitcoin is a maintained fork of nix-bitcoin.
+  # It intentionally keeps the nix-bitcoin option namespace for
+  # compatibility.
+  #
+
   nix-bitcoin.generateSecrets = true;
+
   nix-bitcoin.nodeinfo.enable = true;
-  nix-bitcoin.onionServices.mempool-frontend.enable = true;
-  nix-bitcoin.useVersionLockedPkgs = true;
 
-  # Custom mempool.space
-  services.mempool = {
-    frontend.enable = true;
+  #
+  # Bitcoin
+  #
+  services.bitcoind = {
     enable = true;
-    # Set this if you're using the `secure-node.nix` template
-    tor.enforce = false;
-  };
 
-  # Set this to enable electrs, an efficient Electrum server implemented in Rust.
-  services.electrs = {
-    enable = true;
-    # Listen to connections on all interfaces
+    # Keep the existing blockchain.
+    dataDir = "/run/media/bitcoin";
+
+    listen = true;
     address = "0.0.0.0";
 
-    # Set this if you're using the `secure-node.nix` template
-    tor.enforce = false;
+    extraConfig = ''
+      rpcworkqueue=64
+      disablewallet=1
+    '';
   };
-  # Open the electrs port in the firewall
-  networking.firewall.allowedTCPPorts = [
-    config.services.electrs.port
-    config.services.mempool.frontend.port
-    config.services.lnd.port
-    config.services.bitcoind.port
-  ];
 
-  # ### RIDE THE LIGHTNING (a web interface for lnd and clightning)
-  # Disable lightning node
-  nix-bitcoin.onionServices.lnd.public = true;
+  #
+  # Electrs
+  #
+  services.electrs = {
+    enable = true;
+    address = "0.0.0.0";
+  };
+
+  #
+  # LND
+  #
+  # IMPORTANT:
+  # Do NOT specify a new dataDir.
+  #
+  # Sovran's LND module is derived from the same nix-bitcoin
+  # implementation, so it should continue using:
+  #
+  #     /var/lib/lnd
+  #
+  # which contains the existing wallet/channel state.
+  #
+  services.lnd = {
+    enable = true;
+
+    extraConfig = ''
+      protocol.option-scid-alias=true
+    '';
+  };
+
+  #
+  # LND Connect
+  #
+  services.lnd.lndconnect = {
+    enable = true;
+    onion = true;
+  };
+
+  #
+  # RTL
+  #
   services.rtl = {
     enable = true;
+
+    tor.enforce = true;
+
     nightTheme = false;
-    # dataDir = "/run/media/et1";
-    # Automatically enables clightning.
 
     nodes.lnd = {
       enable = true;
     };
   };
-  services.lnd.lndconnect = {
+
+  #
+  # Mempool
+  #
+  services.mempool = {
     enable = true;
-    # onion = true;
+    frontend.enable = true;
   };
 
-  # See ../configuration.nix for all available features.
-  services.bitcoind = {
-    enable = true;
-    listen = true;
-    # Open node for p2p
-    address = "0.0.0.0";
-    # package = config.nix-bitcoin.pkgs.bitcoind-knots;
-
-    extraConfig = ''
-      rpcworkqueue=64
-      upnp=1
-      disablewallet=1
-
-      # datacarrier=1
-      # datacarriersize=42
-      # rejectparasites=1
-      # rejecttokens=1
-      # minrelaytxfee=0.00001000
-      # dustrelayfee=0.00001000
-      # dustdynamic=target:1008
-
-    '';
-    dataDir = "/run/media/bitcoin";
-  };
-  services.liquidd = {
-    # Enable `validatepegin` to verify that a transaction sending BTC into
-    # Liquid exists on Bitcoin. Without it, a malicious liquid federation can
-    # make the node accept a sidechain that is not fully backed.
-    validatepegin = true;
-    listen = true;
-  };
-
-  # When using nix-bitcoin as part of a larger NixOS configuration, set the following to enable
-  # interactive access to nix-bitcoin features (like bitcoin-cli) for your system's main user
+  #
+  # Operator
+  #
   nix-bitcoin.operator = {
     enable = true;
     name = "alice";
   };
-
 }

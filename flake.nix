@@ -6,9 +6,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/d63062affaf262d46d9fdcce40bb8c4ccb936d54";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
-    nix-bitcoin = {
-      url = "github:fort-nix/nix-bitcoin/release";
-      inputs.nixpkgs.follows = "nixpkgs";
+    sovran = {
+      url = "git+https://git.sovransystems.com/Sovran_Systems/Sovran_SystemsOS?ref=stable";
     };
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix = {
@@ -22,7 +21,7 @@
       nixpkgs,
       home-manager,
       sops-nix,
-      nix-bitcoin,
+      sovran,
       nixpkgs-unstable,
       ...
     }:
@@ -94,17 +93,11 @@
           specialArgs = {
             hostname = maastricht;
             inherit sops-nix;
-            inherit nix-bitcoin;
             inherit pkgs-unstable;
           }; # Pass flake inputs to our config
           modules = [
             ./${maastricht}.nix
-            nix-bitcoin.nixosModules.default
-            {
-              imports = [
-                (nix-bitcoin + /modules/presets/secure-node.nix)
-              ];
-            }
+            "${sovran}/modules/bitcoin"
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
