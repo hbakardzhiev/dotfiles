@@ -99,6 +99,10 @@
           modules = [
             ./${maastricht}.nix
             "${sovran}/modules/bitcoin"
+            {
+              services.bitcoind.i2p = false;
+            }
+
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
