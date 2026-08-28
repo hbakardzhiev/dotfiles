@@ -101,6 +101,7 @@
             "${sovran}/modules/bitcoin"
             {
               services.bitcoind.i2p = false;
+              services.i2pd.enable = false;
             }
 
             home-manager.nixosModules.home-manager
