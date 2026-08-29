@@ -9,6 +9,9 @@
     "intel"
   ];
   hardware.nvidia = {
+    # Correct NVIDIA driver for P1000
+    branch = "legacy_580";
+
     # Modesetting is required.
     modesetting.enable = true;
 
