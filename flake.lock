@@ -63,11 +63,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1788297115,
-        "narHash": "sha256-Z+vUNbfd2FIKkWOTkcT7RYlh3oFCnig/d2eXD1SWf2E=",
+        "lastModified": 1788405554,
+        "narHash": "sha256-r2f1oUwixlgq9zOdYLqJLfS/lWBT60/IITjhTKI59JU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a3116115851d68b8952a2a4221cc25a84e56b532",
+        "rev": "a5cc6f2c37bf518436dc8d1c288ccd0c43c2f4c4",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
         "sovran-bitcoin": "sovran-bitcoin"
       },
       "locked": {
-        "lastModified": 1788380960,
-        "narHash": "sha256-kkwrkwFK7aCKxzO3o5lR8d1MlQnBlKtWwcapktKwG4g=",
+        "lastModified": 1788454469,
+        "narHash": "sha256-zYY9PJP9DAkPKwFGPLoUOS4nJbQzGbWvdlSIXPSawYY=",
         "ref": "stable",
-        "rev": "88be5b99dd21eef862421be7de551a98a885dc7a",
-        "revCount": 2295,
+        "rev": "d1e226a6870c4a5205671ad2e3698ab72aa13b3f",
+        "revCount": 2297,
         "type": "git",
         "url": "https://git.sovransystems.com/Sovran_Systems/Sovran_SystemsOS"
       },
