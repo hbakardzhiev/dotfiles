@@ -9,6 +9,11 @@
   # compatibility.
   #
 
+  sovran-bitcoin = {
+    enable = true;
+    operatorName = "alice"; # your user, gets bitcoin-cli / lncli / nodeinfo
+  };
+
   nix-bitcoin.generateSecrets = true;
 
   nix-bitcoin.nodeinfo.enable = true;
@@ -37,6 +42,7 @@
   services.electrs = {
     enable = true;
     address = "0.0.0.0";
+    tor.enforce = false;
   };
 
   #

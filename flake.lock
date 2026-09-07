@@ -1,45 +1,5 @@
 {
   "nodes": {
-    "btc-clients": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1787862680,
-        "narHash": "sha256-mv+W62cI1Bjtkz9k8N8M7+7VSauv0/WmBrDYjcy5sE0=",
-        "owner": "emmanuelrosa",
-        "repo": "btc-clients-nix",
-        "rev": "f00585b12e751ac738392e2cccfbe305d077e2d4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "emmanuelrosa",
-        "repo": "btc-clients-nix",
-        "type": "github"
-      }
-    },
-    "flake-parts": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "sovran",
-          "nixvim",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1787559586,
-        "narHash": "sha256-onL0VLf9vPllmT0H/OlURIU5r5t5WIEl7t4tVNKT0Nw=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "9d0d87172c374f89da73c1cfe6d81ae62feac1f1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -93,22 +53,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable_2": {
-      "locked": {
-        "lastModified": 1788297115,
-        "narHash": "sha256-Z+vUNbfd2FIKkWOTkcT7RYlh3oFCnig/d2eXD1SWf2E=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a3116115851d68b8952a2a4221cc25a84e56b532",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-26.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1788608636,
@@ -127,21 +71,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1785590095,
-        "narHash": "sha256-CNO2szJbdLjVN/Hi1BML9MSALz1GM2fIdwnzs404QO8=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e568f3b19d54b08f48bfae9b12b3e124d1a28002",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1788179007,
         "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
         "owner": "NixOS",
@@ -153,58 +82,6 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1787631388,
-        "narHash": "sha256-vMiXptXarfSdJb1Gkc+FYVOAibuBRj7qxGa8z68q1Uw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ac6b2166e7a9375683b8e98f860f273222337b16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1788179007,
-        "narHash": "sha256-hn1oU2rue2SYK8dAr8+WNZWtbsz1S2W5mnHlSEuh3bo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "34ab99075ac4f7e40cf037eef32cb1c360bb85e9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixvim": {
-      "inputs": {
-        "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_4",
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1788190018,
-        "narHash": "sha256-59BAfH0txPAZrPBF4QJqwvUWppD+ICrcjA1LZAmPnrQ=",
-        "owner": "nix-community",
-        "repo": "nixvim",
-        "rev": "41844750e55f17b1385d5b09ca7ade5f11f49506",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixvim",
         "type": "github"
       }
     },
@@ -214,7 +91,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
-        "sovran": "sovran"
+        "sovran-bitcoin": "sovran-bitcoin"
       }
     },
     "sops-nix": {
@@ -237,62 +114,22 @@
         "type": "github"
       }
     },
-    "sovran": {
-      "inputs": {
-        "btc-clients": "btc-clients",
-        "nixpkgs": "nixpkgs_3",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixvim": "nixvim",
-        "sovran-bitcoin": "sovran-bitcoin"
-      },
-      "locked": {
-        "lastModified": 1788454469,
-        "narHash": "sha256-zYY9PJP9DAkPKwFGPLoUOS4nJbQzGbWvdlSIXPSawYY=",
-        "ref": "stable",
-        "rev": "d1e226a6870c4a5205671ad2e3698ab72aa13b3f",
-        "revCount": 2297,
-        "type": "git",
-        "url": "https://git.sovransystems.com/Sovran_Systems/Sovran_SystemsOS"
-      },
-      "original": {
-        "ref": "stable",
-        "type": "git",
-        "url": "https://git.sovransystems.com/Sovran_Systems/Sovran_SystemsOS"
-      }
-    },
     "sovran-bitcoin": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5",
-        "nixpkgs-stable": "nixpkgs-stable_2"
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1788378694,
-        "narHash": "sha256-s2yvGC1IHrQq2jP4KSbV2TA9Gh1T/YkcS+9neS/WcVI=",
+        "lastModified": 1788796120,
+        "narHash": "sha256-SLxKMbMPf0MN4tVLAURr6p5mNsieXH8dzmMZisqljmM=",
         "owner": "naturallaw777",
         "repo": "Sovran_Bitcoin",
-        "rev": "b4678fcc712da9dd01c167f62275192183490085",
+        "rev": "17cc04f5229563cb06f7e1843ccb8994af1df7f9",
         "type": "github"
       },
       "original": {
         "owner": "naturallaw777",
         "repo": "Sovran_Bitcoin",
-        "type": "github"
-      }
-    },
-    "systems": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1774449309,
-        "narHash": "sha256-brhZ8DmuGtzkCYHJg4HEd602amKm89Y9ytsFZ5uWD1w=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "c29398b59d2048c4ab79345812849c9bd15e9150",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "ref": "future-26.11",
-        "repo": "default",
         "type": "github"
       }
     }
