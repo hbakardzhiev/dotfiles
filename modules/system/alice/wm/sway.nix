@@ -62,6 +62,7 @@
         websurfx
         pavucontrol
         sparrow
+        tail-tray
       ])
       ++ (with pkgs-unstable; [
         # wireless utility
