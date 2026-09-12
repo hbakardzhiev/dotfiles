@@ -6,6 +6,13 @@
       server = {
         port = 3456;
         secret_key = "test123!";
+        limiter = false;
+      };
+      search = {
+        formats = [
+          "html"
+          "json"
+        ];
       };
       #   upstream_search_engines = {
       #     DuckDuckGo = true;
