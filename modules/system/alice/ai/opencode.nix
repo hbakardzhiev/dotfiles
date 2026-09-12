@@ -1,4 +1,7 @@
 { pkgs-unstable, ... }:
 {
-  environment.systemPackages = [ pkgs-unstable.opencode-desktop ];
+  environment.systemPackages = with pkgs-unstable; [
+    opencode
+    opencode-desktop
+  ];
 }
