@@ -95,7 +95,6 @@
           }; # Pass flake inputs to our config
           modules = [
             ./${maastricht}.nix
-            sovran-bitcoin.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
