@@ -86,10 +86,5 @@ in
       fsType = "ext4";
       options = [ "defaults" ];
     };
-    fileSystems."/run/media/bitcoin" = {
-      device = "/dev/disk/by-uuid/61a32c48-3bba-411c-a441-a7436652d7cd";
-      fsType = "ext4";
-      options = [ "defaults" ];
-    };
   };
 }
