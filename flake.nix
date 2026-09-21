@@ -19,7 +19,7 @@
       nixpkgs,
       home-manager,
       sops-nix,
-      sovran-bitcoin,
+      # sovran-bitcoin,
       nixpkgs-unstable,
       ...
     }:
