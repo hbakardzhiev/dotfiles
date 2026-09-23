@@ -63,6 +63,15 @@ let
       "$@"
   '';
 
+  # lndconnect QR for Zeus over tailscale serve (TLS terminated at *.ts.net, no LND cert)
+  lnd-qr = pkgs.writeShellScriptBin "lnd-qr" ''
+    set -euo pipefail
+    macaroon=$(/run/wrappers/bin/sudo -n -u ${user} ${pkgs.coreutils}/bin/base64 -w0 '${networkDir}/admin.macaroon' | tr '+/' '-_' | tr -d '=')
+    uri="lndconnect://lnd.tail6dbb0b.ts.net?macaroon=$macaroon"
+    echo "$uri"
+    ${pkgs.qrencode}/bin/qrencode -t ANSIUTF8 "$uri"
+  '';
+
   nodeinfo = pkgs.writeShellScriptBin "nodeinfo" ''
     set -euo pipefail
 
@@ -166,6 +175,10 @@ in
           command = "${pkgs.coreutils}/bin/test";
           options = [ "NOPASSWD" ];
         }
+        {
+          command = "${pkgs.coreutils}/bin/base64";
+          options = [ "NOPASSWD" ];
+        }
       ];
     }
   ];
@@ -173,8 +186,10 @@ in
   environment.systemPackages = [
     (lib.hiPrio lncli) # else stock lncli from pkgs.lnd shadows it
     (lib.hiPrio nodeinfo)
+    (lib.hiPrio lnd-qr)
     pkgs.jq
     pkgs.lnd
+    pkgs.qrencode
   ];
 
   systemd.tmpfiles.rules = [
