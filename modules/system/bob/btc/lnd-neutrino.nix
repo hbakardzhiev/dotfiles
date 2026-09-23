@@ -63,18 +63,14 @@ let
       "$@"
   '';
 
-  # Connection QR for Zeus over tailscale serve (TLS at *.ts.net:443).
-  # Macaroon is deliberately not embedded in the URI — print it separately.
+  # lndconnect QR for Zeus: host:8080 + macaroon query param (not in hostname)
   lnd-qr = pkgs.writeShellScriptBin "lnd-qr" ''
     set -euo pipefail
-    uri="lndconnect://lnd.tail6dbb0b.ts.net:443"
+    macaroon=$(/run/wrappers/bin/sudo -n -u ${user} ${pkgs.coreutils}/bin/base64 -w0 '${networkDir}/admin.macaroon' \
+      | tr '+/' '-_' | tr -d '=')
+    uri="lndconnect://lnd.tail6dbb0b.ts.net:8080?macaroon=$macaroon"
     echo "$uri"
     ${pkgs.qrencode}/bin/qrencode -t ANSIUTF8 "$uri"
-    echo
-    echo "Macaroon (base64url) — paste into Zeus:"
-    /run/wrappers/bin/sudo -n -u ${user} ${pkgs.coreutils}/bin/base64 -w0 '${networkDir}/admin.macaroon' \
-      | tr '+/' '-_' | tr -d '='
-    echo
   '';
 
   nodeinfo = pkgs.writeShellScriptBin "nodeinfo" ''
