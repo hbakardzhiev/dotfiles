@@ -24,6 +24,10 @@ in
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./sops.nix
+    {
+      # Path is relative to this flake root (module files resolve ../../../.. incorrectly)
+      _module.args.sopsFile = ./secrets/lnd/secrets.yaml;
+    }
   ]
   ++ filesToImport;
 
