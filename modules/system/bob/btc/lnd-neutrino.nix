@@ -171,10 +171,10 @@ in
   ];
 
   environment.systemPackages = [
-    pkgs.lnd
+    (lib.hiPrio lncli) # else stock lncli from pkgs.lnd shadows it
+    (lib.hiPrio nodeinfo)
     pkgs.jq
-    lncli
-    nodeinfo
+    pkgs.lnd
   ];
 
   systemd.tmpfiles.rules = [
