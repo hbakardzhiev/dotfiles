@@ -1,0 +1,4 @@
+# Style nits disabled: empty `{ ... }:` args, dotted repeated keys, manual inherit.
+# Re-enable once the tree is cleaned up.
+disabled = ["manual_inherit", "empty_pattern", "repeated_keys"]
+ignore = [".direnv"]

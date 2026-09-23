@@ -1,0 +1,11 @@
+title = "dotfiles gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known false positives"
+paths = [
+  # sops-nix template markers (BEGIN/END lines around placeholders), not real keys
+  '''modules/system/shared/sops\.nix''',
+]

@@ -4,6 +4,8 @@ Welcome to my dotfiles repository! This collection is tailored for users who wan
 
 ## Status
 ![Flake Check badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/flakeCheck.yml/badge.svg)
+![Lint badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/lint.yml/badge.svg)
+![Security badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/security.yml/badge.svg)
 ![Update of flake badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/bump.yml/badge.svg)
 
 ## Overview
@@ -52,6 +54,26 @@ To start using these dotfiles:
      ```bash
      sops your_secret_file.yaml
      ```
+
+## CI
+
+- **Flake Check** (`flakeCheck.yml`):
+  - `nix flake check` on every push/PR.
+  - Matrix eval of each host toplevel (`alice`, `eve`, `bob`) without building — catches option/module eval errors early.
+- **Lint** (`lint.yml`):
+  - `nixfmt --check` on all `.nix` files.
+  - `deadnix --fail` for unused bindings.
+  - [statix](https://github.com/nerdypepper/statix) with `statix.toml` (style nits W03/W10/W20 disabled).
+  - Repo hygiene: merge-conflict markers, `flake.lock` present/valid JSON.
+- **Security** (`security.yml`):
+  - [gitleaks](https://github.com/gitleaks/gitleaks) full-history secret scan (config in `.gitleaks.toml`).
+  - Asserts every `secrets/**/secrets.yaml` stays sops-encrypted and that no age private key is committed.
+  - [actionlint](https://github.com/rhysd/actionlint) on workflow files.
+  - Weekly scheduled rescan + manual dispatch.
+- **Bump** (`bump.yml`): daily `nix flake update` bot commit.
+- **Dependabot**: weekly PRs for GitHub Actions version bumps.
+
+GitHub secret scanning and push protection are also enabled on the repo.
 
 ## Customization
 

@@ -1,0 +1,94 @@
+name: Lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nixfmt:
+    name: nixfmt --check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Check formatting
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(find . -name '*.nix' -not -path './.git/*' | sort)
+          if [[ ${#files[@]} -eq 0 ]]; then
+            echo "no .nix files found"
+            exit 1
+          fi
+          nix run nixpkgs#nixfmt -- --check "${files[@]}"
+
+  deadnix:
+    name: deadnix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Check for dead code
+        run: nix run nixpkgs#deadnix -- --fail .
+
+  statix:
+    name: statix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v30
+
+      - name: Run statix
+        run: nix run nixpkgs#statix -- check --config statix.toml .
+
+  repo-hygiene:
+    name: repo hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Conflict markers, lockfile, workflow YAML
+        run: |
+          set -euo pipefail
+          fail=0
+
+          if grep -rInE '^(<<<<<<< |>>>>>>> )' \
+            --exclude-dir=.git --exclude-dir=.github . 2>/dev/null; then
+            echo "::error::merge conflict markers found"
+            fail=1
+          fi
+
+          if [[ ! -f flake.lock ]]; then
+            echo "::error::flake.lock missing"
+            fail=1
+          fi
+
+          python3 - <<'PY'
+          import json, sys
+          with open("flake.lock") as f:
+              json.load(f)
+          print("flake.lock: valid JSON")
+          PY
+
+          # .nix.bak must never be imported by getNixFiles (*.nix only) — warn if renamed wrongly
+          bad=$(find . -name '*.nix.bak' -o -name '*.nix.orig' | wc -l)
+          echo "backup nix files (not imported): $bad"
+
+          exit "$fail"

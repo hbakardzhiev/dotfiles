@@ -1,0 +1,77 @@
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    # weekly full-history rescan
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
+
+  sops-integrity:
+    name: Sops secrets stay encrypted
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify secrets are encrypted and no age private keys are committed
+        run: |
+          set -euo pipefail
+          fail=0
+
+          while IFS= read -r f; do
+            echo "checking $f"
+            if ! grep -q 'ENC\[AES256_GCM' "$f"; then
+              echo "::error file=$f::missing ENC[AES256_GCM ciphertext"
+              fail=1
+            fi
+            if ! grep -q '^sops:' "$f"; then
+              echo "::error file=$f::missing sops: metadata"
+              fail=1
+            fi
+          done < <(find secrets -name 'secrets.yaml' -type f)
+
+          if grep -rIl 'AGE-SECRET-KEY-' --exclude-dir=.git . 2>/dev/null; then
+            echo "::error::age private key material found in the tree"
+            fail=1
+          fi
+
+          if [[ "$fail" -ne 0 ]]; then
+            exit 1
+          fi
+          echo "sops integrity: OK"
+
+  actionlint:
+    name: Lint GitHub Actions workflows
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run actionlint
+        run: |
+          set -euo pipefail
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
