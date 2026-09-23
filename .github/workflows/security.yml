@@ -53,8 +53,9 @@ jobs:
             fi
           done < <(find secrets -name 'secrets.yaml' -type f)
 
-          if grep -rIl 'AGE-SECRET-KEY-' \
-            --exclude-dir=.git --exclude-dir=.github . 2>/dev/null; then
+          # Build the needle without a contiguous literal so this file cannot match itself
+          needle="AGE-SECRET-""KEY-"
+          if grep -rIl "$needle" --exclude-dir=.git . 2>/dev/null; then
             echo "::error::age private key material found in the tree"
             fail=1
           fi
