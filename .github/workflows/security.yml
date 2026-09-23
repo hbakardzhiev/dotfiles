@@ -53,7 +53,8 @@ jobs:
             fi
           done < <(find secrets -name 'secrets.yaml' -type f)
 
-          if grep -rIl 'AGE-SECRET-KEY-' --exclude-dir=.git . 2>/dev/null; then
+          if grep -rIl 'AGE-SECRET-KEY-' \
+            --exclude-dir=.git --exclude-dir=.github . 2>/dev/null; then
             echo "::error::age private key material found in the tree"
             fail=1
           fi
