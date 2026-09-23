@@ -6,8 +6,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/d63062affaf262d46d9fdcce40bb8c4ccb936d54";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
+    home-manager-unstable.url = "github:nix-community/home-manager";
     sovran-bitcoin.url = "github:naturallaw777/Sovran_Bitcoin";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +20,7 @@
     {
       nixpkgs,
       home-manager,
+      home-manager-unstable,
       sops-nix,
       # sovran-bitcoin,
       nixpkgs-unstable,
@@ -86,7 +89,7 @@
             sops-nix.nixosModules.sops
           ];
         };
-        ${maastricht} = nixpkgs.lib.nixosSystem {
+        ${maastricht} = nixpkgs-unstable.lib.nixosSystem {
           inherit system;
           specialArgs = {
             hostname = maastricht;
@@ -95,7 +98,7 @@
           }; # Pass flake inputs to our config
           modules = [
             ./${maastricht}.nix
-            home-manager.nixosModules.home-manager
+            home-manager-unstable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
