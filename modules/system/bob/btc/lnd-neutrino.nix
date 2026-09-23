@@ -24,14 +24,11 @@ let
 
   neutrinoPeers = [
     "btcd-mainnet.lightning.computer:8333"
-    "node.lightning.directory:8333"
     "btcd0.lightning.engineering:8333"
     "bb1.breez.technology:8333"
     "bb2.breez.technology:8333"
     "node.eldamar.icu:8333"
     "neutrino.noderunner.wtf:8333"
-    "mainnet1-btcd.zaphq.io:8333"
-    "mainnet2-btcd.zaphq.io:8333"
   ];
 
   lndConf = pkgs.writeText "lnd.conf" ''
