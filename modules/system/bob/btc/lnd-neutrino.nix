@@ -56,7 +56,7 @@ let
   '';
 
   lncli = pkgs.writeShellScriptBin "lncli" ''
-    exec ${pkgs.sudo}/bin/sudo -n -u ${user} ${pkgs.lnd}/bin/lncli \
+    exec /run/wrappers/bin/sudo -n -u ${user} ${pkgs.lnd}/bin/lncli \
       --rpcserver=${rpcAddress}:${toString rpcPort} \
       --tlscertpath='${dataDir}/tls.cert' \
       --macaroonpath='${networkDir}/admin.macaroon' \
