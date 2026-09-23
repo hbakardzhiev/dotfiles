@@ -47,16 +47,15 @@ let
     bitcoin.${network}=1
     bitcoin.node=neutrino
 
+    wallet-unlock-password-file=${passwordFile}
+    db.bolt.auto-compact=true
+    routing.strictgraphpruning=true
+
     [neutrino]
     ${lib.concatMapStrings (peer: "neutrino.addpeer=${peer}\n") neutrinoPeers}
 
     [fee]
     fee.url=https://nodes.lightning.computer/fees/v1/btc-fee-estimates.json
-
-    wallet-unlock-password-file=${passwordFile}
-
-    db.bolt.auto-compact=true
-    routing.strictgraphpruning=true
   '';
 
   lncli = pkgs.writeShellScriptBin "lncli" ''
