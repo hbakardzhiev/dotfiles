@@ -12,7 +12,7 @@ let
   user = "lnd";
   group = "lnd";
 
-  passwordFile = config.sops.secrets."lnd/wallet-password".path;
+  passwordFile = config.sops.secrets."wallet-password".path;
   lndinit = "${pkgs.lndinit}/bin/lndinit";
 
   rpcAddress = "127.0.0.1";
@@ -138,7 +138,7 @@ let
   '';
 in
 {
-  sops.secrets."lnd/wallet-password" = {
+  sops.secrets."wallet-password" = {
     owner = user;
     group = group;
     mode = "0400";
