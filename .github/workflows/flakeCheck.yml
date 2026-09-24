@@ -14,32 +14,84 @@ jobs:
   nix-flake-check:
     name: nix flake check
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
 
       - name: Nix Flake Check
-        run: nix flake check
+        # --no-update-lock-file fails if flake.nix and flake.lock disagree
+        run: nix flake check --no-update-lock-file
 
   eval-host:
     name: eval ${{ matrix.host }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
         host: [alice, eve, bob]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
 
       - name: Evaluate system toplevel (no build)
         run: |
           set -euo pipefail
           drv="$(nix eval --raw ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel.drvPath")"
           echo "evaluated ${{ matrix.host }} -> $drv"
+
+      - name: Warnings, failed assertions and SSH posture
+        env:
+          HOST: ${{ matrix.host }}
+          # Flip to "1" once the tree evaluates without warnings.
+          STRICT_WARNINGS: "0"
+        run: |
+          set -euo pipefail
+          nix eval --json ".#nixosConfigurations.${HOST}.config" --apply \
+            'c: { warnings = c.warnings; assertions = c.assertions; sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' \
+            > /tmp/host-posture.json
+
+          python3 - <<'PY'
+          import json, os, sys
+
+          host = os.environ["HOST"]
+          strict = os.environ.get("STRICT_WARNINGS") == "1"
+          cfg = json.load(open("/tmp/host-posture.json"))
+          fail = 0
+
+          for assertion in cfg["assertions"]:
+              if not assertion["assertion"]:
+                  print(f"::error::{host}: failed assertion: {assertion['message']}")
+                  fail = 1
+
+          for warning in cfg["warnings"]:
+              level = "error" if strict else "warning"
+              print(f"::{level}::{host}: {warning}")
+              if strict:
+                  fail = 1
+
+          if cfg["sshEnabled"]:
+              settings = cfg["sshSettings"]
+              if settings.get("PasswordAuthentication") is True:
+                  print(f"::error::{host}: sshd has PasswordAuthentication enabled")
+                  fail = 1
+              if settings.get("KbdInteractiveAuthentication") is True:
+                  print(f"::error::{host}: sshd has KbdInteractiveAuthentication enabled")
+                  fail = 1
+              if settings.get("PermitRootLogin") == "yes":
+                  print(f"::error::{host}: sshd has PermitRootLogin = yes")
+                  fail = 1
+
+          sys.exit(fail)
+          PY

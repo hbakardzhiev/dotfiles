@@ -289,7 +289,7 @@
                   ];
                 }
               ];
-              icon = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png";
+              icon = "http://upload.wikimedia.org/wikipedia/en/thumb/8/88/DuckDuckGo_logo.svg/150px-DuckDuckGo_logo.svg.png"; # policy-ok: W1
               definedAliases = [ "@ddg" ];
             };
             "Startpage" = {

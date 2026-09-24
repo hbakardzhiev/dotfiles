@@ -1,0 +1,51 @@
+name: Build
+
+# Eval (flakeCheck.yml) proves the configuration evaluates; this workflow
+# actually builds each host's toplevel so derivations that only break at
+# build time (bad hashes, failing build scripts, missing sources) are caught
+# before they land. Runs on every commit — every PR and every push to main.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    # weekly full build — catches nixpkgs/channel breakage between bumps
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build-host:
+    name: build ${{ matrix.host }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        host: [alice, eve, bob]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Free disk space
+        run: |
+          set -euo pipefail
+          sudo rm -rf /usr/local/lib/android /opt/ghc /usr/share/dotnet /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
+
+      - name: Build ${{ matrix.host }} toplevel
+        env:
+          HOST: ${{ matrix.host }}
+        run: nix build --no-link --print-build-logs ".#nixosConfigurations.${HOST}.config.system.build.toplevel"

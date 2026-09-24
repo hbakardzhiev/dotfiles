@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
 
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
@@ -16,17 +17,27 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
 
       - run: nix flake update
 
-      - uses: stefanzweifel/git-auto-commit-action@v7
+      # Never commit a lock bump that breaks evaluation: if this step fails
+      # the workflow fails, nothing is pushed, and the badge goes red.
+      - name: Verify the updated lock still checks out
+        run: |
+          set -euo pipefail
+          nix flake check
+          for host in alice eve bob; do
+            drv="$(nix eval --raw ".#nixosConfigurations.$host.config.system.build.toplevel.drvPath")"
+            echo "evaluated $host -> $drv"
+          done
+
+      - uses: stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d # v7
         with:
           commit_message: Bump flake.lock
           branch: main
@@ -34,5 +45,5 @@ jobs:
           file_pattern: flake.lock
           commit_user_name: Flake Bot # defaults to "GitHub Actions"
           commit_author: Flake Bot <actions@github.com> # defaults to author of the commit that triggered the run
-          skip_dirty_check: false    
+          skip_dirty_check: false
           skip_fetch: true

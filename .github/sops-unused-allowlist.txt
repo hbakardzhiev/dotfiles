@@ -1,0 +1,20 @@
+# Secret keys that exist in secrets/**/secrets.yaml but are referenced
+# dynamically (or intentionally left unused). sops_cross_check.py reports
+# every other unreferenced key as a CI warning.
+#
+# One key per line; `#` starts a comment.
+
+# used via sops.secrets."${cfg.hostname}" (dynv6 module)
+v6.army.bob
+# examples / scratch keys kept in the repo on purpose
+example_array
+example_booleans
+example_number
+hello
+test
+# not wired up yet
+ddns/dynv/token
+gmx
+nostr/nsec
+ssh/laptop/public
+ssh/phone

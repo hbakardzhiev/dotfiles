@@ -1,0 +1,8 @@
+# zizmor configuration — https://docs.zizmor.sh/configuration/
+# Audited in the `zizmor` job of security.yml.
+rules:
+  artipacked:
+    ignore:
+      # bump.yml deliberately keeps the checkout credentials persisted:
+      # git-auto-commit-action pushes the updated flake.lock with them.
+      - bump.yml

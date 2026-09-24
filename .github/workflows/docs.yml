@@ -1,0 +1,57 @@
+name: Docs & Hygiene
+
+# Keeps the documentation honest (every workflow badged and documented)
+# and the tree free of text-level annoyances that confuse diffs and reviews.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Lint Markdown files
+        run: npx --yes markdownlint-cli2@0.23.3 "**/*.md"
+
+  docs-sync:
+    name: README ↔ workflow inventory
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check every workflow is documented and badged
+        run: python3 .github/scripts/docs_sync.py
+
+  text-hygiene:
+    name: text hygiene
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Check whitespace, EOF newlines and BOMs
+        run: python3 .github/scripts/text_hygiene.py

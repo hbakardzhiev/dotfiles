@@ -1,0 +1,80 @@
+name: Config Checks
+
+# Repo-specific consistency rules that generic linters cannot know about:
+# sops secret wiring, flake input/lock agreement, security policy patterns
+# and workflow action pinning. All jobs are pure text/JSON except formatter.
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  sops-cross-check:
+    name: sops secret wiring
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install PyYAML
+        run: python3 -m pip install --user pyyaml
+
+      - name: Cross-check sops references against secrets files
+        run: python3 .github/scripts/sops_cross_check.py
+
+  policy-scan:
+    name: security & style policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Scan tracked files for policy violations
+        run: python3 .github/scripts/policy_scan.py
+
+  lock-sync:
+    name: flake.nix ↔ flake.lock
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Compare declared inputs against the lock file
+        run: python3 .github/scripts/lock_sync.py
+
+  formatter:
+    name: nix fmt entrypoint
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31
+
+      - name: Run the flake formatter and require a clean tree
+        run: |
+          set -euo pipefail
+          nix fmt .
+          git diff --exit-code
