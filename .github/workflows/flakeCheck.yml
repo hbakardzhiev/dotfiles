@@ -58,8 +58,10 @@ jobs:
           STRICT_WARNINGS: "0"
         run: |
           set -euo pipefail
+          # Mirror lib.asserts.checkAssertWarn: only force the messages of
+          # FAILED assertions — passing ones may interpolate nulls lazily.
           nix eval --json ".#nixosConfigurations.${HOST}.config" --apply \
-            'c: { warnings = c.warnings; assertions = c.assertions; sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' \
+            'c: { warnings = c.warnings; failedAssertions = map (a: a.message) (filter (a: !a.assertion) c.assertions); sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' \
             > /tmp/host-posture.json
 
           python3 - <<'PY'
@@ -70,10 +72,9 @@ jobs:
           cfg = json.load(open("/tmp/host-posture.json"))
           fail = 0
 
-          for assertion in cfg["assertions"]:
-              if not assertion["assertion"]:
-                  print(f"::error::{host}: failed assertion: {assertion['message']}")
-                  fail = 1
+          for message in cfg["failedAssertions"]:
+              print(f"::error::{host}: failed assertion: {message}")
+              fail = 1
 
           for warning in cfg["warnings"]:
               level = "error" if strict else "warning"
