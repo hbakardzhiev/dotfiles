@@ -61,7 +61,7 @@ jobs:
           # Mirror lib.asserts.checkAssertWarn: only force the messages of
           # FAILED assertions — passing ones may interpolate nulls lazily.
           nix eval --json ".#nixosConfigurations.${HOST}.config" --apply \
-            'c: { warnings = c.warnings; failedAssertions = map (a: a.message) (filter (a: !a.assertion) c.assertions); sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' \
+            'c: { warnings = c.warnings; failedAssertions = builtins.map (a: a.message) (builtins.filter (a: !a.assertion) c.assertions); sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' \
             > /tmp/host-posture.json
 
           python3 - <<'PY'
