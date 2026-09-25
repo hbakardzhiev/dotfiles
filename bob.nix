@@ -55,7 +55,7 @@ in
       hostname = hostname;
     };
     custom.containers.docker = {
-      enable = true;
+      enable = false;
     };
 
     # services.samba = {
