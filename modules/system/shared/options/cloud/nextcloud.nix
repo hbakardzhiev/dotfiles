@@ -29,7 +29,7 @@ in
 
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud34;
+      package = pkgs.nextcloud35;
       hostName = builtins.head cfg.hostname;
       https = true;
       settings.overwriteprotocol = "https";
