@@ -8,7 +8,7 @@
         description = "Only I can publish events; open for reading.";
         pubkey = "7f12a48deefa2b96f073bc2a21bf5a5c09580a2110801deaee1d0dba8d3135b9";
         relay_url = "wss://bobbb.duckdns.org";
-        name = "bobbb.duckdns.org";
+        name = "nostr.tail6dbb0b.ts.net";
       };
       network = {
         # Bind to this network address
@@ -35,57 +35,4 @@
   systemd.services.nostr-rs-relay.environment = {
     RUST_LOG = "debug";
   };
-
-  # Open firewall for the relay port
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ]; # Add 80/443 if using a reverse proxy
-
-  services.caddy = {
-    enable = true;
-    virtualHosts."bobbb.duckdns.org" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:12849
-
-        # CORS preflight (OPTIONS)
-        @cors_preflight {
-          method OPTIONS
-        }
-        respond @cors_preflight 204
-
-        header @cors_preflight Access-Control-Allow-Origin "*"
-        header @cors_preflight Access-Control-Allow-Headers "*"
-        header @cors_preflight Access-Control-Allow-Methods "GET, OPTIONS"
-
-        # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
-        @nip11 header Accept *application/nostr+json*
-        header @nip11 Access-Control-Allow-Origin "*"
-        header @nip11 Access-Control-Allow-Headers "*"
-        header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
-      '';
-    };
-    virtualHosts."nostr.v6.army" = {
-      extraConfig = ''
-        reverse_proxy 127.0.0.1:12849
-
-        # CORS preflight (OPTIONS)
-        @cors_preflight {
-          method OPTIONS
-        }
-        respond @cors_preflight 204
-
-        header @cors_preflight Access-Control-Allow-Origin "*"
-        header @cors_preflight Access-Control-Allow-Headers "*"
-        header @cors_preflight Access-Control-Allow-Methods "GET, OPTIONS"
-
-        # NIP-11 document (served via HTTPS; clients send Accept: application/nostr+json)
-        @nip11 header Accept *application/nostr+json*
-        header @nip11 Access-Control-Allow-Origin "*"
-        header @nip11 Access-Control-Allow-Headers "*"
-        header @nip11 Access-Control-Allow-Methods "GET, OPTIONS"
-      '';
-    };
-  };
-
 }

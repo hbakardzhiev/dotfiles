@@ -14,18 +14,11 @@ in
   };
 
   config = {
-    sops.secrets."ddns/duckdns/token" = lib.mkIf cfg.enable { };
-    services.duckdns = lib.mkIf cfg.enable {
-      enable = true;
-      domains = [ cfg.hostname ];
-      tokenFile = config.sops.secrets."ddns/duckdns/token".path;
-    };
-
     services.immich = lib.mkIf cfg.enable {
       enable = true;
       host = "localhost";
       port = portForImmich;
-      openFirewall = true;
+      openFirewall = false;
       mediaLocation = "/run/media/et1";
     };
 
