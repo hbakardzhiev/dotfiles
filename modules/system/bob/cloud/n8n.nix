@@ -2,7 +2,7 @@
 {
   services.n8n = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
   systemd.services.n8n.environment = {
     WEBHOOK_URL = "https://n8n.tail6dbb0b.ts.net";

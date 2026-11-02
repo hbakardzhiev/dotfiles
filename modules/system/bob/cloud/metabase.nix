@@ -6,7 +6,7 @@ in
   services.metabase = {
     enable = true;
     listen.port = port;
-    openFirewall = true;
+    openFirewall = false;
     ssl.enable = false;
   };
 }
