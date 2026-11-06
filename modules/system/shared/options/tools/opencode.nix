@@ -39,6 +39,7 @@ let
       command = [
         "${pkgs-unstable.playwright-mcp}/bin/playwright-mcp"
         "--headless"
+        "--output-dir" "/tmp/opencode/playwright"
       ];
     };
   };
