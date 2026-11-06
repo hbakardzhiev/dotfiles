@@ -45,6 +45,10 @@ in
         "100.80.185.72"
       ];
     };
+    services.opencode = {
+      enable = true;
+      port = 4096;
+    };
 
     # Systemd service for /run/media/backup
     systemd.services.fix-ntfs-backup = {
