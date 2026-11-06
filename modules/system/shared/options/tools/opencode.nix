@@ -145,6 +145,7 @@ in
           mcp-server-memory
           playwright-mcp
           nil
+          mcp-server-filesystem
         ]
       );
 
