@@ -2,6 +2,7 @@
   lib,
   pkgs,
   modulesPath,
+  pkgs-unstable,
   ...
 }:
 let
@@ -35,6 +36,7 @@ in
       enable = true;
       hostname = hostname;
     };
+
     cloud.nextcloud = {
       enable = true;
       hostname = [
@@ -45,11 +47,18 @@ in
         "100.80.185.72"
       ];
     };
+
     services.opencode = {
       enable = true;
       port = 4096;
+      package = pkgs-unstable.opencode.overrideAttrs (old: {
+        node_modules = old.node_modules.overrideAttrs (_: {
+          outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
+        });
+      });
     };
 
+    # -----------------
     # Systemd service for /run/media/backup
     systemd.services.fix-ntfs-backup = {
       description = "Run ntfsfix on backup drive before mounting";
