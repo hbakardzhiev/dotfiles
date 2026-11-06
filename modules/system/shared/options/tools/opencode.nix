@@ -6,6 +6,42 @@
 }:
 let
   cfg = config.services.opencode;
+
+  mcpServers = {
+    nixos = {
+      type = "local";
+      command = [ "${pkgs-unstable.mcp-nixos}/bin/mcp-nixos" ];
+    };
+    language-server = {
+      type = "local";
+      command = [
+        "${pkgs-unstable.mcp-language-server}/bin/mcp-language-server"
+        "--workspace"
+        "."
+        "--lsp"
+        cfg.mcp.languageServer.lsp
+      ];
+      cwd = ".";
+    };
+    fetch = {
+      type = "local";
+      command = [ "${pkgs-unstable.mcp-server-fetch}/bin/mcp-server-fetch" ];
+    };
+    memory = {
+      type = "local";
+      command = [ "${pkgs-unstable.mcp-server-memory}/bin/mcp-server-memory" ];
+      environment = {
+        MEMORY_FILE_PATH = cfg.mcp.memoryFile;
+      };
+    };
+    playwright = {
+      type = "local";
+      command = [
+        "${pkgs-unstable.playwright-mcp}/bin/playwright-mcp"
+        "--headless"
+      ];
+    };
+  };
 in
 {
   options.services.opencode = {
@@ -55,6 +91,38 @@ in
       description = "OpenCode package providing the `opencode` executable.";
     };
 
+    mcp = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = ''
+          Install and configure the bundled MCP servers (nixos,
+          language-server, fetch and memory) for every OpenCode instance on
+          this machine.
+        '';
+      };
+
+      languageServer.lsp = lib.mkOption {
+        type = lib.types.str;
+        default = "${pkgs-unstable.nil}/bin/nil";
+        description = ''
+          Language server executable used by `mcp-language-server`. The
+          default is `nil`, which provides Nix language support. Set this to
+          another executable (for example `gopls` or `clangd`) to use a
+          different language server.
+        '';
+      };
+
+      memoryFile = lib.mkOption {
+        type = lib.types.str;
+        default = "${config.users.users.${cfg.user}.home}/.local/share/opencode/memory.jsonl";
+        description = ''
+          File the `memory` MCP server uses to persist its knowledge graph.
+          The parent directory must already exist.
+        '';
+      };
+    };
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -65,7 +133,29 @@ in
       }
     ];
 
-    environment.systemPackages = [ cfg.package ];
+    environment.systemPackages =
+      [ cfg.package ]
+      ++ lib.optionals cfg.mcp.enable (
+        with pkgs-unstable;
+        [
+          mcp-nixos
+          mcp-language-server
+          mcp-server-fetch
+          mcp-server-memory
+          playwright-mcp
+          nil
+        ]
+      );
+
+    # Machine-wide OpenCode configuration (see /etc/opencode in the docs).
+    # The MCP servers are referenced by store path so they work regardless of
+    # the service PATH.
+    environment.etc."opencode/opencode.json" = lib.mkIf cfg.mcp.enable {
+      text = builtins.toJSON {
+        "$schema" = "https://opencode.ai/config.json";
+        mcp.servers = mcpServers;
+      };
+    };
 
     # Keep the user systemd manager running without an active login, so the
     # service starts at boot and survives logout.
