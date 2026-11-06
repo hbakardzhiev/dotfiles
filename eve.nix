@@ -42,7 +42,6 @@ in
       hostname = [
         # To be used as a general hostname
         "nextcloud.tail6dbb0b.ts.net"
-        "bakarh.ddns.net"
         # tailscale hostnames
         "100.80.185.72"
       ];

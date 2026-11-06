@@ -56,7 +56,7 @@
   security.polkit.enable = true;
 
   # fileSystems."/drives/Kraimorie" = {
-  #   device = "https://admin@bakarh.ddns.net/remote.php/dav/files/admin";
+  #   device = "https://admin@nextcloud.tail6dbb0b.ts.net/remote.php/dav/files/admin";
   #   fsType = "davfs";
   #   options = [
   #     "x-systemd.automount"

@@ -29,7 +29,7 @@ in
         username=$(cat ${config.sops.secrets."nextcloud/username".path})
         password=$(cat ${config.sops.secrets."nextcloud/Password".path})
               
-        nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/obsidian /drives/data/obsidian https://bakarh.ddns.net 
+        nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/obsidian /drives/data/obsidian https://nextcloud.tail6dbb0b.ts.net 
         # nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/obsidian /drives/data/obsidian https://100.84.168.15 
       '';
     };
@@ -44,9 +44,9 @@ in
         username=$(cat ${config.sops.secrets."nextcloud/username".path})
         password=$(cat ${config.sops.secrets."nextcloud/Password".path})
 
-        nextcloudcmd --user "$username" --password "$password" --trust  --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/HristoMiA2 /drives/data/configurationBackup https://bakarh.ddns.net 
+        nextcloudcmd --user "$username" --password "$password" --trust  --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/HristoMiA2 /drives/data/configurationBackup https://nextcloud.tail6dbb0b.ts.net 
         # nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/HristoMiA2 /drives/data/configurationBackup https://100.84.168.15
-        nextcloudcmd --user "$username" --password "$password" --trust  --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Passwords /drives/data/Passwords https://bakarh.ddns.net 
+        nextcloudcmd --user "$username" --password "$password" --trust  --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Passwords /drives/data/Passwords https://nextcloud.tail6dbb0b.ts.net 
         # nextcloudcmd --user "$username" --password "$password" --trust --exclude ~/.config/Nextcloud/sync-exclude.lst --path /et1/Kraimorie/Passwords /drives/data/Passwords https://100.84.168.15
       '';
     };
