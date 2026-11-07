@@ -39,7 +39,9 @@ in
     tools.networking = {
       enable = true;
       hostname = hostname;
-      enableIwdWifi = true;
+      # NetworkManager is the desktop's network stack here (nmcli, the Waybar
+      # network widget, VPNs), so iwd + systemd-networkd stay off.
+      enableIwdWifi = false;
     };
     cloud.nextcloud.client.upload.enable = true;
     custom.containers.docker = {
