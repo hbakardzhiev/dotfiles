@@ -55,35 +55,37 @@
 
   # Tools the keybindings, the bar and the session start call. Waybar, fuzzel,
   # hyprlock, hypridle and mako come from Home Manager.
-  environment.systemPackages = with pkgs; [
-    brightnessctl
-    bluez
-    bluez-tools
-    curl
-    evince
-    file-roller
-    grim
-    hyprpicker
-    hyprsunset
-    imv
-    jq
-    keepassxc
-    libnotify
-    mpv
-    nautilus
-    networkmanager
-    playerctl
-    python3
-    smartmontools
-    slurp
-    udiskie
-    wireplumber
-    wl-clipboard
-    xdg-utils
-  ]
-  ++ [
-    pkgs.kdePackages.kdenlive
-    pkgs.nextcloud-client
-    pkgs.thunderbird
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      brightnessctl
+      bluez
+      bluez-tools
+      curl
+      evince
+      file-roller
+      grim
+      hyprpicker
+      hyprsunset
+      imv
+      jq
+      keepassxc
+      libnotify
+      mpv
+      nautilus
+      networkmanager
+      playerctl
+      python3
+      smartmontools
+      slurp
+      udiskie
+      wireplumber
+      wl-clipboard
+      xdg-utils
+    ]
+    ++ [
+      pkgs.kdePackages.kdenlive
+      pkgs.nextcloud-client
+      pkgs.thunderbird
+    ];
 }
