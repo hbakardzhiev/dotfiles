@@ -71,6 +71,14 @@
             sops-nix.nixosModules.sops
           ];
         };
+        # On-demand installer for alice:
+        #   nix build .#nixosConfigurations.alice-iso.config.system.build.isoImage
+        # It ships no disk layout; the target is partitioned and mounted by
+        # hand (disko is available as a tool, nothing is applied automatically).
+        alice-iso = nixpkgs-unstable.lib.nixosSystem {
+          inherit system;
+          modules = [ ./modules/installer/alice-iso.nix ];
+        };
         ${server} = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
