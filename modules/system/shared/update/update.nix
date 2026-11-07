@@ -27,9 +27,13 @@
       "-L" # print build logs
     ];
     dates = "03:00";
+    # Reboot window starts after the 01:00 user backup (foo.timer) has had time
+    # to finish, so an automatic reboot never kills it mid-run. The decision is
+    # made once, right after the upgrade, and is not deferred: if it falls
+    # outside this window the reboot is skipped until the next upgrade.
     rebootWindow = {
-      lower = "01:00";
-      upper = "05:00";
+      lower = "04:00";
+      upper = "06:00";
     };
     allowReboot = true;
     randomizedDelaySec = "45min";
