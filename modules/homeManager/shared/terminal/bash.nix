@@ -13,7 +13,7 @@
       randomMac = "nmcli connection modify WIFI_CONN wifi.cloned-mac-address random";
       performance = "sudo cpupower frequency-set -g performance";
       powersave = "sudo cpupower frequency-set -g powersave";
-      showWindowName = "swaymsg -t get_tree";
+      showWindowName = "hyprctl activewindow";
       showDefaultApplicationForMimeType = "XDG_UTILS_DEBUG_LEVEL=2 xdg-mime query default"; # application/pdf
       showMimeTypeOfFile = "XDG_UTILS_DEBUG_LEVEL=2 xdg-mime query filetype"; # ./Downloads/text.html
       overrideHomeManager = "sudo nix flake lock --update-input home-manager --override-input home-manager /home/alice/Downloads/home-manager";

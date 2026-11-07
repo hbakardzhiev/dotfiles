@@ -31,7 +31,10 @@
       server = "eve";
       maastricht = "bob";
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
@@ -40,7 +43,7 @@
     {
       formatter.x86_64-linux = pkgs.nixfmt-tree;
       nixosConfigurations = {
-        ${pc} = nixpkgs.lib.nixosSystem {
+        ${pc} = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = {
             hostname = pc;
             inherit sops-nix;
@@ -49,7 +52,7 @@
           inherit system;
           modules = [
             ./${pc}.nix
-            home-manager.nixosModules.home-manager
+            home-manager-unstable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
@@ -59,6 +62,9 @@
               home-manager.extraSpecialArgs = {
                 hostname = pc;
                 inherit pkgs-unstable;
+                # 26.05 set: nixpkgs-unstable dropped brave, and alice is on
+                # unstable otherwise.
+                pkgs-stable = pkgs;
               };
               home-manager.backupFileExtension = "backup";
             }
