@@ -39,7 +39,8 @@ let
       command = [
         "${pkgs-unstable.playwright-mcp}/bin/playwright-mcp"
         "--headless"
-        "--output-dir" "/tmp/opencode/playwright"
+        "--output-dir"
+        "/tmp/opencode/playwright"
       ];
     };
   };
@@ -134,20 +135,21 @@ in
       }
     ];
 
-    environment.systemPackages =
-      [ cfg.package ]
-      ++ lib.optionals cfg.mcp.enable (
-        with pkgs-unstable;
-        [
-          mcp-nixos
-          mcp-language-server
-          mcp-server-fetch
-          mcp-server-memory
-          playwright-mcp
-          nil
-          mcp-server-filesystem
-        ]
-      );
+    environment.systemPackages = [
+      cfg.package
+    ]
+    ++ lib.optionals cfg.mcp.enable (
+      with pkgs-unstable;
+      [
+        mcp-nixos
+        mcp-language-server
+        mcp-server-fetch
+        mcp-server-memory
+        playwright-mcp
+        nil
+        mcp-server-filesystem
+      ]
+    );
 
     # Machine-wide OpenCode configuration (see /etc/opencode in the docs).
     # The MCP servers are referenced by store path so they work regardless of

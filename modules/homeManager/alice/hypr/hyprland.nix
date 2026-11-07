@@ -3,174 +3,245 @@
   ...
 }:
 let
-  # Workspaces 1-10, with 0 as the tenth key, like Sway/Omarchy.
+  inherit (lib.generators) mkLuaInline;
+
+  # Hyprland 0.57 dropped the hyprlang format, so Home Manager writes the
+  # Lua config from these settings. `mkLuaInline` keeps the dispatchers
+  # readable while everything else stays plain Nix values.
+
+  str = s: builtins.toJSON s;
+
+  # hl.bind(key, dispatcher[, options])
+  bind = key: dispatcher: options: {
+    _args = [
+      key
+      (mkLuaInline dispatcher)
+    ]
+    ++ lib.optional (options != { }) options;
+  };
+
+  exec = key: command: bind key "hl.dsp.exec_cmd(${str command})" { };
+  execOpt =
+    key: command: options:
+    bind key "hl.dsp.exec_cmd(${str command})" options;
+
   workspaces = lib.range 1 10;
   keyFor = n: if n == 10 then "0" else toString n;
 
-  workspaceBinds = lib.concatMap (n: [
-    "SUPER, ${keyFor n}, workspace, ${toString n}"
-    "SUPER SHIFT, ${keyFor n}, movetoworkspace, ${toString n}"
-  ]) workspaces;
+  focusWorkspace =
+    key: n: bind "SUPER + ${key}" "hl.dsp.focus({ workspace = ${str (toString n)} })" { };
+  moveToWorkspace =
+    key: n:
+    bind "SUPER + SHIFT + ${key}"
+      "hl.dsp.window.move({ workspace = ${str (toString n)}, follow = true })"
+      { };
 in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    # Plain hyprland.conf, generated from these settings. Lua is the newer
-    # format, but hyprlang is what the rest of the module system documents.
-    configType = "hyprlang";
+    configType = "lua";
 
     settings = {
-      monitor = [ ",preferred,auto,1" ];
-
-      exec-once = [
-        "hyprsunset"
-        "mako"
-        "thunderbird"
-        "udiskie --automount --no-tray"
-      ];
-
-      general = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 1;
-        layout = "dwindle";
+      monitor = {
+        output = "";
+        mode = "preferred";
+        position = "auto";
+        scale = 1;
       };
 
-      decoration = {
-        rounding = 0;
+      # Autostart. Runs once, on the compositor's start event.
+      on = {
+        _args = [
+          "hyprland.start"
+          (mkLuaInline (
+            lib.concatStrings [
+              "function()\n"
+              (lib.concatMapStrings (command: "  hl.exec_cmd(${str command})\n") [
+                "hyprsunset"
+                "mako"
+                "thunderbird"
+                "udiskie --automount --no-tray"
+              ])
+              "end"
+            ]
+          ))
+        ];
       };
 
-      animations = {
-        enabled = false;
-      };
+      config = {
+        general = {
+          gaps_in = 0;
+          gaps_out = 0;
+          border_size = 1;
+          layout = "dwindle";
+        };
 
-      input = {
-        kb_layout = "us,bg";
-        kb_variant = ",bds";
-        kb_options = "compose:caps,shift:both_capslock_cancel,grp:lalt_lshift_toggle";
-        repeat_rate = 40;
-        repeat_delay = 250;
-        numlock_by_default = true;
-        sensitivity = 0.35;
-        accel_profile = "flat";
+        decoration = {
+          rounding = 0;
+        };
+
+        animations = {
+          enabled = false;
+        };
+
+        input = {
+          kb_layout = "us,bg";
+          kb_variant = ",bds";
+          kb_options = "compose:caps,shift:both_capslock_cancel,grp:lalt_lshift_toggle";
+          repeat_rate = 40;
+          repeat_delay = 250;
+          numlock_by_default = true;
+          sensitivity = 0.35;
+          accel_profile = "flat";
+        };
+
+        misc = {
+          disable_hyprland_logo = true;
+          force_default_wallpaper = 0;
+          background_color = "rgb(f6f6f6)";
+        };
       };
 
       # Trackpoint curve from the old Sway/Omarchy setup.
-      device = [
-        {
-          name = "tpps/2-alps-trackpoint";
-          accel_profile = "custom 200 0.0 0.0";
-        }
-      ];
-
-      # Four-finger swipe switches workspaces.
-      gesture = [ "4, horizontal, workspace" ];
-
-      misc = {
-        disable_hyprland_logo = true;
-        force_default_wallpaper = 0;
-        background_color = "0xfff6f6f6";
+      device = {
+        name = "tpps/2-alps-trackpoint";
+        accel_profile = "custom 200 0.0 0.0";
       };
 
-      windowrule = [
-        "workspace 1, class:^(thunderbird)$"
-      ];
+      # Four-finger swipe switches workspaces.
+      gesture = {
+        fingers = 4;
+        direction = "horizontal";
+        action = "workspace";
+      };
+
+      window_rule = {
+        match.class = "^(thunderbird)$";
+        workspace = "1";
+      };
 
       bind = [
         # Launcher
-        "SUPER, D, exec, fuzzel"
-        "SUPER, SPACE, exec, fuzzel"
+        (exec "SUPER + D" "fuzzel")
+        (exec "SUPER + SPACE" "fuzzel")
 
         # Applications
-        "SUPER, RETURN, exec, alacritty"
-        "SUPER SHIFT, RETURN, exec, brave"
-        "SUPER SHIFT, F, exec, nautilus"
-        "SUPER SHIFT, N, exec, alacritty -e hx"
-        "SUPER SHIFT, O, exec, obsidian"
+        (exec "SUPER + RETURN" "alacritty")
+        (exec "SUPER + SHIFT + RETURN" "brave")
+        (exec "SUPER + SHIFT + F" "nautilus")
+        (exec "SUPER + SHIFT + N" "alacritty -e hx")
+        (exec "SUPER + SHIFT + O" "obsidian")
 
         # Windows
-        "SUPER, Q, killactive"
-        "SUPER, W, layoutmsg, togglesplit"
-        "SUPER, T, togglefloating"
-        "SUPER, P, pseudo"
-        "SUPER, F, fullscreen, 0"
-        "SUPER ALT, F, fullscreen, 1"
+        (bind "SUPER + Q" "hl.dsp.window.close()" { })
+        (bind "SUPER + W" "hl.dsp.layout(\"togglesplit\")" { })
+        (bind "SUPER + T" "hl.dsp.window.float({ action = \"toggle\" })" { })
+        (bind "SUPER + P" "hl.dsp.window.pseudo()" { })
+        (bind "SUPER + F" "hl.dsp.window.fullscreen({ mode = \"fullscreen\" })" { })
+        (bind "SUPER + ALT + F" "hl.dsp.window.fullscreen({ mode = \"maximized\" })" { })
 
         # Focus
-        "SUPER, LEFT, movefocus, l"
-        "SUPER, RIGHT, movefocus, r"
-        "SUPER, UP, movefocus, u"
-        "SUPER, DOWN, movefocus, d"
-        "SUPER, J, movefocus, l"
-        "SUPER, K, movefocus, r"
-        "ALT, TAB, cyclenext"
-        "ALT SHIFT, TAB, cyclenext, prev"
+        (bind "SUPER + LEFT" "hl.dsp.focus({ direction = \"left\" })" { })
+        (bind "SUPER + RIGHT" "hl.dsp.focus({ direction = \"right\" })" { })
+        (bind "SUPER + UP" "hl.dsp.focus({ direction = \"up\" })" { })
+        (bind "SUPER + DOWN" "hl.dsp.focus({ direction = \"down\" })" { })
+        (bind "SUPER + J" "hl.dsp.focus({ direction = \"left\" })" { })
+        (bind "SUPER + K" "hl.dsp.focus({ direction = \"right\" })" { })
+        (bind "ALT + TAB" "hl.dsp.window.cycle_next()" { })
+        (bind "ALT + SHIFT + TAB" "hl.dsp.window.cycle_next({ next = false })" { })
 
         # Move windows
-        "SUPER SHIFT, LEFT, movewindow, l"
-        "SUPER SHIFT, RIGHT, movewindow, r"
-        "SUPER SHIFT, UP, movewindow, u"
-        "SUPER SHIFT, DOWN, movewindow, d"
+        (bind "SUPER + SHIFT + LEFT" "hl.dsp.window.move({ direction = \"left\" })" { })
+        (bind "SUPER + SHIFT + RIGHT" "hl.dsp.window.move({ direction = \"right\" })" { })
+        (bind "SUPER + SHIFT + UP" "hl.dsp.window.move({ direction = \"up\" })" { })
+        (bind "SUPER + SHIFT + DOWN" "hl.dsp.window.move({ direction = \"down\" })" { })
 
         # Workspaces (numbered, plus next/previous workspace on this monitor)
-        "SUPER, TAB, workspace, m+1"
-        "SUPER SHIFT, TAB, workspace, m-1"
-        "SUPER CTRL, LEFT, workspace, e-1"
-        "SUPER CTRL, RIGHT, workspace, e+1"
-        "SUPER CTRL, J, workspace, e-1"
-        "SUPER CTRL, K, workspace, e+1"
-        "SUPER SHIFT, J, workspace, e-1"
-        "SUPER SHIFT, K, workspace, e+1"
+        (bind "SUPER + TAB" "hl.dsp.focus({ workspace = \"m+1\" })" { })
+        (bind "SUPER + SHIFT + TAB" "hl.dsp.focus({ workspace = \"m-1\" })" { })
+        (bind "SUPER + CTRL + LEFT" "hl.dsp.focus({ workspace = \"e-1\" })" { })
+        (bind "SUPER + CTRL + RIGHT" "hl.dsp.focus({ workspace = \"e+1\" })" { })
+        (bind "SUPER + CTRL + J" "hl.dsp.focus({ workspace = \"e-1\" })" { })
+        (bind "SUPER + CTRL + K" "hl.dsp.focus({ workspace = \"e+1\" })" { })
+        (bind "SUPER + SHIFT + J" "hl.dsp.focus({ workspace = \"e-1\" })" { })
+        (bind "SUPER + SHIFT + K" "hl.dsp.focus({ workspace = \"e+1\" })" { })
 
         # Scratchpad
-        "SUPER, S, togglespecialworkspace, scratchpad"
-        "SUPER ALT, S, movetoworkspace, special:scratchpad"
+        (bind "SUPER + S" "hl.dsp.workspace.toggle_special(\"scratchpad\")" { })
+        (bind "SUPER + ALT + S" "hl.dsp.window.move({ workspace = \"special:scratchpad\", follow = false })"
+          { }
+        )
 
         # Resize mode
-        "SUPER, R, submap, resize"
+        (bind "SUPER + R" "hl.dsp.submap(\"resize\")" { })
 
         # Screenshots: slurp writes the region to stdout, grim reads it.
-        ", PRINT, exec, grim - | wl-copy"
-        "SUPER SHIFT, S, exec, slurp | grim -g - - | wl-copy"
-        "SUPER, PRINT, exec, hyprpicker -a"
+        (exec "PRINT" "grim - | wl-copy")
+        (exec "SUPER + SHIFT + S" "slurp | grim -g - - | wl-copy")
+        (exec "SUPER + PRINT" "hyprpicker -a")
 
         # Session
-        "SUPER ALT, L, exec, loginctl lock-session"
+        (exec "SUPER + ALT + L" "loginctl lock-session")
 
         # Media keys
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", F1, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", F4, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ]
-      ++ workspaceBinds;
+        (exec "XF86AudioMute" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+        (exec "XF86AudioMicMute" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
+        (exec "XF86AudioPlay" "playerctl play-pause")
+        (exec "XF86AudioPause" "playerctl play-pause")
+        (exec "XF86AudioNext" "playerctl next")
+        (exec "XF86AudioPrev" "playerctl previous")
+        (exec "F1" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
+        (exec "F4" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
 
-      # Repeating keys.
-      bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        ", F2, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", F3, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-        ", F5, exec, brightnessctl set 5%-"
-        ", F6, exec, brightnessctl set 5%+"
-      ];
+        # Repeating keys
+        (execOpt "XF86AudioRaiseVolume" "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "XF86AudioLowerVolume" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "XF86MonBrightnessUp" "brightnessctl set 5%+" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "XF86MonBrightnessDown" "brightnessctl set 5%-" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "F2" "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "F3" "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "F5" "brightnessctl set 5%-" {
+          locked = true;
+          repeating = true;
+        })
+        (execOpt "F6" "brightnessctl set 5%+" {
+          locked = true;
+          repeating = true;
+        })
+      ]
+      ++ lib.concatMap (n: [
+        (focusWorkspace (keyFor n) n)
+        (moveToWorkspace (keyFor n) n)
+      ]) workspaces;
     };
 
     submaps.resize.settings.bind = [
-      ", J, resizeactive, -20 0"
-      ", K, resizeactive, 20 0"
-      ", LEFT, resizeactive, -20 0"
-      ", RIGHT, resizeactive, 20 0"
-      ", UP, resizeactive, 0 -20"
-      ", DOWN, resizeactive, 0 20"
-      ", ESCAPE, submap, reset"
-      ", RETURN, submap, reset"
+      (bind "J" "hl.dsp.window.resize({ x = -20, y = 0, relative = true })" { repeating = true; })
+      (bind "K" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })" { repeating = true; })
+      (bind "LEFT" "hl.dsp.window.resize({ x = -20, y = 0, relative = true })" { repeating = true; })
+      (bind "RIGHT" "hl.dsp.window.resize({ x = 20, y = 0, relative = true })" { repeating = true; })
+      (bind "UP" "hl.dsp.window.resize({ x = 0, y = -20, relative = true })" { repeating = true; })
+      (bind "DOWN" "hl.dsp.window.resize({ x = 0, y = 20, relative = true })" { repeating = true; })
+      (bind "ESCAPE" "hl.dsp.submap(\"reset\")" { })
+      (bind "RETURN" "hl.dsp.submap(\"reset\")" { })
     ];
   };
 }

@@ -8,7 +8,8 @@
       general = {
         lock_cmd = "pidof hyprlock || hyprlock";
         before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        # Hyprland 0.57 dispatches are Lua expressions only.
+        after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
       };
 
       listener = [
@@ -18,8 +19,8 @@
         }
         {
           timeout = 330;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
+          on-resume = "hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
         }
         {
           timeout = 1800;
