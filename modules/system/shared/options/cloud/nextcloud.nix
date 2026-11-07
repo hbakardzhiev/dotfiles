@@ -39,7 +39,11 @@ in
       configureRedis = true;
       # Increase the maximum file upload size to avoid problems uploading videos.
       maxUploadSize = "1G";
-      autoUpdateApps.enable = true;
+      # Apps come from nixpkgs via extraApps, which makes NixOS set
+      # 'appstoreenabled' => false. autoUpdateApps runs `occ app:update --all`
+      # and therefore fails every night with "App store access is disabled".
+      # Apps are updated by bumping nixpkgs and rebuilding, not from the store.
+      # autoUpdateApps.enable = true;
       extraAppsEnable = true;
       extraApps = with config.services.nextcloud.package.packages.apps; {
         # List of apps we want to install and are already packaged in

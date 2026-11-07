@@ -2,7 +2,6 @@
   lib,
   pkgs,
   modulesPath,
-  pkgs-unstable,
   ...
 }:
 let
@@ -31,6 +30,11 @@ in
 
   config = {
     system.stateVersion = "24.05"; # Did you read the comment?
+
+    # Terminfo for terminals that connect over SSH. Without this, TERM=xterm-ghostty
+    # from a Ghostty client is unknown here and ncurses tools (less, systemctl's
+    # pager) fail with "'xterm-ghostty': unknown terminal type."
+    environment.systemPackages = [ pkgs.ghostty.terminfo ];
 
     tools.networking = {
       enable = true;
