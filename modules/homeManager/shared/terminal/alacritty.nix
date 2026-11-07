@@ -1,6 +1,9 @@
-{ ... }:
+{ hostname, lib, ... }:
 {
-  programs.alacritty = {
+  # alice gets Omarchy's Alacritty config (which imports the generated theme
+  # file) from modules/homeManager/alice/omarchy; the other hosts keep this
+  # neutral fallback.
+  programs.alacritty = lib.mkIf (hostname != "alice") {
     enable = true;
     settings = {
       env.TERM = "alacritty";

@@ -1,18 +1,22 @@
 { pkgs, ... }:
 let
+  # Omarchy's own defaults (default/applications/mimeapps.list), adapted to the
+  # apps this host actually installs: Brave instead of Chromium, Helix instead
+  # of Neovim, and Obsidian kept for Markdown notes.
   browser = [
     "brave-browser.desktop"
     "floorp.desktop"
   ];
-  fileManager = [ "org.kde.dolphin.desktop" ];
-  imageViewer = [ "org.kde.gwenview.desktop" ];
+  fileManager = [ "org.gnome.Nautilus.desktop" ];
+  imageViewer = [ "imv.desktop" ];
+  videoPlayer = [ "mpv.desktop" ];
   editor = [ "Helix.desktop" ];
   obsidian = [ "obsidian.desktop" ];
   pdfReader = [
-    "org.kde.okular.desktop"
-    "okularApplication_pdf.desktop"
+    "org.gnome.Evince.desktop"
     "org.pwmt.zathura.desktop"
   ];
+  archive = [ "org.gnome.FileRoller.desktop" ];
   dict = {
     "application/pdf" = pdfReader;
     "application/epub+zip" = pdfReader;
@@ -23,12 +27,20 @@ let
     "image/jpeg" = imageViewer;
     "image/gif" = imageViewer;
     "image/png" = imageViewer;
+    "image/webp" = imageViewer;
+    "image/bmp" = imageViewer;
+    "image/tiff" = imageViewer;
     "image/heic" = imageViewer;
+    "video/mp4" = videoPlayer;
+    "video/x-matroska" = videoPlayer;
+    "video/webm" = videoPlayer;
+    "video/quicktime" = videoPlayer;
+    "text/plain" = editor;
     "application/xml" = editor;
     "text/markdown" = obsidian ++ editor;
     "inode/directory" = fileManager;
     "application/x-gnome-saved-search" = fileManager;
-    "application/zip" = [ "org.kde.ark.desktop" ];
+    "application/zip" = archive;
   };
 in
 {
@@ -37,8 +49,11 @@ in
     mimeApps = {
       enable = true;
       defaultApplications = dict;
-      # associations.added = dict;
     };
   };
-  home.packages = [ pkgs.xdg-utils ];
+  home.packages = [
+    pkgs.xdg-utils
+    # xdg-terminal-exec reads the Omarchy terminal preference list.
+    pkgs.xdg-terminal-exec
+  ];
 }

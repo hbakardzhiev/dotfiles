@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "alice.disk-health",
+  "name": "Disk health",
+  "version": "1.0.0",
+  "author": "alice",
+  "description": "S.M.A.R.T. health of every disk, in the status bar",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Disk health",
+    "description": "S.M.A.R.T. health of every disk",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}

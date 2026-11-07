@@ -14,6 +14,12 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # The Omarchy desktop tree (shell, Hyprland defaults, themes, SDDM) that
+    # alice vendors. flake = false: it is a plain source tree, not a flake.
+    omarchy = {
+      url = "github:basecamp/omarchy/v4.5.0";
+      flake = false;
+    };
   };
 
   outputs =
@@ -24,6 +30,7 @@
       sops-nix,
       # sovran-bitcoin,
       nixpkgs-unstable,
+      omarchy,
       ...
     }:
     let
@@ -36,6 +43,17 @@
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
+
+      # alice's desktop packages. Built here rather than from a relative path
+      # inside a module: Home Manager imports its module tree through a path
+      # interpolation, which copies that tree to the store on its own, so a
+      # module there cannot reach ../../../../pkgs.
+      omarchyPkg = pkgs.callPackage ./pkgs/omarchy.nix { src = omarchy; };
+      omarchySddm = pkgs.callPackage ./pkgs/omarchy-sddm.nix {
+        src = omarchy;
+        omarchy = omarchyPkg;
+      };
+      quickshell = pkgs.callPackage ./pkgs/quickshell.nix { inherit pkgs-unstable; };
     in
     {
       formatter.x86_64-linux = pkgs.nixfmt-tree;
@@ -45,6 +63,10 @@
             hostname = pc;
             inherit sops-nix;
             inherit pkgs-unstable;
+            inherit omarchy;
+            inherit omarchyPkg;
+            inherit omarchySddm;
+            inherit quickshell;
           }; # Pass flake inputs to our config
           inherit system;
           modules = [
@@ -59,6 +81,8 @@
               home-manager.extraSpecialArgs = {
                 hostname = pc;
                 inherit pkgs-unstable;
+                inherit omarchy;
+                inherit omarchyPkg;
               };
               home-manager.backupFileExtension = "backup";
             }

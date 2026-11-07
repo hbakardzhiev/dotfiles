@@ -39,7 +39,9 @@ in
     tools.networking = {
       enable = true;
       hostname = hostname;
-      enableIwdWifi = true;
+      # Omarchy drives Wi-Fi through NetworkManager (nmcli, the bar widget,
+      # VPNs), so iwd + systemd-networkd is off for this host.
+      enableIwdWifi = false;
     };
     cloud.nextcloud.client.upload.enable = true;
     custom.containers.docker = {
