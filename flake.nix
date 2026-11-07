@@ -38,7 +38,6 @@
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
-        overlays = [ (import ./pkgs/overlays/opencode-hash.nix) ];
       };
     in
     {
@@ -53,9 +52,6 @@
           inherit system;
           modules = [
             ./${pc}.nix
-            # opencode's node_modules FOD hash is broken at the pinned
-            # nixpkgs-unstable revision; see the overlay for details.
-            { nixpkgs.overlays = [ (import ./pkgs/overlays/opencode-hash.nix) ]; }
             home-manager-unstable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

@@ -50,11 +50,6 @@ in
     services.opencode = {
       enable = true;
       port = 4096;
-      package = pkgs-unstable.opencode.overrideAttrs (old: {
-        node_modules = old.node_modules.overrideAttrs (_: {
-          outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
-        });
-      });
     };
 
     # -----------------
