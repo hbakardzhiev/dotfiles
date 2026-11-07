@@ -2,8 +2,7 @@
   ...
 }:
 {
-  # The SMART helper the Waybar module calls. It is a plain script in the
-  # repo, symlinked into place by Home Manager.
+  # The SMART helper the bar calls: a plain script in the repo.
   home.file.".config/waybar/disk-health".source = ./disk-health;
 
   programs.waybar = {
@@ -163,131 +162,6 @@
       #custom-disk-health.fail {
         color: #b3261e;
       }
-    '';
-  };
-
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        terminal = "alacritty";
-        layer = "overlay";
-        width = 40;
-        lines = 12;
-      };
-      border = {
-        width = 1;
-        radius = 0;
-      };
-      colors = {
-        background = "f6f6f6ff";
-        text = "1f1f1fff";
-        match = "205ea6ff";
-        selection = "e2e2e2ff";
-        selection-text = "1f1f1fff";
-        border = "d8d8d8ff";
-      };
-    };
-  };
-
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        hide_cursor = true;
-        ignore_empty_input = true;
-      };
-
-      background = [
-        {
-          monitor = "";
-          color = "rgb(246, 246, 246)";
-        }
-      ];
-
-      label = [
-        {
-          monitor = "";
-          text = "cmd[update:1000] date +%H:%M";
-          color = "rgb(31, 31, 31)";
-          font_family = "JetBrainsMono Nerd Font";
-          font_size = 64;
-          position = "0, 160";
-          halign = "center";
-          valign = "center";
-        }
-      ];
-
-      "input-field" = [
-        {
-          monitor = "";
-          size = "240, 44";
-          outline_thickness = 1;
-          dots_center = true;
-          outer_color = "rgb(31, 31, 31)";
-          inner_color = "rgb(255, 255, 255)";
-          font_color = "rgb(31, 31, 31)";
-          font_family = "JetBrainsMono Nerd Font";
-          fade_on_empty = false;
-          placeholder_text = "Password";
-          position = "0, -60";
-          halign = "center";
-          valign = "center";
-        }
-      ];
-    };
-  };
-
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-        lock_cmd = "pidof hyprlock || hyprlock";
-        before_sleep_cmd = "loginctl lock-session";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-      };
-
-      listener = [
-        {
-          timeout = 300;
-          on-timeout = "loginctl lock-session";
-        }
-        {
-          timeout = 330;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-        {
-          timeout = 1800;
-          on-timeout = "systemctl suspend";
-        }
-      ];
-    };
-  };
-
-  services.mako = {
-    enable = true;
-    settings = {
-      font = "JetBrainsMono Nerd Font 10";
-      anchor = "top-right";
-      layer = "overlay";
-      width = 360;
-      height = 160;
-      margin = 10;
-      padding = 10;
-      border-size = 1;
-      border-color = "#d8d8d8";
-      background-color = "#f6f6f6";
-      text-color = "#1f1f1f";
-      default-timeout = 8000;
-      max-visible = 4;
-      icons = true;
-    };
-    extraConfig = ''
-      [urgency=critical]
-      border-color=#b3261e
-      text-color=#b3261e
-      default-timeout=0
     '';
   };
 }
