@@ -6,7 +6,7 @@
     xwayland.enable = true;
   };
 
-  programs.uwsm.enable = true;
+  programs.uwsm.enable = false;
 
   # Home Manager's GTK settings (theme, fonts) are stored through dconf.
   programs.dconf.enable = true;
@@ -17,7 +17,7 @@
       wayland.enable = true;
     };
     # No autologin: the greeter asks for the password.
-    defaultSession = "hyprland-uwsm";
+    defaultSession = "hyprland";
   };
 
   services = {
