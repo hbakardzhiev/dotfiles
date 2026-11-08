@@ -80,6 +80,7 @@ in
 
         decoration = {
           rounding = 0;
+          blur.enabled = false;
         };
 
         animations = {
@@ -183,7 +184,7 @@ in
         (exec "SUPER + PRINT" "hyprpicker -a")
 
         # Session
-        (exec "SUPER + ALT + L" "loginctl lock-session")
+        (exec "SUPER + L" "loginctl lock-session")
 
         # Media keys
         (exec "XF86AudioMute" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
