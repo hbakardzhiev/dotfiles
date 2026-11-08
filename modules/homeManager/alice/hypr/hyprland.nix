@@ -60,6 +60,8 @@ in
                 "hyprsunset"
                 "mako"
                 "thunderbird"
+                "nextcloud"
+                "tailscale-systray"
                 "udiskie --automount --no-tray"
               ])
               "end"

@@ -11,6 +11,9 @@
   # Let's open the UDP port with which the network is tunneled through
   networking.firewall.allowedUDPPorts = [ 41641 ];
 
+  environment.systemPackages = with pkgs-unstable; [
+    tailscale-systray
+  ];
   # Disable SSH access through the firewall
   # Only way into the machine will be through
   # This may cause a chicken & egg problem since you need to register a machine
