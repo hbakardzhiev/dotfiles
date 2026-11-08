@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   programs.floorp = {
-    enable = true;
+    enable = false;
     policies = {
       AppAutoUpdate = false;
       PasswordManagerEnabled = false;

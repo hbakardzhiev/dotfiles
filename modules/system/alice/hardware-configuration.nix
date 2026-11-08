@@ -62,30 +62,8 @@
   boot.initrd.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  boot.initrd.luks.devices = {
-    "luks-f745f52d-d6b2-4556-8971-612119907bf5".device =
-      "/dev/disk/by-uuid/f745f52d-d6b2-4556-8971-612119907bf5";
-    "luks-58149879-604e-4b89-b208-e5a4d86f3336".device =
-      "/dev/disk/by-uuid/58149879-604e-4b89-b208-e5a4d86f3336";
-  };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/85c1ae74-4158-4553-93c5-7258e0d820d8";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/C338-8AC8";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-uuid/1902c412-286f-4026-95ea-035e31fcc206"; }
-  ];
+  # The root filesystem, ESP, swap and the root LUKS entry come from
+  # modules/system/alice/disko.nix; the data disk is defined in alice.nix.
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -14,6 +14,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Declarative disk layout; the installer runs `disko --flake`.
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -22,6 +27,7 @@
       home-manager,
       home-manager-unstable,
       sops-nix,
+      disko,
       # sovran-bitcoin,
       nixpkgs-unstable,
       ...
@@ -52,6 +58,7 @@
           inherit system;
           modules = [
             ./${pc}.nix
+            disko.nixosModules.disko
             home-manager-unstable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -70,6 +77,14 @@
             }
             sops-nix.nixosModules.sops
           ];
+        };
+        # On-demand installer for alice:
+        #   nix build .#nixosConfigurations.alice-iso.config.system.build.isoImage
+        # It ships no disk layout; the target is partitioned and mounted by
+        # hand (disko is available as a tool, nothing is applied automatically).
+        alice-iso = nixpkgs-unstable.lib.nixosSystem {
+          inherit system;
+          modules = [ ./modules/installer/alice-iso.nix ];
         };
         ${server} = nixpkgs.lib.nixosSystem {
           inherit system;
