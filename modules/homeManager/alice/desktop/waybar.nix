@@ -55,6 +55,10 @@
           calendar = {
             mode = "month";
             weeks = true;
+            format = {
+              # Inverted square behind the current day so it stands out at a glance.
+              today = "<span background='#f6f6f6' color='#1f1f1f'><b>&#160;{}&#160;</b></span>";
+            };
           };
         };
 
