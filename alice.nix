@@ -86,6 +86,6 @@ in
 
     services.udisks2.enable = true;
 
-    system.stateVersion = "24.11"; # Did you read the comment?
+    system.stateVersion = "26.11"; # Did you read the comment?
   };
 }

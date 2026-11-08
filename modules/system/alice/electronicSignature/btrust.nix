@@ -4,7 +4,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    google-chrome
     # (optional but recommended for the next steps)
     nss
     nssTools
