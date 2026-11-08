@@ -14,6 +14,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Declarative disk layout; the installer runs `disko --flake`.
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -22,6 +27,7 @@
       home-manager,
       home-manager-unstable,
       sops-nix,
+      disko,
       # sovran-bitcoin,
       nixpkgs-unstable,
       ...
@@ -52,6 +58,7 @@
           inherit system;
           modules = [
             ./${pc}.nix
+            disko.nixosModules.disko
             home-manager-unstable.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

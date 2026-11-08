@@ -41,20 +41,20 @@
     useRoutingFeatures = "client";
   };
 
-  # This ISO deliberately ships no disk layout: partition and mount the target
-  # yourself, then install. disko is available as a tool, not configured.
+  # The disk layout lives in modules/system/alice/disko.nix; it is only
+  # applied when disko is run explicitly, and it names the OS disk by-id.
   environment.etc."alice-install.txt".text = ''
     alice installer
     ===============
 
     This image installs the alice configuration from
-    github:hbakardzhiev/dotfiles. It contains no disk layout; nothing is
-    partitioned or formatted automatically.
+    github:hbakardzhiev/dotfiles. Partitioning is declarative: the layout in
+    modules/system/alice/disko.nix wipes the OS disk by its by-id path and
+    leaves the encrypted data disk alone.
 
-    1. Partition and format the target disk, unlock its LUKS container and
-       mount the filesystems under /mnt. The alice configuration refers to
-       the existing LUKS and filesystem UUIDs, so a fresh layout needs them
-       updated in alice.nix and hardware-configuration.nix first.
+    1. Partition, format and mount the target:
+
+         disko --mode destroy,format,mount --flake github:hbakardzhiev/dotfiles#alice
 
     2. Install:
 
