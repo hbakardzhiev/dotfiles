@@ -72,6 +72,11 @@ in
       "en_US.UTF-8/UTF-8"
     ];
 
+    # Set calendar week to start on Monday system-wide
+    i18n.extraLocaleSettings = {
+      LC_TIME = "en_GB.UTF-8";
+    };
+
     #NodeJS
     # programs.npm.enable = true;
 
