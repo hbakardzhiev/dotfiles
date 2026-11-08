@@ -47,6 +47,10 @@ in
     custom.containers.docker = {
       enable = false;
     };
+    services.opencode = {
+      enable = true;
+      port = 4096;
+    };
 
     boot = {
       kernelParams = [ "psmouse.synaptics_intertouch=0" ];
