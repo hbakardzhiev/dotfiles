@@ -11,6 +11,7 @@ Welcome to my dotfiles repository! This collection is tailored for users who wan
 ![Config Checks badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/checks.yml/badge.svg)
 ![Docs & Hygiene badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/docs.yml/badge.svg)
 ![Update of flake badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/bump.yml/badge.svg)
+![ISO badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/iso.yml/badge.svg)
 
 ## Overview
 
@@ -68,8 +69,9 @@ To start using these dotfiles:
 
 ## CI
 
-Seven workflows gate every push and PR. Only **Build** compiles anything —
-everything else is text-level and finishes within minutes.
+Seven workflows gate every push and PR, plus one manual-only image build.
+Only **Build** compiles anything — everything else is text-level and finishes
+within minutes.
 
 - **Flake Check** (`flakeCheck.yml`):
   - `nix flake check --no-update-lock-file`: evaluates the flake and fails if
@@ -123,6 +125,10 @@ everything else is text-level and finishes within minutes.
 - **Bump** (`bump.yml`): daily `nix flake update` bot commit. The updated lock
   is verified first (`nix flake check` + eval of all three hosts), so a
   breaking lock bump fails the workflow instead of landing on `main`.
+- **ISO** (`iso.yml`): manual-dispatch only. Builds an installer image for the
+  selected `nixosConfiguration` (default `alice-iso`), checksums it, and
+  uploads the ISO plus `SHA256SUMS` as a 30-day artifact. Not run on pushes
+  because the image is ~1 GB.
 - **Dependabot**: weekly PRs for GitHub Actions version bumps, 7-day release
   cooldown.
 
