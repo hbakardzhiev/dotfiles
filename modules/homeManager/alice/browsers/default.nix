@@ -26,7 +26,6 @@
       # # "--disable-gpu-compositing"
     ];
     extensions = [
-      # { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } #ublock-origin
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # vimium
       { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # sponsorblock
       # { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
@@ -34,6 +33,7 @@
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
       { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
       { id = "fnaicdffflnofjppbagibeoednhnbjhg"; } # Floccus bookmark sync
+      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       # { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma browser integration
       # { id = "cnjifjpddelmedmihgijeibhnjfabmlf"; } # Obsidian Web Clipper
     ];
