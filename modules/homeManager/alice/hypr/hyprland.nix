@@ -124,9 +124,11 @@ in
       };
 
       bind = [
-        # Launcher
+        # Launcher (regular fuzzel still available via SUPER + SPACE)
         (exec "SUPER + D" "fuzzel")
-        (exec "SUPER + SPACE" "fuzzel")
+
+        # Power menu via super + alt + p (managed by Home Manager via powermenu.nix)
+        (exec "SUPER + ALT + P" "fuzzel-power")
 
         # Applications
         (exec "SUPER + RETURN" "alacritty")
@@ -185,6 +187,9 @@ in
 
         # Session
         (exec "SUPER + L" "loginctl lock-session")
+
+        # Quick power actions (removed: reboot, shutdown, logout)
+        # (SUPER + Alt + R, SUPER + Alt + S, SUPER + Alt + L are no longer needed)
 
         # Media keys
         (exec "XF86AudioMute" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
