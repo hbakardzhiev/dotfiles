@@ -29,7 +29,8 @@ in
 
   config = {
     tools.lidswitch = {
-      enable = false;
+      enable = true;
+      enableBattery = true;
     };
     tools.android = {
       enable = false;
@@ -43,7 +44,7 @@ in
       # network widget, VPNs), so iwd + systemd-networkd stay off.
       enableIwdWifi = false;
     };
-    cloud.nextcloud.client.upload.enable = true;
+    cloud.nextcloud.client.upload.enable = false;
     custom.containers.docker = {
       enable = false;
     };
