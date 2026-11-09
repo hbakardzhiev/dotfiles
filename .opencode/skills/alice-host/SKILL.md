@@ -198,6 +198,17 @@ sets `LIBVA_DRIVER_NAME = "iHD"` in the user session.
   the root and data disks are LUKS encrypted and `hyprlock` guards idle.
 - `programs.dconf.enable`, GNOME keyring, polkit, and a PAM service for
   `hyprlock` (required to unlock).
+- `modules/system/alice/keyring.nix` unlocks the GNOME keyring after autologin.
+  PAM has no password to give `pam_gnome_keyring`, so a
+  `gnome-keyring-unlock` user service feeds the password from
+  `sops.secrets."keyring/password"` to `gnome-keyring-daemon --unlock` before
+  `graphical-session.target`.
+- All keyring items live in the keyring whose file is
+  `~/.local/share/keyrings/login.keyring`: `--unlock` only ever unlocks that
+  one, and `~/.local/share/keyrings/default` is deliberately absent so the
+  default alias resolves to `login`. Do not point the alias at another
+  keyring, or apps will prompt again. The old `Default_Keyring` is kept in a
+  `keyrings.bak-*` directory under `~/.local/share`.
 - `services.logind.settings.Login.InhibitDelayMaxSec = 15` so the lock screen
   can appear before the five-second suspend inhibitor expires.
 - zram swap, common fonts, and a long list of session tools (grim, slurp,
@@ -268,6 +279,11 @@ Disabled on purpose (mostly by `.bak` suffix or explicit flags):
   `sops.templates`, owned by `alice` with mode `0600`.
 - Nextcloud credentials (`nextcloud/username`, `nextcloud/Password`) are
   declared by `modules/system/shared/options/secrets/nextcloud.nix`.
+- `keyring/password` in `modules/system/shared/sops.nix` holds the GNOME
+  `login` keyring password and is rendered to
+  `/run/secrets/keyring/password` (owner `alice`, mode `0400`). Changing it
+  means changing the keyring password too (`seahorse` or
+  `gnome-keyring-daemon`), otherwise the unlock service fails silently.
 - Encrypted files live under `secrets/`; `.sops.yaml` defines the age
   recipient and creation rules. Never commit a decrypted file or the age
   private key.

@@ -2,6 +2,15 @@
 {
   # services.openssh.settings.StrictModes = false;
 
+  # Password of the GNOME "login" keyring. SDDM autologin has no password for
+  # pam_gnome_keyring, so the keyring is unlocked by a user service instead
+  # (see modules/system/alice/keyring.nix).
+  sops.secrets."keyring/password" = {
+    owner = "alice";
+    group = "users";
+    mode = "0400";
+  };
+
   sops.secrets."privateLaptop1" = { };
   sops.secrets."privateLaptop2" = { };
   sops.secrets."privateLaptop3" = { };
