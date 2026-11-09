@@ -185,8 +185,10 @@ in
         (exec "SUPER + SHIFT + S" "slurp | grim -g - - | wl-copy")
         (exec "SUPER + PRINT" "hyprpicker -a")
 
-        # Session
-        (exec "SUPER + L" "loginctl lock-session")
+        # Session. `loginctl lock-session` only emits logind's Lock signal;
+        # something has to listen and draw the lock, and hypridle used to be
+        # that listener. With hypridle gone, start hyprlock directly.
+        (exec "SUPER + L" "pidof hyprlock || hyprlock")
 
         # Quick power actions (removed: reboot, shutdown, logout)
         # (SUPER + Alt + R, SUPER + Alt + S, SUPER + Alt + L are no longer needed)

@@ -3,7 +3,7 @@
   home.packages = [
     (pkgs.writeShellScriptBin "fuzzel-power" ''
       menu=(
-        "🔒 Lock:loginctl lock-session"
+        "🔒 Lock:pidof hyprlock || hyprlock"
         "💤 Suspend:systemctl suspend"
         "🛑 Hibernate:systemctl hibernate"
         "🔄 Reboot:systemctl reboot"
@@ -19,7 +19,7 @@
       selection=$(printf '%s\n' "''${labels[@]}" | ${pkgs.fuzzel}/bin/fuzzel --dmenu --prompt "Power:")
 
       case "$selection" in
-        "🔒 Lock") loginctl lock-session ;;
+        "🔒 Lock") pidof hyprlock || hyprlock ;;
         "💤 Suspend") systemctl suspend ;;
         "🛑 Hibernate") systemctl hibernate ;;
         "🔄 Reboot") systemctl reboot ;;
