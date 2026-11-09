@@ -12,6 +12,7 @@ Welcome to my dotfiles repository! This collection is tailored for users who wan
 ![Docs & Hygiene badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/docs.yml/badge.svg)
 ![Update of flake badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/bump.yml/badge.svg)
 ![ISO badge](https://github.com/hbakardzhiev/dotfiles/actions/workflows/iso.yml/badge.svg)
+![Security test](https://github.com/hbakardzhiev/dotfiles/actions/workflows/security-test.yml/badge.svg)
 
 ## Overview
 
@@ -131,6 +132,7 @@ within minutes.
   because the image is ~1 GB.
 - **Dependabot**: weekly PRs for GitHub Actions version bumps, 7-day release
   cooldown.
+- **Security-test** (`security-test.yml`): Security test
 
 All third-party actions are pinned to full commit SHA references (enforced by
 `policy_scan.py`); Dependabot keeps the pins and their `# vX` comments fresh.
