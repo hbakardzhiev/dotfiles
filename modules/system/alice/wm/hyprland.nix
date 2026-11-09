@@ -16,8 +16,16 @@
       enable = true;
       wayland.enable = true;
     };
-    # No autologin: the greeter asks for the password.
     defaultSession = "hyprland";
+
+    # Boot straight into the session. The root and data disks are LUKS
+    # encrypted, so the boot password is the real gate; hyprlock covers idle.
+    # WithUWSM is off because it does not work with the NVIDIA hybrid setup.
+    # `relogin` stays false, so an explicit logout returns to the greeter.
+    autoLogin = {
+      enable = true;
+      user = "alice";
+    };
   };
 
   services = {

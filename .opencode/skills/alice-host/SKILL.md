@@ -192,7 +192,10 @@ sets `LIBVA_DRIVER_NAME = "iHD"` in the user session.
 
 - `programs.hyprland.enable = true`, `withUWSM = false`,
   `xwayland.enable = false` (XWayland is intentionally off).
-- SDDM with the Wayland greeter, default session `hyprland`, no autologin.
+- SDDM with the Wayland greeter, default session `hyprland`, and autologin for
+  `alice` (`services.displayManager.autoLogin`). `relogin` is false, so an
+  explicit logout drops back to the greeter. Autologin is acceptable because
+  the root and data disks are LUKS encrypted and `hyprlock` guards idle.
 - `programs.dconf.enable`, GNOME keyring, polkit, and a PAM service for
   `hyprlock` (required to unlock).
 - `services.logind.settings.Login.InhibitDelayMaxSec = 15` so the lock screen
