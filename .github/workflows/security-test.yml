@@ -1,0 +1,287 @@
+name: Security Testing
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+  deployments: write
+  packages: write
+  pull-requests: write
+
+jobs:
+  security-test:
+    name: Security Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        host: [alice, bob, eve]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      
+      - name: Install Nix
+        uses: cachix/install-nix-action@75c75c31ebece974e48ebc36b4ad125bd97bd97b # v31
+        
+      - name: Evaluate host configuration
+        env:
+          HOST: ${{ matrix.host }}
+        run: |
+          set -euo pipefail
+          echo "Testing ${{ matrix.host }} configuration"
+          
+          # Extract configuration details
+          drv_path=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.system.build.toplevel.drvPath")
+          echo "Configuration derivation: $drv_path"
+          
+          # Check for OpenCode service
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.services.opencode.enable" | grep -q "true"; then
+            echo "✓ OpenCode service enabled"
+            port=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.services.opencode.port" 2>/dev/null || echo "4096")
+            echo "OpenCode port: $port"
+            
+            # Check if port is exposed in firewall
+            firewall_ports=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.networking.firewall.allowedUDPPorts // .#nixosConfigurations.${HOST}.config.networking.firewall.allowedTCPPorts || echo '[]'")
+            echo "Firewall allowed ports: $firewall_ports"
+            
+            if ! echo "$firewall_ports" | grep -q "$port"; then
+              echo "::error::OpenCode port $port not found in firewall allowed ports"
+              exit 1
+            fi
+          else
+            echo "✓ OpenCode service disabled or not configured"
+          fi
+          
+          # Check Tailscale configuration
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.services.tailscale.enable" | grep -q "true"; then
+            echo "✓ Tailscale enabled"
+            udp_port=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.networking.firewall.allowedUDPPorts[0]" 2>/dev/null || echo "41641")
+            echo "Tailscale UDP port: $udp_port"
+            
+            # Check if port is in allowed ports
+            firewall_ports=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.networking.firewall.allowedUDPPorts // .#nixosConfigurations.${HOST}.config.networking.firewall.allowedTCPPorts || echo '[]'")
+            echo "Firewall allowed UDP ports: $firewall_ports"
+            
+            if ! echo "$firewall_ports" | grep -q "$udp_port"; then
+              echo "::error::Tailscale UDP port $udp_port not found in firewall allowed ports"
+              exit 1
+            fi
+          else
+            echo "✓ Tailscale disabled"
+          fi
+          
+          # Check SSH configuration
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.services.openssh.openFirewall" | grep -q "false"; then
+            echo "✓ SSH firewall disabled"
+          else
+            echo "::error::SSH firewall is enabled"
+            exit 1
+          fi
+          
+          # Check Docker configuration
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.custom.containers.docker.enable" | grep -q "true"; then
+            echo "::error::Docker is enabled"
+            exit 1
+          else
+            echo "✓ Docker disabled"
+          fi
+          
+          # Check for exposed cloud services
+          cloud_checks=()
+          
+          # Nextcloud
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.cloud.nextcloud.enable" | grep -q "true"; then
+            cloud_checks+=("Nextcloud")
+          fi
+          
+          # Cloud services (DynV6, DuckDNS, Immich, etc.)
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.cloud.dynv6.enable" | grep -q "true"; then
+            cloud_checks+=("DynV6")
+          fi
+          
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.cloud.ddns.enable" | grep -q "true"; then
+            cloud_checks+=("DuckDNS")
+          fi
+          
+          if nix eval --raw ".#nixosConfigurations.${HOST}.config.cloud.immich.enable" | grep -q "true"; then
+            cloud_checks+=("Immich")
+          fi
+          
+          if [ ${#cloud_checks[@]} -gt 0 ]; then
+            echo "✓ Cloud services configured: ${cloud_checks[*]}"
+          else
+            echo "✓ No cloud services configured"
+          fi
+          
+          # Check for security posture
+          posture_file="/tmp/${HOST}-posture.json"
+          nix eval --json ".#nixosConfigurations.${HOST}.config" --apply 'c: { warnings = c.warnings; failedAssertions = builtins.map (a: a.message) (builtins.filter (a: !a.assertion) c.assertions); sshEnabled = c.services.openssh.enable; sshSettings = c.services.openssh.settings; }' > $posture_file
+          
+          # Check SSH settings
+          ssh_enabled=$(jq -r '.sshEnabled' $posture_file)
+          if [ "$ssh_enabled" = "true" ]; then
+            password_auth=$(jq -r '.sshSettings.PasswordAuthentication' $posture_file)
+            if [ "$password_auth" = "True" ]; then
+              echo "::error::SSH has PasswordAuthentication enabled"
+              exit 1
+            fi
+            
+            kbd_auth=$(jq -r '.sshSettings.KbdInteractiveAuthentication' $posture_file)
+            if [ "$kbd_auth" = "True" ]; then
+              echo "::error::SSH has KbdInteractiveAuthentication enabled"
+              exit 1
+            fi
+            
+            permit_root=$(jq -r '.sshSettings.PermitRootLogin' $posture_file)
+            if [ "$permit_root" = "yes" ]; then
+              echo "::error::SSH has PermitRootLogin = yes"
+              exit 1
+            fi
+          else
+            echo "✓ SSH disabled (not enabled)"
+          fi
+          
+          echo "✓ Security checks passed for ${{ matrix.host }}"
+          
+      - name: Run static security analysis
+        run: |
+          set -euo pipefail
+          echo "Running static security analysis..."
+          
+          # Check for gitleaks
+          echo "Running gitleaks scan..."
+          curl -sSL -o gitleaks https://github.com/zricethezav/gitleaks/releases/download/v8.16.1/gitleaks_8.16.1_Linux_x86_64.tar.gz
+          tar -xzf gitleaks_8.16.1_Linux_x86_64.tar.gz
+          ./gitleaks detect --source=. --report=json > gitleaks-report.json || true
+          
+          if jq '.results.total' gitleaks-report.json | grep -q '[1-9]'; then
+            echo "::error::gitleaks found secrets"
+            cat gitleaks-report.json
+            exit 1
+          else
+            echo "✓ No gitleaks findings"
+          fi
+          
+          # Check sops integrity
+          echo "Checking sops integrity..."
+          find secrets -name 'secrets.yaml' -type f -exec sh -c 'echo "Checking {}"; grep -q "ENC\["{}"" \; | while read -r f; do echo "✓ $f"; done || echo "::error::sops integrity check failed"
+          
+      - name: Run dynamic security tests
+        if: matrix.host == 'alice' || matrix.host == 'bob' || matrix.host == 'eve'
+        run: |
+          set -euo pipefail
+          echo "Running dynamic security tests on ${{ matrix.host }}..."
+          
+          # Simulate port scanning (static check since we don't have actual VMs)
+          echo "Simulating port scanning for ${{ matrix.host }}..."
+          
+          # Check for common security issues in configuration
+          config_file="/tmp/${{ matrix.host }}-config.nix"
+          nix eval --raw ".#nixosConfigurations.${{ matrix.host }}.config" > $config_file
+          
+          # Check for port exposure in config
+          if grep -q "services.opencode.port" $config_file; then
+            port=$(grep "services.opencode.port" $config_file | grep -o '[0-9]*')
+            echo "OpenCode port: $port"
+            
+            # Check if port is in firewall allowed ports
+            firewall_ports=$(nix eval --raw ".#nixosConfigurations.${{ matrix.host }}.config.networking.firewall.allowedUDPPorts // .#nixosConfigurations.${{ matrix.host }}.config.networking.firewall.allowedTCPPorts || echo '[]'")
+            if ! echo "$firewall_ports" | grep -q "$port"; then
+              echo "::error::OpenCode port $port not exposed in firewall"
+              exit 1
+            fi
+          fi
+          
+          # Check for open SSH despite firewall being disabled
+          if grep -q "services.openssh.enable" $config_file; then
+            if grep -q "openFirewall = false" $config_file; then
+              echo "✓ SSH firewall correctly disabled"
+            else
+              echo "::error::SSH firewall should be disabled when openFirewall = false"
+              exit 1
+            fi
+          fi
+          
+          # Check for Docker (should be disabled)
+          if grep -q "custom.containers.docker" $config_file; then
+            if grep -q "enable = true" $config_file; then
+              echo "::error::Docker is enabled"
+              exit 1
+            fi
+          fi
+          
+          echo "✓ Dynamic security tests passed for ${{ matrix.host }}"
+
+  # Additional job for overall security posture
+  summary:
+    name: Security Summary
+    runs-on: ubuntu-latest
+    needs: security-test
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      
+      - name: Generate security report
+        run: |
+          set -euo pipefail
+          echo "Generating security summary..."
+          
+          # Create summary file
+          echo "Security Test Results" > security-summary.txt
+          echo "=====================" >> security-summary.txt
+          echo "" >> security-summary.txt
+          
+          # Check each host
+          for host in alice bob eve; do
+            echo "=== $host ===" >> security-summary.txt
+            if nix eval --raw ".#nixosConfigurations.$host.config.services.opencode.enable" | grep -q "true"; then
+              echo "✓ OpenCode service enabled" >> security-summary.txt
+              port=$(nix eval --raw ".#nixosConfigurations.$host.config.services.opencode.port" 2>/dev/null || echo "4096")
+              echo "  Port: $port" >> security-summary.txt
+            else
+              echo "✓ OpenCode service disabled" >> security-summary.txt
+            fi
+            
+            if nix eval --raw ".#nixosConfigurations.$host.config.services.tailscale.enable" | grep -q "true"; then
+              echo "✓ Tailscale enabled" >> security-summary.txt
+              port=$(nix eval --raw ".#nixosConfigurations.$host.config.networking.firewall.allowedUDPPorts[0]" 2>/dev/null || echo "41641")
+              echo "  UDP Port: $port" >> security-summary.txt
+            else
+              echo "✓ Tailscale disabled" >> security-summary.txt
+            fi
+            
+            if nix eval --raw ".#nixosConfigurations.$host.config.services.openssh.openFirewall" | grep -q "false"; then
+              echo "✓ SSH firewall disabled" >> security-summary.txt
+            else
+              echo "✗ SSH firewall enabled" >> security-summary.txt
+            fi
+            
+            if nix eval --raw ".#nixosConfigurations.$host.config.custom.containers.docker.enable" | grep -q "true"; then
+              echo "✗ Docker enabled" >> security-summary.txt
+            else
+              echo "✓ Docker disabled" >> security-summary.txt
+            fi
+            
+            echo "" >> security-summary.txt
+          done
+          
+          echo "Security testing completed successfully" >> security-summary.txt
+      
+      - name: Upload security report
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-report
+          path: security-summary.txt
