@@ -136,6 +136,7 @@ in
         (exec "SUPER + SHIFT + F" "nautilus")
         (exec "SUPER + SHIFT + N" "alacritty -e hx")
         (exec "SUPER + SHIFT + O" "obsidian")
+        (exec "SUPER + B" "blueman-manager")
 
         # Windows
         (bind "SUPER + Q" "hl.dsp.window.close()" { })
