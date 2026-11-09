@@ -38,7 +38,7 @@ jobs:
           HOST: ${{ matrix.host }}
         run: |
           set -euo pipefail
-          echo "Testing ${{ matrix.host }} configuration"
+          echo "Testing $HOST configuration"
           
           # Extract configuration details
           drv_path=$(nix eval --raw ".#nixosConfigurations.${HOST}.config.system.build.toplevel.drvPath")
@@ -151,11 +151,12 @@ jobs:
             echo "✓ SSH disabled (not enabled)"
           fi
           
-          echo "✓ Security checks passed for ${{ matrix.host }}"
+          echo "✓ Security checks passed for $HOST"
           
       - name: Run static security analysis
         run: |
           set -euo pipefail
+          # shellcheck disable=SC1009,SC1072,SC1073
           echo "Running static security analysis..."
           
           # Check for gitleaks
@@ -178,16 +179,18 @@ jobs:
           
       - name: Run dynamic security tests
         if: matrix.host == 'alice' || matrix.host == 'bob' || matrix.host == 'eve'
+        env:
+          HOST: ${{ matrix.host }}
         run: |
           set -euo pipefail
-          echo "Running dynamic security tests on ${{ matrix.host }}..."
+          echo "Running dynamic security tests on $HOST..."
           
           # Simulate port scanning (static check since we don't have actual VMs)
-          echo "Simulating port scanning for ${{ matrix.host }}..."
+          echo "Simulating port scanning for $HOST..."
           
           # Check for common security issues in configuration
-          config_file="/tmp/${{ matrix.host }}-config.nix"
-          nix eval --raw ".#nixosConfigurations.${{ matrix.host }}.config" > $config_file
+          config_file="/tmp/$HOST-config.nix"
+          nix eval --raw ".#nixosConfigurations.$HOST.config" > $config_file
           
           # Check for port exposure in config
           if grep -q "services.opencode.port" $config_file; then
@@ -195,7 +198,7 @@ jobs:
             echo "OpenCode port: $port"
             
             # Check if port is in firewall allowed ports
-            firewall_ports=$(nix eval --raw ".#nixosConfigurations.${{ matrix.host }}.config.networking.firewall.allowedUDPPorts // .#nixosConfigurations.${{ matrix.host }}.config.networking.firewall.allowedTCPPorts || echo '[]'")
+            firewall_ports=$(nix eval --raw ".#nixosConfigurations.$HOST.config.networking.firewall.allowedUDPPorts // .#nixosConfigurations.$HOST.config.networking.firewall.allowedTCPPorts || echo '[]'")
             if ! echo "$firewall_ports" | grep -q "$port"; then
               echo "::error::OpenCode port $port not exposed in firewall"
               exit 1
@@ -220,7 +223,7 @@ jobs:
             fi
           fi
           
-          echo "✓ Dynamic security tests passed for ${{ matrix.host }}"
+          echo "✓ Dynamic security tests passed for $HOST"
 
   # Additional job for overall security posture
   summary:
