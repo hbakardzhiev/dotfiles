@@ -32,6 +32,14 @@ REF_RE = re.compile(r'\bsops\.(?:secrets|placeholder)\s*\.\s*"([^"]*)"')
 FILE_RE = re.compile(r"\b(?:defaultSopsFile|sopsFile)\s*(?:\?|=)\s*(\.[A-Za-z0-9_./-]+)")
 
 
+def sanitize_for_log(message: str) -> str:
+    """Redact potentially sensitive identifiers before emitting CI logs."""
+    sanitized = re.sub(r"'[^']*'", "'<redacted>'", message)
+    sanitized = re.sub(r'"[^"]*"', '"<redacted>"', sanitized)
+    sanitized = sanitized.replace("${", "<dynamic>")
+    return sanitized
+
+
 def flatten(data, prefix=""):
     out = set()
     for key, value in data.items():
@@ -173,11 +181,14 @@ def main() -> int:
         warnings.append(f"unreferenced secret key: {leaf} (allowlist it if intentional)")
 
     for message in errors:
-        print(f"::error::{message}")
+        print(f"::error::{sanitize_for_log(message)}")
     for message in warnings:
-        print(f"::warning::{message}")
+        print(f"::warning::{sanitize_for_log(message)}")
     for entry in dynamic:
-        print(f"::notice::dynamically constructed sops reference (not verified): {entry}")
+        print(
+            "::notice::dynamically constructed sops reference (not verified): "
+            f"{sanitize_for_log(str(entry))}"
+        )
 
     print(
         f"sops cross-check: {len(secrets_files)} files, {len(leaves)} keys, "
