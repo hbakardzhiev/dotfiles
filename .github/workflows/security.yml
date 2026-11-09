@@ -6,18 +6,23 @@ on:
     branches:
       - main
   schedule:
-    # weekly full-history rescan
+    # Weekly full-history secret scan
     - cron: "17 6 * * 1"
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: security-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   gitleaks:
-    name: Secret scan (gitleaks)
+    name: Secret scanning
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -25,55 +30,75 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Run gitleaks
+      - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
 
   sops-integrity:
-    name: Sops secrets stay encrypted
+    name: SOPS encryption integrity
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
 
-      - name: Verify secrets are encrypted and no age private keys are committed
+      - name: Verify encrypted secrets
+        shell: bash
         run: |
           set -euo pipefail
-          fail=0
 
-          while IFS= read -r f; do
-            echo "checking $f"
-            if ! grep -q 'ENC\[AES256_GCM' "$f"; then
-              echo "::error file=$f::missing ENC[AES256_GCM ciphertext"
-              fail=1
-            fi
-            if ! grep -q '^sops:' "$f"; then
-              echo "::error file=$f::missing sops: metadata"
-              fail=1
-            fi
-          done < <(find secrets -name 'secrets.yaml' -type f)
+          mapfile -d '' secret_files < <(
+            find secrets -type f -name 'secrets.yaml' -print0
+          )
 
-          # Build the needle without a contiguous literal so this file cannot match itself
-          needle="AGE-SECRET-""KEY-"
-          if grep -rIl "$needle" --exclude-dir=.git . 2>/dev/null; then
-            echo "::error::age private key material found in the tree"
-            fail=1
-          fi
-
-          if [[ "$fail" -ne 0 ]]; then
+          if [[ ${#secret_files[@]} -eq 0 ]]; then
+            echo "::error::No SOPS secrets.yaml files found"
             exit 1
           fi
-          echo "sops integrity: OK"
+
+          for file in "${secret_files[@]}"; do
+            echo "Checking $file"
+
+            if ! grep -q 'ENC\[AES256_GCM' "$file"; then
+              echo "::error file=$file::Missing encrypted SOPS data"
+              exit 1
+            fi
+
+            if ! grep -q '^sops:' "$file"; then
+              echo "::error file=$file::Missing SOPS metadata"
+              exit 1
+            fi
+          done
+
+          echo "SOPS integrity: OK"
+
+      - name: Check for committed age private keys
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          needle="AGE-SECRET-""KEY-"
+
+          if grep -rIl "$needle" \
+            --exclude-dir=.git \
+            --exclude-dir=result \
+            .; then
+            echo "::error::Age private key material found in repository"
+            exit 1
+          fi
+
+          echo "No age private keys found"
 
   actionlint:
-    name: Lint GitHub Actions workflows
+    name: GitHub Actions lint
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -81,15 +106,20 @@ jobs:
           persist-credentials: false
 
       - name: Run actionlint
+        shell: bash
         run: |
           set -euo pipefail
-          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+
+          bash <(curl -sSfL \
+            https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+
           ./actionlint -color
 
   zizmor:
-    name: zizmor (Actions security audit)
+    name: GitHub Actions security audit
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -97,10 +127,15 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor
+        shell: bash
         run: |
           set -euo pipefail
+
           curl -sSL -o /tmp/zizmor.tgz \
             https://github.com/zizmorcore/zizmor/releases/download/v1.30.1/zizmor-x86_64-unknown-linux-gnu.tar.gz
+
           echo "e65324f4430c2717591937edcec90ccbefaf14c174f8ec9415e03ca875b46e1a  /tmp/zizmor.tgz" | sha256sum -c -
+
           tar -xzf /tmp/zizmor.tgz -C /tmp
+
           /tmp/zizmor .github/
