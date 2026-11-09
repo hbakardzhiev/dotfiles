@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 {
@@ -89,6 +90,7 @@
           format-disabled = "";
           format-connected = "bt {device_alias}";
           tooltip-format = "{controller_alias}  {num_connections} connected";
+          on-click = "exec ${pkgs.blueman}/bin/blueman-manager";
         };
 
         backlight = {
