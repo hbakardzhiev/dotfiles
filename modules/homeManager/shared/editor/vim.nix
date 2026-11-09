@@ -2,7 +2,9 @@
 {
   programs.vim = {
     enable = true;
-    plugins = [ ];
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+    ];
   };
 
   programs.bash.shellAliases = {
