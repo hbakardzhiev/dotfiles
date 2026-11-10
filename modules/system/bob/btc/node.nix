@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   #
@@ -8,9 +8,15 @@
   # It intentionally keeps the nix-bitcoin option namespace for
   # compatibility.
   #
+  # Bob does NOT run Sovran's bundled LND (bitcoind-backed, generated
+  # secrets). It runs the hand-rolled neutrino LND from ./lnd-neutrino.nix,
+  # so the preset's `services.lnd.*` definitions are switched off at the
+  # source instead of being fought over with mkForce.
+  #
   sovran-bitcoin = {
     enable = true;
     operatorName = "alice"; # your user, gets bitcoin-cli / lncli / nodeinfo
+    features.lnd = false;
   };
 
   nix-bitcoin.generateSecrets = true;
@@ -57,8 +63,12 @@
   #
   # which contains the existing wallet/channel state.
   #
+  # The actual daemon is ./lnd-neutrino.nix (its own systemd unit).
+  # `mkForce` is required: rtl.nix sets `services.lnd.enable = true` as soon
+  # as services.rtl.nodes.lnd.enable is true (equal priority 100 otherwise).
+  #
   services.lnd = {
-    enable = false;
+    enable = lib.mkForce false;
 
     extraConfig = ''
       protocol.option-scid-alias=true
