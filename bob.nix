@@ -88,7 +88,20 @@ in
     fileSystems."/run/media/et1" = {
       device = "/dev/disk/by-uuid/d3472797-efc9-4327-9157-0fb30baa00b9";
       fsType = "ext4";
-      options = [ "defaults" ];
+      options = [
+        "defaults"
+        "nofail"
+      ];
+    };
+
+    # New USB disk (btcnode, 1.8T) - nofail so boot never depends on it.
+    fileSystems."/run/media/btcnode" = {
+      device = "/dev/disk/by-uuid/40a2ad9a-548a-4ab6-a559-6bea95fd989d";
+      fsType = "ext4";
+      options = [
+        "defaults"
+        "nofail"
+      ];
     };
   };
 }
