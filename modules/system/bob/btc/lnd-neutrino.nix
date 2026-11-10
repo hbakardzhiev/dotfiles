@@ -73,7 +73,7 @@ let
     ${pkgs.qrencode}/bin/qrencode -t ANSIUTF8 "$uri"
   '';
 
-  nodeinfo = pkgs.writeShellScriptBin "nodeinfo" ''
+  nodeinfo-lnd = pkgs.writeShellScriptBin "nodeinfo-lnd" ''
     set -euo pipefail
 
     echo "=== LND (neutrino) ==="
@@ -186,7 +186,7 @@ in
 
   environment.systemPackages = [
     (lib.hiPrio lncli) # else stock lncli from pkgs.lnd shadows it
-    (lib.hiPrio nodeinfo)
+    (lib.hiPrio nodeinfo-lnd)
     (lib.hiPrio lnd-qr)
     pkgs.jq
     pkgs.lnd

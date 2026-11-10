@@ -25,7 +25,7 @@
     enable = true;
 
     # Keep the existing blockchain.
-    dataDir = "/run/media/bitcoin";
+    dataDir = "/run/media/btcnode";
 
     listen = true;
     address = "0.0.0.0";
@@ -59,7 +59,7 @@
   # which contains the existing wallet/channel state.
   #
   services.lnd = {
-    enable = true;
+    enable = false;
 
     extraConfig = ''
       protocol.option-scid-alias=true
@@ -70,7 +70,7 @@
   # LND Connect
   #
   services.lnd.lndconnect = {
-    enable = true;
+    enable = false;
     onion = true;
   };
 
