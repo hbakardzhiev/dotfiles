@@ -28,7 +28,7 @@
       home-manager-unstable,
       sops-nix,
       disko,
-      # sovran-bitcoin,
+      sovran-bitcoin,
       nixpkgs-unstable,
       ...
     }:
@@ -133,6 +133,7 @@
               home-manager.backupFileExtension = "hm-backup";
             }
             sops-nix.nixosModules.sops
+            sovran-bitcoin.nixosModules.default
           ];
         };
       };

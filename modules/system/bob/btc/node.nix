@@ -8,7 +8,6 @@
   # It intentionally keeps the nix-bitcoin option namespace for
   # compatibility.
   #
-
   sovran-bitcoin = {
     enable = true;
     operatorName = "alice"; # your user, gets bitcoin-cli / lncli / nodeinfo
