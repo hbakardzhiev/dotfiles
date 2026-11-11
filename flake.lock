@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792526520,
-        "narHash": "sha256-3hSJlv8mUVnZPMWK2+CM7a9O+nR6Z4mCh27NfLCmTPc=",
+        "lastModified": 1794328522,
+        "narHash": "sha256-h2BYMW4nTFpIqnMd8gwAPFmJAp/1wWLQ6vT0NfL5qt4=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "cedd626e11b635470fa6f9fdb8ad79b0075dd7f9",
+        "rev": "1dd30c29c88d99ce295f15e27f93c49bc5fbae07",
         "type": "github"
       },
       "original": {
@@ -145,11 +145,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1794314466,
-        "narHash": "sha256-Q7oPSmyIL3Mldd9/MQh7xDLJCTn/3YEk18qLLKNCLns=",
+        "lastModified": 1794350268,
+        "narHash": "sha256-Px2310ZBevXhr2BV2jFeZTn4uABChAkDcdXJImNrrHc=",
         "owner": "naturallaw777",
         "repo": "Sovran_Bitcoin",
-        "rev": "2a7ca0e40d7e9138a576d8fa5c037143878f9577",
+        "rev": "30b7f2e1902eec7378f2c90a0a730fec1aa5b4bb",
         "type": "github"
       },
       "original": {
