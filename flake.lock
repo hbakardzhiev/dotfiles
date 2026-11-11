@@ -93,22 +93,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -116,8 +100,7 @@
         "home-manager-unstable": "home-manager-unstable",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "sops-nix": "sops-nix",
-        "sovran-bitcoin": "sovran-bitcoin"
+        "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
@@ -137,24 +120,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "sovran-bitcoin": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1794350268,
-        "narHash": "sha256-Px2310ZBevXhr2BV2jFeZTn4uABChAkDcdXJImNrrHc=",
-        "owner": "naturallaw777",
-        "repo": "Sovran_Bitcoin",
-        "rev": "30b7f2e1902eec7378f2c90a0a730fec1aa5b4bb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "naturallaw777",
-        "repo": "Sovran_Bitcoin",
         "type": "github"
       }
     }
