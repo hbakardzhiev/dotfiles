@@ -118,10 +118,18 @@ in
         action = "workspace";
       };
 
-      window_rule = {
-        match.class = "^(thunderbird)$";
-        workspace = "1";
-      };
+      # A list renders one hl.window_rule(...) call per element.
+      window_rule = [
+        {
+          match.class = "^(thunderbird)$";
+          workspace = "1";
+        }
+        {
+          # GNOME apps report their .desktop name as the Wayland app_id.
+          match.class = "^(org\\.gnome\\.Calculator)$";
+          float = true;
+        }
+      ];
 
       bind = [
         # Launcher (regular fuzzel still available via SUPER + SPACE)
