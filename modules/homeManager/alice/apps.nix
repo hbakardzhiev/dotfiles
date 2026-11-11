@@ -6,6 +6,7 @@
     libreoffice
     xournalpp
     portfolio
+    gnome-calculator
     # bitwarden-desktop
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
