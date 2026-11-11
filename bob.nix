@@ -94,14 +94,14 @@ in
       ];
     };
 
-    # New USB disk (btcnode, 1.8T) - nofail so boot never depends on it.
-    fileSystems."/run/media/btcnode" = {
-      device = "/dev/disk/by-uuid/40a2ad9a-548a-4ab6-a559-6bea95fd989d";
-      fsType = "ext4";
-      options = [
-        "defaults"
-        "nofail"
-      ];
-    };
+    # # New USB disk (btcnode, 1.8T) - nofail so boot never depends on it.
+    # fileSystems."/run/media/btcnode" = {
+    #   device = "/dev/disk/by-uuid/40a2ad9a-548a-4ab6-a559-6bea95fd989d";
+    #   fsType = "ext4";
+    #   options = [
+    #     "defaults"
+    #     "nofail"
+    #   ];
+    # };
   };
 }
