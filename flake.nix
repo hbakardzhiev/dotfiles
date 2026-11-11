@@ -7,7 +7,7 @@
     # nixpkgs.url = "github:nixos/nixpkgs/d63062affaf262d46d9fdcce40bb8c4ccb936d54";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager-unstable.url = "github:nix-community/home-manager";
-    sovran-bitcoin.url = "github:naturallaw777/Sovran_Bitcoin";
+    # sovran-bitcoin.url = "github:naturallaw777/Sovran_Bitcoin";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs-unstable";
     sops-nix = {
@@ -28,7 +28,7 @@
       home-manager-unstable,
       sops-nix,
       disko,
-      sovran-bitcoin,
+      # sovran-bitcoin,
       nixpkgs-unstable,
       ...
     }:
@@ -133,7 +133,7 @@
               home-manager.backupFileExtension = "hm-backup";
             }
             sops-nix.nixosModules.sops
-            sovran-bitcoin.nixosModules.default
+            # sovran-bitcoin.nixosModules.default
           ];
         };
       };
