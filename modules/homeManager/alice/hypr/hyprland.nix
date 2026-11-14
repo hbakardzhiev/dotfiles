@@ -78,6 +78,13 @@ in
           layout = "dwindle";
         };
 
+        # Required for `hl.dsp.layout("togglesplit")` (SUPER + W) to stick:
+        # without it, recalcSizePosRecursive() recomputes splitTop from the
+        # window's aspect ratio and undoes the toggle immediately.
+        dwindle = {
+          preserve_split = true;
+        };
+
         decoration = {
           rounding = 0;
           blur.enabled = false;
