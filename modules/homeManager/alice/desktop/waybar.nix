@@ -3,9 +3,6 @@
   ...
 }:
 {
-  # The SMART helper the bar calls: a plain script in the repo.
-  home.file.".config/waybar/disk-health".source = ./disk-health;
-
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -64,11 +61,11 @@
         };
 
         "custom/disk-health" = {
-          exec = "$HOME/.config/waybar/disk-health waybar";
+          exec = "disk-health waybar";
           interval = 300;
           return-type = "json";
           tooltip = true;
-          on-click = "$HOME/.config/waybar/disk-health details";
+          on-click = "disk-health details";
         };
 
         pulseaudio = {

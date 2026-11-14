@@ -607,6 +607,7 @@ in
       [
         marksman
         nil
+        ty
       ]
       ++ lib.optionals (hostname == "alice") [
         # Note the \n for the newline char, in case there's one in /etc/hostname
