@@ -23,6 +23,7 @@
           "custom/disk-health"
           "hyprland/language"
           "pulseaudio"
+          "pulseaudio#microphone"
           "network"
           "bluetooth"
           "backlight"
@@ -75,6 +76,19 @@
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
 
+        # The pulseaudio module always renders the *sink* in `format`; the source
+        # (microphone) only appears via `{format_source}`. So this instance shows
+        # the source format, and `target` makes scrolling control the source.
+        "pulseaudio#microphone" = {
+          format = "{format_source}";
+          format-source = "🎤";
+          format-source-muted = "🤐";
+          target = "source";
+          scroll-step = 5;
+          on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          tooltip-format = "{source_desc}";
+        };
+
         network = {
           format-wifi = "🛜{essid}";
           format-ethernet = "🖧  ethernet";
@@ -85,7 +99,7 @@
         bluetooth = {
           format = "ᛒ{status}";
           format-disabled = "";
-          format-connected = "bt {device_alias}";
+          format-connected = "ᛒ{device_alias}";
           tooltip-format = "{controller_alias}  {num_connections} connected";
           on-click = "exec ${pkgs.blueman}/bin/blueman-manager";
         };
