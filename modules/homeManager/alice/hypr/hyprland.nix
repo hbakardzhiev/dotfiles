@@ -189,6 +189,13 @@ in
         # Resize mode
         (bind "SUPER + R" "hl.dsp.submap(\"resize\")" { })
 
+        # Universal clipboard (Omarchy-style).
+        # SUPER+C sends Ctrl+Insert to the focused app, SUPER+V opens the
+        # history and pastes the selection, SUPER+SHIFT+V pastes directly.
+        (exec "SUPER + C" "clipboard copy")
+        (exec "SUPER + V" "clipboard menu")
+        (exec "SUPER + SHIFT + V" "clipboard paste")
+
         # Screenshots: slurp writes the region to stdout, grim reads it.
         (exec "PRINT" "grim - | wl-copy")
         (exec "SUPER + SHIFT + S" "slurp | grim -g - - | wl-copy")
