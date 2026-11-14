@@ -61,7 +61,7 @@ in
                 "mako"
                 "thunderbird"
                 "nextcloud"
-                "tailscale-systray"
+                "tailscale systray"
                 "udiskie --automount --no-tray"
               ])
               "end"
