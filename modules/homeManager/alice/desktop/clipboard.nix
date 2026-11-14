@@ -77,7 +77,7 @@ let
       }
 
       store() {
-        local types image state
+        local types image_type state
         workdir="$(mktemp -d "''${XDG_RUNTIME_DIR:-/tmp}/clipboard-store.XXXXXX")"
 
         # Drain the event wl-paste was watching. Otherwise a large image can
@@ -110,9 +110,9 @@ let
 
         # A browser image also offers text/html and text/plain. Prefer the
         # image so the entry can be restored as an image later.
-        image="$(grep -m1 '^image/' <<<"$types" || true)"
-        if [ -n "$image" ]; then
-          if wl-paste --type "$image" > "$workdir/data" 2>/dev/null && [ -s "$workdir/data" ]; then
+        image_type="$(grep -m1 '^image/' <<<"$types" || true)"
+        if [ -n "$image_type" ]; then
+          if wl-paste --type "$image_type" > "$workdir/data" 2>/dev/null && [ -s "$workdir/data" ]; then
             cliphist store < "$workdir/data"
             return
           fi

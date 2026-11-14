@@ -349,7 +349,7 @@ Every push/PR runs:
 - sops wiring cross-check, lock-file agreement, formatter cleanliness.
 - gitleaks, sops encryption/age-key checks, actionlint, zizmor.
 - markdownlint on all Markdown (`MD013` is disabled) and text hygiene.
-- `policy_scan.py`, which also scans Markdown and **warns on plain `http://`
+- `policy_scan.py`, which also scans Markdown and **warns on plain `http`
   URLs** (localhost/127.0.0.1 are exempt), errors on plaintext password
   assignments in Nix, impure calls, unpinned images/actions.
 

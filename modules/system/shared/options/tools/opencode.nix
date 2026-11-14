@@ -78,8 +78,10 @@ in
       default = "opencode";
       description = ''
         Password for the built-in HTTP basic authentication. The username is
-        always `opencode`, so the stable login URL is
-        `http://opencode:<password>@<host>:<port>`.
+        always `opencode`, so with the credentials embedded in the URL
+        (`opencode:<password>@127.0.0.1:<port>` by default) the login link
+        stays the same across restarts. The server speaks plain HTTP, so keep
+        it on a trusted network.
 
         The value is stored world-readably in the Nix store; override it if
         that is not acceptable.
