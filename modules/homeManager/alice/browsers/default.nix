@@ -13,7 +13,11 @@
       # "--skia-graphite-backend"
       # "--enable-vulkan"
       # "--enable-unsafe-webgpu"
-      # "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder"
+      # Hardware video encode (H.264/HEVC/VP8) via VAAPI on the Intel iGPU.
+      # Linux-only and still disabled by default in Chromium; the old
+      # VaapiVideoEncoder feature name no longer exists as of Chromium 157.
+      # Decode is already on by default (AcceleratedVideoDecoder).
+      "--enable-features=AcceleratedVideoEncoder"
       # "--enable-features=UseOzonePlatform"
       # "--ozone-platform=wayland"
 
