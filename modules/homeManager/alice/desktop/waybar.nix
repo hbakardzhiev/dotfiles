@@ -94,7 +94,7 @@
         };
 
         backlight = {
-          format = "☀{percent}%";
+          format = "🔅{percent}%";
         };
 
         battery = {
@@ -102,7 +102,7 @@
             warning = 30;
             critical = 15;
           };
-          format = "𓈚 {capacity}%";
+          format = "🔋{capacity}%";
           format-charging = "charging {capacity}%";
           format-plugged = "ac {capacity}%";
           tooltip-format = "{timeTo}";
