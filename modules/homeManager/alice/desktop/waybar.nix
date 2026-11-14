@@ -72,21 +72,21 @@
         };
 
         pulseaudio = {
-          format = "{volume}%";
-          format-muted = "muted";
+          format = "🔉{volume}%";
+          format-muted = "🔇";
           scroll-step = 5;
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
 
         network = {
-          format-wifi = "{essid}";
-          format-ethernet = "ethernet";
+          format-wifi = "🛜{essid}";
+          format-ethernet = "🖧  ethernet";
           format-disconnected = "offline";
           tooltip-format = "{ifname}  {ipaddr}";
         };
 
         bluetooth = {
-          format = "bt {status}";
+          format = "ᛒ{status}";
           format-disabled = "";
           format-connected = "bt {device_alias}";
           tooltip-format = "{controller_alias}  {num_connections} connected";
@@ -94,7 +94,7 @@
         };
 
         backlight = {
-          format = "{percent}%";
+          format = "☀{percent}%";
         };
 
         battery = {
@@ -102,7 +102,7 @@
             warning = 30;
             critical = 15;
           };
-          format = "{capacity}%";
+          format = "𓈚 {capacity}%";
           format-charging = "charging {capacity}%";
           format-plugged = "ac {capacity}%";
           tooltip-format = "{timeTo}";
