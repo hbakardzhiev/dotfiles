@@ -141,6 +141,8 @@
     };
   };
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   # services.postgresql = {
   #   enable = true;
   #   ensureDatabases = [ "mydatabase" ];
