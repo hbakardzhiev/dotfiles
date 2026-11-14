@@ -31,7 +31,7 @@
       # { id = "blaaajhemilngeeffpbfkdjjoefldkok"; } # leechblock
       # { id = "ifbmcpbgkhlpfcodhjhdbllhiaomkdej"; } # Office - Enable Copy and Paste (for word,excel...)
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
+      # { id = "kpgefcfmnafjgpblomihpgmejjdanjjp"; } # Nos2x
       { id = "fnaicdffflnofjppbagibeoednhnbjhg"; } # Floccus bookmark sync
       { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       # { id = "cimiefiiaegbelhefglklhhakcgmhkai"; } # plasma browser integration
