@@ -209,6 +209,10 @@ in
         # Quick power actions (removed: reboot, shutdown, logout)
         # (SUPER + Alt + R, SUPER + Alt + S, SUPER + Alt + L are no longer needed)
 
+        # Nightlight: cycles hyprsunset through red levels and off.
+        # Packaged in nightlight.nix, which also puts it on PATH.
+        (exec "SUPER + N" "nightlight")
+
         # Media keys
         (exec "XF86AudioMute" "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
         (exec "XF86AudioMicMute" "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
