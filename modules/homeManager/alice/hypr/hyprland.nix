@@ -82,6 +82,8 @@ in
         # without it, recalcSizePosRecursive() recomputes splitTop from the
         # window's aspect ratio and undoes the toggle immediately.
         dwindle = {
+          smart_split = true;
+          smart_resizing = true;
           preserve_split = true;
         };
 
