@@ -90,14 +90,14 @@
         };
 
         network = {
-          format-wifi = "🛜{essid}";
+          format-wifi = "🛜 {essid} {signalStrength}%";
           format-ethernet = "🖧  ethernet";
           format-disconnected = "offline";
           tooltip-format = "{ifname}  {ipaddr}";
         };
 
         bluetooth = {
-          format = "ᛒ{status}";
+          format = "🎧{status}";
           format-disabled = "";
           format-connected = "ᛒ{device_alias}";
           tooltip-format = "{controller_alias}  {num_connections} connected";
