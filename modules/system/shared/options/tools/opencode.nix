@@ -27,6 +27,10 @@ let
       type = "local";
       command = [ "${pkgs-unstable.mcp-server-fetch}/bin/mcp-server-fetch" ];
     };
+    pdf-mcp = {
+      type = "local";
+      command = [ "${pkgs-unstable.pdf-mcp}/bin/pdf-mcp" ];
+    };
     memory = {
       type = "local";
       command = [ "${pkgs-unstable.mcp-server-memory}/bin/mcp-server-memory" ];
@@ -149,6 +153,7 @@ in
         mcp-server-memory
         playwright-mcp
         nil
+        pdf-mcp
       ]
     );
 
