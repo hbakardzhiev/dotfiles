@@ -44,7 +44,9 @@
         };
 
         "hyprland/language" = {
-          format = "{short}";
+          # format = "{short}";
+          format-en = "🇺🇸";
+          format-bg = "🇧🇬";
         };
 
         clock = {
@@ -114,7 +116,7 @@
             critical = 15;
           };
           format = "🔋{capacity}%";
-          format-charging = "charging {capacity}%";
+          format-charging = "⚡{capacity}%";
           format-plugged = "ac {capacity}%";
           tooltip-format = "{timeTo}";
         };
