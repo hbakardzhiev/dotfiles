@@ -55,10 +55,12 @@
           tooltip-format = "<tt>{calendar}</tt>";
           calendar = {
             mode = "month";
-            weeks = true;
+            # Week-number column on the left edge of the calendar.
+            weeks-pos = "left";
             format = {
               # Inverted square behind the current day so it stands out at a glance.
-              today = "<span background='#f6f6f6' color='#1f1f1f'><b>&#160;{}&#160;</b></span>";
+              today = "<span background='#f6f6f6' color='#1f1f1f'><b>{}</b></span>";
+              weeks = "W{:%V}";
             };
           };
         };
