@@ -18,6 +18,8 @@
       showMimeTypeOfFile = "XDG_UTILS_DEBUG_LEVEL=2 xdg-mime query filetype"; # ./Downloads/text.html
       overrideHomeManager = "sudo nix flake lock --update-input home-manager --override-input home-manager /home/alice/Downloads/home-manager";
       gparted = "sudo -E gparted";
+      vpn = "sudo tailscale set --exit-node=eve";
+      vpnOff = "sudo tailscale set --exit-node=";
     };
   };
 }
