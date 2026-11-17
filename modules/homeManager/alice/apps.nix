@@ -7,6 +7,7 @@
     xournalpp
     portfolio
     gnome-calculator
+    kdePackages.krdc
     # bitwarden-desktop
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
