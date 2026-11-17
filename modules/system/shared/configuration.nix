@@ -34,7 +34,7 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "mitigations=off" ];
+    kernelParams = [ "mitigations=on" ];
   };
 
   networking = {
