@@ -8,6 +8,7 @@
     portfolio
     gnome-calculator
     kdePackages.krdc
+    pdfcraft
     # bitwarden-desktop
     # (kodi.withPackages (kodiPkgs: with kodiPkgs; [
     #   pvr-hdhomerun
