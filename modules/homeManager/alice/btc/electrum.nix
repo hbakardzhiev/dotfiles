@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [ electrum ];
+  home.packages = with pkgs; [
+    (electrum.override {
+      enablePythonEcdsa = false;
+    })
+  ];
   xdg.desktopEntries.electrum = {
     name = "Electrum Bitcoin Wallet";
     # exec = "${pkgs.electrum}/bin/electrum --oneserver --server zlzhj4nwz7qgmlkhkppyywzjal2dn6qacrvkj6vqdhsrmz5gpaxwmoyd.onion:50001:t --proxy socks5:127.0.0.1:9050";
