@@ -9,7 +9,7 @@
     name = "Electrum Bitcoin Wallet";
     # exec = "${pkgs.electrum}/bin/electrum --oneserver --server zlzhj4nwz7qgmlkhkppyywzjal2dn6qacrvkj6vqdhsrmz5gpaxwmoyd.onion:50001:t --proxy socks5:127.0.0.1:9050";
     # exec = "${pkgs.electrum}/bin/electrum --oneserver --server nostr.v6.army:50001:t";
-    exec = "${pkgs.electrum}/bin/electrum";
+    exec = "${pkgs.electrum}/bin/electrum --proxy socks5:127.0.0.1:9050";
     terminal = false;
     type = "Application";
     icon = "electrum";
